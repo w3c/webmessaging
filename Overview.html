@@ -217,7 +217,7 @@
 
    .details-example img { vertical-align: top; }
 
-  </style><link href="data:text/css," id="complete" rel="stylesheet" title="Complete specification"><link href="data:text/css,.impl%20{%20display:%20none;%20}" id="author" rel="alternate stylesheet" title="Author documentation only"><link href="data:text/css,.impl%20{%20background:%20%23FFEEEE;%20}" id="highlight" rel="alternate stylesheet" title="Highlight implementation requirements"><script>
+  </style><link href="data:text/css," id="complete" rel="stylesheet" title="Complete specification"><link href="data:text/css,.impl%20{%20display:%20none;%20}" id="author" rel="alternate stylesheet" title="Author documentation only"><link href="data:text/css,.impl%20{%20background:%20%23FFEEEE;%20}" id="highlight" rel="alternate stylesheet" title="Highlight implementation requirements"><script type="text/javascript">
    function getCookie(name) {
      var params = location.search.substr(1).split("&");
      for (var index = 0; index < params.length; index++) {
@@ -262,7 +262,7 @@
    <h1>HTML5 Communications</h1>
    <h2 class="no-num no-toc" id="generatedID"></h2>
 
-   <h2 class="no-num no-toc" id="editor-s-draft-10-january-2010">Editor's Draft 10 January 2010</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-29-january-2010">Editor's Draft 29 January 2010</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/postmsg/">http://www.w3.org/TR/postmsg/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -283,11 +283,20 @@
    <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>
    and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document
    use</a> rules apply.</p>
+
+   <!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST -->
+   <!-- temporarily removed after discussion with plh in October 2009 -->
+   <!-- will be moved back to below W3C copyright in April 2009 -->
+   <!--
+   <p class="alt">The <a
+   href="http://www.whatwg.org/specs/web-apps/current-work/multipage/">WHATWG
+   version</a> of this specification is available under a license that
+   permits reuse of the specification text.</p>
+   -->
+   <!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST -->
+
   </div><hr class="top"><h2 class="no-num no-toc" id="abstract">Abstract</h2><p>This specification defines two mechanism for communicating
-  between browsing contexts in HTML documents.</p><!--
-  <p>This specification is part of the HTML5 series of
-  specifications.</p>
---><h2 class="no-num no-toc" id="status-of-this-document">Status of This document</h2><!-- intro boilerplate (required) --><p><em>This section describes the status of this document at the
+  between browsing contexts in HTML documents.<h2 class="no-num no-toc" id="status-of-this-document">Status of This document</h2><!-- intro boilerplate (required) --><p><em>This section describes the status of this document at the
   time of its publication. Other documents may supersede this
   document. A list of current W3C publications and the most recently
   formally published revision of this technical report can be found in
@@ -318,7 +327,7 @@
   under them in incompatible ways.</strong> Vendors interested in
   implementing this specification before it eventually reaches the
   Candidate Recommendation stage should join the aforementioned
-  mailing lists and take part in the discussions.</p><!-- not everyone agrees with html5 (requested before fpwd) --><p>The publication of this document by the W3C as a W3C Working
+  mailing lists and take part in the discussions.</p><!-- not everyone agrees with this (requested before html5 fpwd) --><p>The publication of this document by the W3C as a W3C Working
   Draft does not imply that all of the participants in the W3C HTML
   working group endorse the contents of the specification. Indeed, for
   any section of the specification, one can usually find many members
@@ -347,32 +356,20 @@
   specification's progress along the W3C Recommendation
   track.
 
-  This specification is the 10 January 2010 Editor's Draft.
+  This specification is the 29 January 2010 Editor's Draft.
   </p><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- relationship to other work (required) --><p>This specification is part of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/">a
-  larger specification</a> being produced by the <a href="http://www.whatwg.org/">WHATWG</a>.
-  <!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST -->
-
-
-  <!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST -->
-  <!-- context and rationale (required) -->
-  This specification is a module that forms part of the HTML5 series
-  of specifications published at the W3C. It is published separate
-  from other modules of HTML5 in a manner consistent with the
-  principles of maturity, market success, and reusability in other
-  languages described in the <a href="http://lists.w3.org/Archives/Public/public-html/2010Jan/att-0218/issue-76-decision.html">Working
-  Group Decision</a> published on January 7th 2010.  The HTML5 series
-  of specifications is intended to replace (be a new version of) what
-  was previously the HTML4, XHTML1, and DOM2 HTML specifications.
-  </p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- required patent boilerplate --><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
+  larger specification</a> being produced by the <a href="http://www.whatwg.org/">WHATWG</a>, which is available under a
+  license that permits reuse of the specification text.</p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- context and rationale (required) --><!-- (this text is from the RDFa+HTML spec --><p>This specification is an extension to the HTML5 language. All
+  normative content in the HTML5 specification, unless specifically
+  overridden by this specification, is intended to be the basis for
+  this specification.</p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- required patent boilerplate --><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
   February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/40318/status" rel="disclosure">public list of
   any patent disclosures</a> made in connection with the deliverables
   of the group; that page also includes instructions for disclosing a
   patent. An individual who has actual knowledge of a patent which the
   individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
   Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
-  6 of the W3C Patent Policy</a>.</p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- temporarily moved to Status of this Document after discussion with plh in October 2009 --><!-- will be moved back to below W3C copyright in April 2009 --><p class="alt">The <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/">WHATWG
-   version</a> of this specification is available under a license that
-   permits reuse of the specification text.</p><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><h2 class="no-num no-toc" id="contents">Table of Contents</h2>
+  6 of the W3C Patent Policy</a>.<h2 class="no-num no-toc" id="contents">Table of Contents</h2>
 <!--begin-toc-->
 <ol class="toc">
  <li><a href="#conformance-requirements"><span class="secno">1 </span>Conformance requirements</a></li>
@@ -399,7 +396,7 @@
 <!--end-toc--><hr><h2 id="conformance-requirements"><span class="secno">1 </span>Conformance requirements</h2><p>This specification is an HTML specification. All the conformance
   requirements, conformance classes, definitions, dependencies,
   terminology, and typographical conventions described in the core
-  HTML5 specification apply to this specification. <a href="#refsHTML5CORE">[HTML5CORE]</a><h2 id="idl"><span class="secno">2 </span>IDL</h2><h2 id="event-definitions"><span class="secno">3 </span>Event definitions</h2><p>Messages in <span>server-sent events</span>, <span>Web
+  HTML5 specification apply to this specification. <a href="#refsHTML5">[HTML5]</a><h2 id="idl"><span class="secno">2 </span>IDL</h2><h2 id="event-definitions"><span class="secno">3 </span>Event definitions</h2><p>Messages in <span>server-sent events</span>, <span>Web
   sockets</span>, <a href="#crossDocumentMessages">cross-document messaging</a>, and
   <a href="#channel-messaging">channel messaging</a> use the <dfn id="event-message" title="event-message"><code>message</code></dfn> event.
   
@@ -1190,13 +1187,9 @@ interface <dfn id="messageport">MessagePort</dfn> {
    <dd><cite><a href="http://dev.w3.org/html5/eventsource/">Server-Sent
    Events</a></cite>, I. Hickson. W3C, July 2009.</dd>
 
-   <dt id="refsHTML5CORE">[HTML5CORE]</dt>
-   <!--
-   <dd><cite><a href="http://www.w3.org/TR/html5/">HTML5</a></cite>,
-   I. Hickson, D. Hyatt. W3C, April 2009.</dd>
-   -->
-   <dd><cite><a href="http://dev.w3.org/html5/spec/">HTML5</a></cite>,
-   I. Hickson, D. Hyatt. W3C, January 2010.</dd>
+   <dt id="refsHTML5">[HTML5]</dt>
+   <dd><cite><a href="http://www.whatwg.org/specs/web-apps/current-work/">HTML5</a></cite>,
+   I. Hickson. WHATWG, August 2009.</dd>
 
    <dt id="refsWEBSOCKET">[WEBSOCKET]</dt>
    <!--
@@ -1208,5 +1201,5 @@ interface <dfn id="messageport">MessagePort</dfn> {
    API</a></cite>, I. Hickson. W3C, August
    2009.</dd>
 
-  </dl><h2 class="no-num" id="acknowledgements">Acknowledgements</h2><p>For a full list of acknowledgements, please see the Core HTML5
-  specification. <a href="#refsHTML5CORE">[HTML5CORE]</a>
+  </dl><h2 class="no-num" id="acknowledgements">Acknowledgements</h2><p>For a full list of acknowledgements, please see the HTML5
+  specification. <a href="#refsHTML5">[HTML5]</a>
