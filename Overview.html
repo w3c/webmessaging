@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- when publishing, change bits marked ZZZ --><html lang="en-US-x-Hixie"><title>HTML5 Communications</title><style type="text/css">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- when publishing, change bits marked ZZZ --><html lang="en-US-x-Hixie"><title>HTML5 Web Messaging</title><style type="text/css">
    pre { margin-left: 2em; white-space: pre-wrap; }
    h2 { margin: 3em 0 1em 0; }
    h3 { margin: 2.5em 0 1em 0; }
@@ -278,10 +278,10 @@
    }
   </script><link href="http://www.w3.org/StyleSheets/TR/W3C-ED" rel="stylesheet" type="text/css"><body onload="init()"><div class="head" id="head">
    <p><a href="http://www.w3.org/"><img alt="W3C" height="48" src="http://www.w3.org/Icons/w3c_home" width="72"></a></p>
-   <h1>HTML5 Communications</h1>
+   <h1>HTML5 Web Messaging</h1>
    <h2 class="no-num no-toc" id="generatedID"></h2>
 
-   <h2 class="no-num no-toc" id="editor-s-draft-11-february-2010">Editor's Draft 11 February 2010</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-12-february-2010">Editor's Draft 12 February 2010</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/postmsg/">http://www.w3.org/TR/postmsg/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -375,7 +375,7 @@
   specification's progress along the W3C Recommendation
   track.
 
-  This specification is the 11 February 2010 Editor's Draft.
+  This specification is the 12 February 2010 Editor's Draft.
   </p><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- relationship to other work (required) --><p>This specification is part of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/">a
   larger specification</a> being produced by the <a href="http://www.whatwg.org/">WHATWG</a>, which is available under a
   license that permits reuse of the specification text.</p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- context and rationale (required) --><!-- (this text is from the RDFa+HTML spec --><p>This specification is an extension to the HTML5 language. All
@@ -392,30 +392,29 @@
 <!--begin-toc-->
 <ol class="toc">
  <li><a href="#conformance-requirements"><span class="secno">1 </span>Conformance requirements</a></li>
- <li><a href="#idl"><span class="secno">2 </span>IDL</a></li>
- <li><a href="#event-definitions"><span class="secno">3 </span>Event definitions</a></li>
- <li><a href="#crossDocumentMessages"><span class="secno">4 </span>Cross-document messaging</a>
+ <li><a href="#event-definitions"><span class="secno">2 </span>Event definitions</a></li>
+ <li><a href="#crossDocumentMessages"><span class="secno">3 </span>Cross-document messaging</a>
   <ol>
-   <li><a href="#introduction"><span class="secno">4.1 </span>Introduction</a></li>
-   <li><a href="#security"><span class="secno">4.2 </span>Security</a>
+   <li><a href="#introduction"><span class="secno">3.1 </span>Introduction</a></li>
+   <li><a href="#security"><span class="secno">3.2 </span>Security</a>
     <ol>
-     <li><a href="#authors"><span class="secno">4.2.1 </span>Authors</a></li>
-     <li><a href="#user-agents"><span class="secno">4.2.2 </span>User agents</a></ol></li>
-   <li><a href="#posting-messages"><span class="secno">4.3 </span>Posting messages</a></li>
-   <li><a href="#posting-messages-with-message-ports"><span class="secno">4.4 </span>Posting messages with message ports</a></ol></li>
- <li><a href="#channel-messaging"><span class="secno">5 </span>Channel messaging</a>
+     <li><a href="#authors"><span class="secno">3.2.1 </span>Authors</a></li>
+     <li><a href="#user-agents"><span class="secno">3.2.2 </span>User agents</a></ol></li>
+   <li><a href="#posting-messages"><span class="secno">3.3 </span>Posting messages</a></li>
+   <li><a href="#posting-messages-with-message-ports"><span class="secno">3.4 </span>Posting messages with message ports</a></ol></li>
+ <li><a href="#channel-messaging"><span class="secno">4 </span>Channel messaging</a>
   <ol>
-   <li><a href="#introduction-0"><span class="secno">5.1 </span>Introduction</a></li>
-   <li><a href="#message-channels"><span class="secno">5.2 </span>Message channels</a></li>
-   <li><a href="#message-ports"><span class="secno">5.3 </span>Message ports</a>
+   <li><a href="#introduction-0"><span class="secno">4.1 </span>Introduction</a></li>
+   <li><a href="#message-channels"><span class="secno">4.2 </span>Message channels</a></li>
+   <li><a href="#message-ports"><span class="secno">4.3 </span>Message ports</a>
     <ol>
-     <li><a href="#ports-and-garbage-collection"><span class="secno">5.3.1 </span>Ports and garbage collection</a></ol></ol></li>
+     <li><a href="#ports-and-garbage-collection"><span class="secno">4.3.1 </span>Ports and garbage collection</a></ol></ol></li>
  <li><a class="no-num" href="#references">References</a></li>
  <li><a class="no-num" href="#acknowledgements">Acknowledgements</a></ol>
 <!--end-toc--><hr><h2 id="conformance-requirements"><span class="secno">1 </span>Conformance requirements</h2><p>This specification is an HTML specification. All the conformance
   requirements, conformance classes, definitions, dependencies,
   terminology, and typographical conventions described in the core
-  HTML5 specification apply to this specification. <a href="#refsHTML5">[HTML5]</a><h2 id="idl"><span class="secno">2 </span>IDL</h2><h2 id="event-definitions"><span class="secno">3 </span>Event definitions</h2><p>Messages in <span>server-sent events</span>, <span>Web
+  HTML5 specification apply to this specification. <a href="#refsHTML5">[HTML5]</a><h2 id="event-definitions"><span class="secno">2 </span>Event definitions</h2><p>Messages in <span>server-sent events</span>, <span>Web
   sockets</span>, <a href="#crossDocumentMessages">cross-document messaging</a>, and
   <a href="#channel-messaging">channel messaging</a> use the <dfn id="event-message" title="event-message"><code>message</code></dfn> event.
   
@@ -512,7 +511,7 @@
   null, and the <code title="dom-MessageEvent-ports"><a href="#dom-messageevent-ports">ports</a></code>
   attribute must be null.</p>
 
-  </div><h2 id="crossDocumentMessages"><span class="secno">4 </span><dfn>Cross-document messaging</dfn></h2><p>Web browsers, for security and privacy reasons, prevent documents
+  </div><h2 id="crossDocumentMessages"><span class="secno">3 </span><dfn>Cross-document messaging</dfn></h2><p>Web browsers, for security and privacy reasons, prevent documents
   in different domains from affecting each other; that is, cross-site
   scripting is disallowed.<p>While this is an important security feature, it prevents pages
   from different domains from communicating even when those pages are
@@ -524,7 +523,7 @@
   <p>The <span>task source</span> for the <span title="concept-task">tasks</span> in <a href="#crossDocumentMessages">cross-document
   messaging</a> is the <dfn id="posted-message-task-source">posted message task source</dfn>.</p>
 
-  </div><h3 id="introduction"><span class="secno">4.1 </span>Introduction</h3><p><i>This section is non-normative.</i><div class="example">
+  </div><h3 id="introduction"><span class="secno">3.1 </span>Introduction</h3><p><i>This section is non-normative.</i><div class="example">
 
    <p>For example, if document A contains an <code>iframe</code>
    element that contains document B, and script in document A calls
@@ -558,9 +557,9 @@ function receiver(e) {
    responds to by sending a message back to the document which sent
    the message in the first place.</p>
 
-  </div><h3 id="security"><span class="secno">4.2 </span>Security</h3><div class="impl">
+  </div><h3 id="security"><span class="secno">3.2 </span>Security</h3><div class="impl">
 
-  <h4 id="authors"><span class="secno">4.2.1 </span>Authors</h4>
+  <h4 id="authors"><span class="secno">3.2.1 </span>Authors</h4>
 
   </div><p class="warning">Use of this API requires extra care to protect
   users from hostile entities abusing a site for their own
@@ -577,7 +576,7 @@ function receiver(e) {
   that the message is only delivered to the recipient to which it was
   intended.<div class="impl">
 
-  <h4 id="user-agents"><span class="secno">4.2.2 </span>User agents</h4>
+  <h4 id="user-agents"><span class="secno">3.2.2 </span>User agents</h4>
 
   <p>The integrity of this API is based on the inability for scripts
   of one <span>origin</span> to post arbitrary events (using <code title="">dispatchEvent()</code> or otherwise) to objects in other
@@ -590,7 +589,7 @@ function receiver(e) {
   disallowed for security reasons. It also requires that UAs be
   careful to allow access to certain properties but not others.</p>
 
-  </div><h3 id="posting-messages"><span class="secno">4.3 </span>Posting messages</h3><dl class="domintro"><dt><var title="">window</var> . <code title="dom-window-postMessage-2"><a href="#dom-window-postmessage-2">postMessage</a></code>(<var title="">message</var>, [ <var title="">ports</var>, ] <var title="">targetOrigin</var>)</dt>
+  </div><h3 id="posting-messages"><span class="secno">3.3 </span>Posting messages</h3><dl class="domintro"><dt><var title="">window</var> . <code title="dom-window-postMessage-2"><a href="#dom-window-postmessage-2">postMessage</a></code>(<var title="">message</var>, [ <var title="">ports</var>, ] <var title="">targetOrigin</var>)</dt>
 
    <dd>
 
@@ -678,7 +677,7 @@ function receiver(e) {
 
   </ol></div><div class="impl">
 
-  <h3 id="posting-messages-with-message-ports"><span class="secno">4.4 </span>Posting messages with message ports</h3>
+  <h3 id="posting-messages-with-message-ports"><span class="secno">3.4 </span>Posting messages with message ports</h3>
 
   <p>When a script invokes the <dfn id="dom-window-postmessage-3" title="dom-window-postMessage-3"><code>postMessage(<var title="">message</var>, <var title="">ports</var>, <var title="">targetOrigin</var>)</code></dfn> method (with three
   arguments) on a <code>Window</code> object, the user agent must
@@ -797,7 +796,7 @@ function receiver(e) {
   sections be kept separate so that implementors can avoid getting
   confused with the 'port' step. -->
 
-  </div><h2 id="channel-messaging"><span class="secno">5 </span><dfn>Channel messaging</dfn></h2><h3 id="introduction-0"><span class="secno">5.1 </span>Introduction</h3><p><i>This section is non-normative.</i><p>To enable independent pieces of code (e.g. running in different
+  </div><h2 id="channel-messaging"><span class="secno">4 </span><dfn>Channel messaging</dfn></h2><h3 id="introduction-0"><span class="secno">4.1 </span>Introduction</h3><p><i>This section is non-normative.</i><p>To enable independent pieces of code (e.g. running in different
   <span title="browsing context">browsing contexts</span>) to
   communicate directly, authors can use <a href="#channel-messaging">channel
   messaging</a>.<p>Communication channels in this mechanisms are implemented as
@@ -809,7 +808,7 @@ function receiver(e) {
 function handleMessage(event) {
   // message is in event.data
   // ...
-}</pre><h3 id="message-channels"><span class="secno">5.2 </span>Message channels</h3><pre class="idl">[<a href="#dom-messagechannel" title="dom-MessageChannel">Constructor</a>]
+}</pre><h3 id="message-channels"><span class="secno">4.2 </span>Message channels</h3><pre class="idl">[<a href="#dom-messagechannel" title="dom-MessageChannel">Constructor</a>]
 interface <dfn id="messagechannel">MessageChannel</dfn> {
   readonly attribute <a href="#messageport">MessagePort</a> <a href="#dom-channel-port1" title="dom-channel-port1">port1</a>;
   readonly attribute <a href="#messageport">MessagePort</a> <a href="#dom-channel-port2" title="dom-channel-port2">port2</a>;
@@ -870,7 +869,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   must return the values they were assigned when the
   <code><a href="#messagechannel">MessageChannel</a></code> object was created.</p>
 
-  </div><h3 id="message-ports"><span class="secno">5.3 </span>Message ports</h3><p>Each channel has two message ports. Data sent through one port is
+  </div><h3 id="message-ports"><span class="secno">4.3 </span>Message ports</h3><p>Each channel has two message ports. Data sent through one port is
   received by the other port, and vice versa.<pre class="idl">typedef sequence&lt;MessagePort&gt; <dfn id="messageportarray">MessagePortArray</dfn>;
 
 interface <dfn id="messageport">MessagePort</dfn> {
@@ -1148,7 +1147,7 @@ interface <dfn id="messageport">MessagePort</dfn> {
   as if the <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code> method
   had been called.</p>
 
-  </div><h4 id="ports-and-garbage-collection"><span class="secno">5.3.1 </span>Ports and garbage collection</h4><div class="impl">
+  </div><h4 id="ports-and-garbage-collection"><span class="secno">4.3.1 </span>Ports and garbage collection</h4><div class="impl">
 
   <p>When a <code><a href="#messageport">MessagePort</a></code> object <var title="">o</var> is
   entangled, user agents must either act as if <var title="">o</var>'s
