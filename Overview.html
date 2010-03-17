@@ -283,7 +283,7 @@
    <h1>HTML5 Web Messaging</h1>
    <h2 class="no-num no-toc" id="generatedID"></h2>
 
-   <h2 class="no-num no-toc" id="editor-s-draft-4-march-2010">Editor's Draft 4 March 2010</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-17-march-2010">Editor's Draft 17 March 2010</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/postmsg/">http://www.w3.org/TR/postmsg/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -377,7 +377,7 @@
   specification's progress along the W3C Recommendation
   track.
 
-  This specification is the 4 March 2010 Editor's Draft.
+  This specification is the 17 March 2010 Editor's Draft.
   </p><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- relationship to other work (required) --><p>The contents of this specification are also part of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/">a
   specification</a> published by the <a href="http://www.whatwg.org/">WHATWG</a>, which is available under a
   license that permits reuse of the specification text.</p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- context and rationale (required) --><!-- (this text is from the RDFa+HTML spec --><p>This specification is an extension to the HTML5 language. All
@@ -672,9 +672,9 @@ function receiver(e) {
     set to the <span title="Unicode serialization of an
     origin">Unicode serialization</span> of the <span>origin</span> of
     the script that invoked the method, and the <code title="dom-MessageEvent-source"><a href="#dom-messageevent-source">source</a></code> attribute must be
-    set to the <span>script's global object</span>.</p> <!--
-    invariant: the global object is always a Window if the script can
-    see this method -->
+    set to the <span>script's global object</span>'s
+    <code>WindowProxy</code> object.</p> <!-- invariant: the global
+    object is always a Window if the script can see this method -->
 
    </li>
 
@@ -785,9 +785,9 @@ function receiver(e) {
     set to the <span title="Unicode serialization of an
     origin">Unicode serialization</span> of the <span>origin</span> of
     the script that invoked the method, and the <code title="dom-MessageEvent-source"><a href="#dom-messageevent-source">source</a></code> attribute must be
-    set to the <span>script's global object</span>.</p> <!--
-    invariant: the global object is always a Window if the script can
-    see this method -->
+    set to the <span>script's global object</span>'s
+    <code>WindowProxy</code> object.</p> <!-- invariant: the global
+    object is always a Window if the script can see this method -->
 
    </li>
 
@@ -807,9 +807,9 @@ function receiver(e) {
 
    </li>
 
-  </ol><p class="note">These steps, with the exception of the second and
-  third steps and the penultimate step, are identical to those in the
-  previous section.</p>
+  </ol><p class="note">These steps, with the exception of the third,
+  fourth, and fifth steps and the penultimate step, are identical to
+  those in the previous section.</p>
 
   <!-- v2: we can merge this section and the previous section when
   implementations have shipped postMessage(). Anne asked that these
