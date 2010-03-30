@@ -283,7 +283,7 @@
    <h1>HTML5 Web Messaging</h1>
    <h2 class="no-num no-toc" id="generatedID"></h2>
 
-   <h2 class="no-num no-toc" id="editor-s-draft-29-march-2010">Editor's Draft 29 March 2010</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-30-march-2010">Editor's Draft 30 March 2010</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/postmsg/">http://www.w3.org/TR/postmsg/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -377,7 +377,7 @@
   specification's progress along the W3C Recommendation
   track.
 
-  This specification is the 29 March 2010 Editor's Draft.
+  This specification is the 30 March 2010 Editor's Draft.
   </p><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- relationship to other work (required) --><p>The contents of this specification are also part of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/">a
   specification</a> published by the <a href="http://www.whatwg.org/">WHATWG</a>, which is available under a
   license that permits reuse of the specification text.</p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- context and rationale (required) --><!-- (this text is from the RDFa+HTML spec --><p>This specification is an extension to the HTML5 language. All
@@ -398,7 +398,7 @@
  <li><a href="#crossDocumentMessages"><span class="secno">3 </span>Cross-document messaging</a>
   <ol>
    <li><a href="#introduction"><span class="secno">3.1 </span>Introduction</a></li>
-   <li><a href="#security"><span class="secno">3.2 </span>Security</a>
+   <li><a href="#security-postmsg"><span class="secno">3.2 </span>Security</a>
     <ol>
      <li><a href="#authors"><span class="secno">3.2.1 </span>Authors</a></li>
      <li><a href="#user-agents"><span class="secno">3.2.2 </span>User agents</a></ol></li>
@@ -559,13 +559,13 @@ function receiver(e) {
    responds to by sending a message back to the document which sent
    the message in the first place.</p>
 
-  </div><h3 id="security"><span class="secno">3.2 </span>Security</h3><div class="impl">
+  </div><h3 id="security-postmsg"><span class="secno">3.2 </span>Security</h3><div class="impl">
 
   <h4 id="authors"><span class="secno">3.2.1 </span>Authors</h4>
 
-  </div><p class="warning">Use of this API requires extra care to protect
-  users from hostile entities abusing a site for their own
-  purposes.<p>Authors should check the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute to ensure
+  </div><p class="warning" id="security-4">Use of this API requires extra
+  care to protect users from hostile entities abusing a site for their
+  own purposes.<p>Authors should check the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute to ensure
   that messages are only accepted from domains that they expect to
   receive messages from. Otherwise, bugs in the author's message
   handling code could be exploited by hostile sites.<p>Furthermore, even after checking the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute, authors
