@@ -285,7 +285,7 @@
    <h1>HTML5 Web Messaging</h1>
    <h2 class="no-num no-toc" id="generatedID"></h2>
 
-   <h2 class="no-num no-toc" id="editor-s-draft-2-april-2010">Editor's Draft 2 April 2010</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-3-april-2010">Editor's Draft 3 April 2010</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/postmsg/">http://www.w3.org/TR/postmsg/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -379,7 +379,7 @@
   specification's progress along the W3C Recommendation
   track.
 
-  This specification is the 2 April 2010 Editor's Draft.
+  This specification is the 3 April 2010 Editor's Draft.
   </p><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- relationship to other work (required) --><p>The contents of this specification are also part of <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/">a
   specification</a> published by the <a href="http://www.whatwg.org/">WHATWG</a>, which is available under a
   license that permits reuse of the specification text.</p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- context and rationale (required) --><!-- (this text is from the RDFa+HTML spec --><p>This specification is an extension to the HTML5 language. All
@@ -825,7 +825,7 @@ function receiver(e) {
   two-ways pipes, with a port at each end. Messages sent in one port
   are delivered at the other port, and vice-versa. Messages are
   asynchronous, and delivered as DOM events.<p>To create a connection (two "entangled" ports), the <code title="">MessageChannel()</code> constructor is called:<pre>var channel = new MessageChannel();</pre><p>One of the ports is kept as the local port, and the other port is
-  sent to the remote code, e.g. using <code title="dom-window-postMessage-3"><a href="#dom-window-postmessage-3">postMessage()</a></code>:<pre>otherWindow.postMessage('hello', 'http://example.com', [channel.port2]);</pre><p>To send messages, the <code title="dom-MessagpePort-postMessage">postMessage()</code> method on
+  sent to the remote code, e.g. using <code title="dom-window-postMessage-3"><a href="#dom-window-postmessage-3">postMessage()</a></code>:<pre>otherWindow.postMessage('hello', 'http://example.com', [channel.port2]);</pre><p>To send messages, the <code title="dom-MessagePort-postMessage"><a href="#dom-messageport-postmessage">postMessage()</a></code> method on
   the port is used:<pre>channel.port1.postMessage('hello');</pre><p>To receive messages, one listens to <code title="event-message"><a href="#event-message">message</a></code> events:<pre>channel.port1.onmessage = handleMessage;
 function handleMessage(event) {
   // message is in event.data
