@@ -404,8 +404,7 @@
     <ol>
      <li><a href="#authors"><span class="secno">3.2.1 </span>Authors</a></li>
      <li><a href="#user-agents"><span class="secno">3.2.2 </span>User agents</a></ol></li>
-   <li><a href="#posting-messages"><span class="secno">3.3 </span>Posting messages</a></li>
-   <li><a href="#posting-messages-with-message-ports"><span class="secno">3.4 </span>Posting messages with message ports</a></ol></li>
+   <li><a href="#posting-messages"><span class="secno">3.3 </span>Posting messages</a></ol></li>
  <li><a href="#channel-messaging"><span class="secno">4 </span>Channel messaging</a>
   <ol>
    <li><a href="#introduction-0"><span class="secno">4.1 </span>Introduction</a></li>
@@ -531,7 +530,7 @@
 
    <p>For example, if document A contains an <code>iframe</code>
    element that contains document B, and script in document A calls
-   <code title="dom-window-postMessage-2"><a href="#dom-window-postmessage-2">postMessage()</a></code> on the
+   <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code> on the
    <code>Window</code> object of document B, then a message event will
    be fired on that object, marked as originating from the
    <code>Window</code> of document A. The script in document A might
@@ -574,7 +573,7 @@ function receiver(e) {
   should also check that the data in question is of the expected
   format. Otherwise, if the source of the event has been attacked
   using a cross-site scripting flaw, further unchecked processing of
-  information sent using the <code title="dom-window-postMessage-2"><a href="#dom-window-postmessage-2">postMessage()</a></code> method could
+  information sent using the <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code> method could
   result in the attack being propagated into the receiver.<p>Authors should not use the wildcard keyword (*) in the <var title="">targetOrigin</var> argument in messages that contain any
   confidential information, as otherwise there is no way to guarantee
   that the message is only delivered to the recipient to which it was
@@ -593,7 +592,7 @@ function receiver(e) {
   disallowed for security reasons. It also requires that UAs be
   careful to allow access to certain properties but not others.</p>
 
-  </div><h3 id="posting-messages"><span class="secno">3.3 </span>Posting messages</h3><dl class="domintro"><dt><var title="">window</var> . <code title="dom-window-postMessage-2"><a href="#dom-window-postmessage-2">postMessage</a></code>(<var title="">message</var>, <var title="">targetOrigin</var> [, <var title="">ports</var> ])</dt>
+  </div><h3 id="posting-messages"><span class="secno">3.3 </span>Posting messages</h3><dl class="domintro"><dt><var title="">window</var> . <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage</a></code>(<var title="">message</var>, <var title="">targetOrigin</var> [, <var title="">ports</var> ])</dt>
 
    <dd>
 
@@ -614,7 +613,7 @@ function receiver(e) {
 
   </dl><div class="impl">
 
-  <p>When a script invokes the <dfn id="dom-window-postmessage-2" title="dom-window-postMessage-2"><code>postMessage(<var title="">message</var>, <var title="">targetOrigin</var>)</code></dfn> method (with only two
+  <p>When a script invokes the <dfn id="dom-window-postmessage" title="dom-window-postMessage"><code>postMessage(<var title="">message</var>, <var title="">targetOrigin</var>, <var title="">ports</var>)</code></dfn> method (with two or three
   arguments) on a <code>Window</code> object, the user agent must
   follow these steps:
 
@@ -640,120 +639,35 @@ function receiver(e) {
 
    <li>
 
-    <p>Return from the <code title="dom-window-postMessage-2"><a href="#dom-window-postmessage-2">postMessage()</a></code> method, but
-    asynchronously continue running these steps.</p>
-
-   </li>
-
-   <li>
-
-    <p>If the <var title="">targetOrigin</var> argument is a single
-    literal U+002F SOLIDUS character (/), and the
-    <code>Document</code> of the <code>Window</code> object on which
-    the method was invoked does not have the <span>same origin</span>
-    as the <span>entry script</span>'s <span title="script's
-    document">document</span>, then abort these steps silently.</p>
-
-    <p>Otherwise, if the <var title="">targetOrigin</var> argument is
-    an <span>absolute URL</span>, and the <code>Document</code> of the
-    <code>Window</code> object on which the method was invoked does
-    not have the <span>same origin</span> as <var title="">targetOrigin</var>, then abort these steps silently.</p>
-
-    <p>Otherwise, the <var title="">targetOrigin</var> argument is a
-    single literal U+002A ASTERISK character (*), and no origin check
-    is made.</p>
-
-   </li>
-
-   <li>
-
-    <p>Create an event that uses the <code><a href="#messageevent">MessageEvent</a></code>
-    interface, with the event name <code title="event-message"><a href="#event-message">message</a></code>, which does not bubble, is
-    not cancelable, and has no default action. The <code title="dom-MessageEvent-data"><a href="#dom-messageevent-data">data</a></code> attribute must be set to
-    the value of <var title="">message clone</var>, the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute must be
-    set to the <span title="Unicode serialization of an
-    origin">Unicode serialization</span> of the <span>origin</span> of
-    the script that invoked the method, and the <code title="dom-MessageEvent-source"><a href="#dom-messageevent-source">source</a></code> attribute must be
-    set to the <span>script's global object</span>'s
-    <code>WindowProxy</code> object.</p> <!-- invariant: the global
-    object is always a Window if the script can see this method -->
-
-   </li>
-
-   <li>
-
-    <p><span>Queue a task</span> to dispatch the event created in the
-    previous step at the <code>Window</code> object on which the
-    method was invoked. The <span>task source</span> for this <span title="concept-task">task</span> is the <a href="#posted-message-task-source">posted message task
-    source</a>.</p>
-
-   </li>
-
-  </ol></div><div class="impl">
-
-  <h3 id="posting-messages-with-message-ports"><span class="secno">3.4 </span>Posting messages with message ports</h3>
-
-  <p>When a script invokes the <dfn id="dom-window-postmessage-3" title="dom-window-postMessage-3"><code>postMessage(<var title="">message</var>, <var title="">targetOrigin</var>, <var title="">ports</var>)</code></dfn> method (with three arguments) on
-  a <code>Window</code> object, the user agent must follow these
-  steps:
-
-  <ol><!-- EXCEPT WHERE NOTED, THESE STEPS ARE IDENTICAL TO THE PREVIOUS SECTION --><!-- one exception is the use of -3 instead of -2 in the xrefs --><li>
-
-    <p>If the value of the <var title="">targetOrigin</var> argument
-    is neither a single U+002A ASTERISK character (*), a single U+002F
-    SOLIDUS character (/), nor an <span>absolute URL</span> with a
-    <code title="url-host-specific">&lt;host-specific&gt;</code>
-    component that is either empty or a single U+002F SOLIDUS
-    character (/), then throw a <code>SYNTAX_ERR</code> exception and
-    abort the overall set of steps.</p>
-
-   </li>
-
-   <li>
-
-    <p>Let <var title="">message clone</var> be the result of
-    obtaining a <span>structured clone</span> of the <var title="">message</var> argument. If this throws an exception, then
-    throw that exception and abort these steps.</p>
-
-   </li>
-
-   <li> <!-- NEW STEP -->
-
-    <p>If the <var title="">ports</var> argument is empty<!-- or null
-    (if we make it nullable)-->, then act as if the method had just
-    been <a href="#dom-window-postmessage-2" title="dom-window-postMessage-2">called with two
-    arguments</a>, <var title="">message</var> and <var title="">targetOrigin</var>.</p>
-
-   </li>
-
-   <li> <!-- NEW STEP -->
-
-    <p>If any of the entries in <var title="">ports</var> are null, if
-    any <code><a href="#messageport">MessagePort</a></code> object is listed in <var title="">ports</var> more than once, or if any of the
+    <p>If the <var title="">ports</var> argument is present but either
+    any of the entries in <var title="">ports</var> are null, or any
+    <code><a href="#messageport">MessagePort</a></code> object is listed in <var title="">ports</var> more than once, or any of the
     <code><a href="#messageport">MessagePort</a></code> objects listed in <var title="">ports</var> have already been cloned once before, then
-    throw an <code>INVALID_STATE_ERR</code> exception.</p>
+    throw an <code>INVALID_STATE_ERR</code> exception and abort these
+    steps.</p>
 
    </li>
 
-   <li> <!-- NEW STEP -->
+   <li>
 
     <p>Let <var title="">new ports</var> be an empty array.</p>
 
-    <p>For each port in <var title="">ports</var> in turn,
-    obtain a new port by <a href="#clone-a-port" title="clone a port">cloning</a> the
-    port with the <code>Window</code> object on which the method was
-    invoked as the owner of the clone, and append the clone to the
-    <var title="">new ports</var> array.</p>
-<!--
-    <p class="note">If the original <var title="">ports</var>
-    array was empty, then the <var title="">new ports</var> array will
-    also be empty.</p>
--->
+    <p>If the <var title="">ports</var> argument is present, then for
+    each port in <var title="">ports</var> in turn, obtain a new port
+    by <a href="#clone-a-port" title="clone a port">cloning</a> the port with the
+    <code>Window</code> object on which the method was invoked as the
+    owner of the clone, and append the clone to the <var title="">new
+    ports</var> array.</p>
+
+    <p class="note">If the original <var title="">ports</var> argument
+    was omitted or empty, then the <var title="">new ports</var> array
+    will be empty.</p>
+
    </li>
 
    <li>
 
-    <p>Return from the <code title="dom-window-postMessage-3"><a href="#dom-window-postmessage-3">postMessage()</a></code> method, but
+    <p>Return from the <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code> method, but
     asynchronously continue running these steps.</p>
 
    </li>
@@ -786,17 +700,12 @@ function receiver(e) {
     the value of <var title="">message clone</var>, the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute must be
     set to the <span title="Unicode serialization of an
     origin">Unicode serialization</span> of the <span>origin</span> of
-    the script that invoked the method, and the <code title="dom-MessageEvent-source"><a href="#dom-messageevent-source">source</a></code> attribute must be
+    the script that invoked the method, the <code title="dom-MessageEvent-source"><a href="#dom-messageevent-source">source</a></code> attribute must be
     set to the <span>script's global object</span>'s
-    <code>WindowProxy</code> object.</p> <!-- invariant: the global
-    object is always a Window if the script can see this method -->
-
-   </li>
-
-   <li> <!-- NEW STEP -->
-
-    <p>Let the <code title="dom-MessageEvent-ports"><a href="#dom-messageevent-ports">ports</a></code> attribute
-    of the event be the <var title="">new ports</var> array.</p>
+    <code>WindowProxy</code> object, and the <code title="dom-MessageEvent-ports"><a href="#dom-messageevent-ports">ports</a></code> attribute must be set
+    to the <var title="">new ports</var> array.</p> <!-- invariant:
+    the global object is always a Window if the script can see this
+    method -->
 
    </li>
 
@@ -809,23 +718,14 @@ function receiver(e) {
 
    </li>
 
-  </ol><p class="note">These steps, with the exception of the third,
-  fourth, and fifth steps and the penultimate step, are identical to
-  those in the previous section.</p>
-
-  <!-- v2: we can merge this section and the previous section when
-  implementations have shipped postMessage(). Anne asked that these
-  sections be kept separate so that implementors can avoid getting
-  confused with the 'port' step. -->
-
-  </div><h2 id="channel-messaging"><span class="secno">4 </span><dfn>Channel messaging</dfn></h2><h3 id="introduction-0"><span class="secno">4.1 </span>Introduction</h3><p><i>This section is non-normative.</i><p>To enable independent pieces of code (e.g. running in different
+  </ol></div><h2 id="channel-messaging"><span class="secno">4 </span><dfn>Channel messaging</dfn></h2><h3 id="introduction-0"><span class="secno">4.1 </span>Introduction</h3><p><i>This section is non-normative.</i><p>To enable independent pieces of code (e.g. running in different
   <span title="browsing context">browsing contexts</span>) to
   communicate directly, authors can use <a href="#channel-messaging">channel
   messaging</a>.<p>Communication channels in this mechanisms are implemented as
   two-ways pipes, with a port at each end. Messages sent in one port
   are delivered at the other port, and vice-versa. Messages are
   asynchronous, and delivered as DOM events.<p>To create a connection (two "entangled" ports), the <code title="">MessageChannel()</code> constructor is called:<pre>var channel = new MessageChannel();</pre><p>One of the ports is kept as the local port, and the other port is
-  sent to the remote code, e.g. using <code title="dom-window-postMessage-3"><a href="#dom-window-postmessage-3">postMessage()</a></code>:<pre>otherWindow.postMessage('hello', 'http://example.com', [channel.port2]);</pre><p>To send messages, the <code title="dom-MessagePort-postMessage"><a href="#dom-messageport-postmessage">postMessage()</a></code> method on
+  sent to the remote code, e.g. using <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code>:<pre>otherWindow.postMessage('hello', 'http://example.com', [channel.port2]);</pre><p>To send messages, the <code title="dom-MessagePort-postMessage"><a href="#dom-messageport-postmessage">postMessage()</a></code> method on
   the port is used:<pre>channel.port1.postMessage('hello');</pre><p>To receive messages, one listens to <code title="event-message"><a href="#event-message">message</a></code> events:<pre>channel.port1.onmessage = handleMessage;
 function handleMessage(event) {
   // message is in event.data
