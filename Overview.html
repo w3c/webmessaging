@@ -397,7 +397,7 @@
 <ol class="toc">
  <li><a href="#conformance-requirements"><span class="secno">1 </span>Conformance requirements</a></li>
  <li><a href="#event-definitions"><span class="secno">2 </span>Event definitions</a></li>
- <li><a href="#crossDocumentMessages"><span class="secno">3 </span>Cross-document messaging</a>
+ <li><a href="#web-messaging"><span class="secno">3 </span>Cross-document messaging</a>
   <ol>
    <li><a href="#introduction"><span class="secno">3.1 </span>Introduction</a></li>
    <li><a href="#security-postmsg"><span class="secno">3.2 </span>Security</a>
@@ -418,7 +418,7 @@
   requirements, conformance classes, definitions, dependencies,
   terminology, and typographical conventions described in the core
   HTML5 specification apply to this specification. <a href="#refsHTML5">[HTML5]</a><h2 id="event-definitions"><span class="secno">2 </span>Event definitions</h2><p>Messages in <span>server-sent events</span>, <span>Web
-  sockets</span>, <a href="#crossDocumentMessages">cross-document messaging</a>, and
+  sockets</span>, <a href="#web-messaging">cross-document messaging</a>, and
   <a href="#channel-messaging">channel messaging</a> use the <dfn id="event-message" title="event-message"><code>message</code></dfn> event.
   
   <a href="#refsEVENTSOURCE">[EVENTSOURCE]</a>
@@ -444,7 +444,7 @@
    <dd>
 
     <p>Returns the origin of the message, for <span>server-sent
-    events</span> and <a href="#crossDocumentMessages">cross-document messaging</a>.</p>
+    events</span> and <a href="#web-messaging">cross-document messaging</a>.</p>
 
    </dd>
 
@@ -462,7 +462,7 @@
    <dd>
 
     <p>Returns the <code>WindowProxy</code> of the source window, for
-    <a href="#crossDocumentMessages">cross-document messaging</a>.</p>
+    <a href="#web-messaging">cross-document messaging</a>.</p>
 
    </dd>
 
@@ -471,7 +471,7 @@
    <dd>
 
     <p>Returns the <code><a href="#messageportarray">MessagePortArray</a></code> sent with the
-    message, for <a href="#crossDocumentMessages">cross-document messaging</a> and
+    message, for <a href="#web-messaging">cross-document messaging</a> and
     <a href="#channel-messaging">channel messaging</a>.</p>
 
    </dd>
@@ -487,7 +487,7 @@
 
   <p>The <dfn id="dom-messageevent-origin" title="dom-MessageEvent-origin"><code>origin</code></dfn> attribute
   represents, in <span>server-sent events</span> and
-  <a href="#crossDocumentMessages">cross-document messaging</a>, the <span>origin</span> of
+  <a href="#web-messaging">cross-document messaging</a>, the <span>origin</span> of
   the document that sent the message (typically the scheme, hostname,
   and port of the document, but not its path or fragment
   identifier).</p>
@@ -497,12 +497,12 @@
   string</span> of the event source.</p>
 
   <p>The <dfn id="dom-messageevent-source" title="dom-MessageEvent-source"><code>source</code></dfn> attribute
-  represents, in <a href="#crossDocumentMessages">cross-document messaging</a>, the
+  represents, in <a href="#web-messaging">cross-document messaging</a>, the
   <code>WindowProxy</code> of the <span>browsing context</span> of the
   <code>Window</code> object from which the message came.</p>
 
   <p>The <dfn id="dom-messageevent-ports" title="dom-MessageEvent-ports"><code>ports</code></dfn>
-  attribute represents, in <a href="#crossDocumentMessages">cross-document messaging</a> and
+  attribute represents, in <a href="#web-messaging">cross-document messaging</a> and
   <a href="#channel-messaging">channel messaging</a> the <code><a href="#messageportarray">MessagePortArray</a></code>
   being sent, if any.</p>
 
@@ -514,7 +514,7 @@
   null, and the <code title="dom-MessageEvent-ports"><a href="#dom-messageevent-ports">ports</a></code>
   attribute must be null.</p>
 
-  </div><h2 id="crossDocumentMessages"><span class="secno">3 </span><dfn>Cross-document messaging</dfn></h2><p>Web browsers, for security and privacy reasons, prevent documents
+  </div><h2 id="web-messaging"><span class="secno">3 </span><dfn id="crossDocumentMessages">Cross-document messaging</dfn></h2><p>Web browsers, for security and privacy reasons, prevent documents
   in different domains from affecting each other; that is, cross-site
   scripting is disallowed.<p>While this is an important security feature, it prevents pages
   from different domains from communicating even when those pages are
@@ -523,7 +523,7 @@
   domain, in a way designed to not enable cross-site scripting
   attacks.<div class="impl">
 
-  <p>The <span>task source</span> for the <span title="concept-task">tasks</span> in <a href="#crossDocumentMessages">cross-document
+  <p>The <span>task source</span> for the <span title="concept-task">tasks</span> in <a href="#web-messaging">cross-document
   messaging</a> is the <dfn id="posted-message-task-source">posted message task source</dfn>.</p>
 
   </div><h3 id="introduction"><span class="secno">3.1 </span>Introduction</h3><p><i>This section is non-normative.</i><div class="example">
