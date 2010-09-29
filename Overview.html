@@ -232,16 +232,19 @@
    .details-example img { vertical-align: top; }
 
    #named-character-references-table {
+     white-space: nowrap;
      font-size: 0.6em;
-     column-width: 28em;
+     column-width: 30em;
      column-gap: 1em;
-     -moz-column-width: 28em;
+     -moz-column-width: 30em;
      -moz-column-gap: 1em;
-     -webkit-column-width: 28em;
+     -webkit-column-width: 30em;
      -webkit-column-gap: 1em;
    }
+   #named-character-references-table > table > tbody > tr > td:first-child + td,
    #named-character-references-table > table > tbody > tr > td:last-child { text-align: center; }
    #named-character-references-table > table > tbody > tr > td:last-child:hover > span { position: absolute; top: auto; left: auto; margin-left: 0.5em; line-height: 1.2; font-size: 5em; border: outset; padding: 0.25em 0.5em; background: white; width: 1.25em; height: auto; text-align: center; }
+   #named-character-references-table > table > tbody > tr#entity-CounterClockwiseContourIntegral > td:first-child { font-size: 0.5em; }
 
    .glyph.control { color: red; }
 
@@ -313,7 +316,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    <h2 class="no-num no-toc" id="generatedID"></h2>
-   <h2 class="no-num no-toc" id="editor-s-draft-24-september-2010">Editor's Draft 24 September 2010</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-29-september-2010">Editor's Draft 29 September 2010</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/postmsg/">http://www.w3.org/TR/postmsg/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -403,7 +406,7 @@
   Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation
   track.
-  This specification is the 24 September 2010 Editor's Draft.
+  This specification is the 29 September 2010 Editor's Draft.
   </p><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- relationship to other work (required) --><p>Work on this specification is also done at the <a href="http://www.whatwg.org/">WHATWG</a>. The W3C HTML working group
   actively pursues convergence with the WHATWG, as required by the <a href="http://www.w3.org/2007/03/HTML-WG-charter">W3C HTML working
   group charter</a>.</p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- context and rationale (required) --><!-- (this text is from the RDFa+HTML spec --><p>This specification is an extension to the HTML5 language. All
