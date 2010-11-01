@@ -183,9 +183,10 @@
    #configUI #updateUI, #configUI .loginUI { text-align: center; }
    #configUI input[type=button] { display: block; margin: auto; }
 
-   fieldset { margin: 1em; }
-   fieldset > legend * + { margin-top: 0; }
+   fieldset { margin: 1em; padding: 0.5em 1em; }
+   fieldset > legend + * { margin-top: 0; }
    fieldset > :last-child { margin-bottom: 0; }
+   fieldset p { margin: 0.5em 0; }
 
   </style><style type="text/css">
 
@@ -321,7 +322,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    <h2 class="no-num no-toc" id="generatedID"></h2>
-   <h2 class="no-num no-toc" id="editor-s-draft-20-october-2010">Editor's Draft 20 October 2010</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-1-november-2010">Editor's Draft 1 November 2010</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/postmsg/">http://www.w3.org/TR/postmsg/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -362,13 +363,15 @@
   public bug database</a>. If you do not have an account then you can
   enter feedback using this form:<form action="http://www.whatwg.org/specs/web-apps/current-work/file-spam.cgi" method="post">
    <fieldset><legend>Feedback Comments</legend>
-    <input name="id" type="hidden" value="top"><input name="response" type="hidden" value="html"><p><label for="feedbackBox">Please enter your feedback, carefully
+    <input name="id" type="hidden" value="top"><input name="component" type="hidden" value="other Hixie drafts (editor: Ian Hickson)"><input name="response" type="hidden" value="html"><p><label for="feedbackBox">Please enter your feedback, carefully
     indicating the title of the section for which you are submitting
     feedback, quoting the text that's wrong today if appropriate. If
     you're suggesting a new feature, it's really important to say
     <em>what</em> the problem you're trying to solve is. That's more
     important than the solution, in fact.</label></p>
     <p><textarea cols="79" id="feedbackBox" name="text" rows="10"></textarea></p>
+    <p class="note">Please don't use section numbers as these tend to
+    change rapidly and make your feedback harder to understand.</p>
     <script type="text/javascript">
      function checkFeedbackForm(form) {
        if (form.elements.text.value.match(/ [^ ]+ [^ ]+ [^ ]+ [^ ]+ /)) {
@@ -379,7 +382,9 @@
          return false;
        }
      }
-    </script><p><input onclick="return checkFeedbackForm(form)" type="submit" value="Submit feedback"><small>(Note: Your IP address will be publicly recorded for spam prevention purposes.)</small></p>
+    </script><p>
+     <input onclick="return checkFeedbackForm(form)" type="submit" value="Submit feedback"><small>(Note: Your IP address will be publicly recorded for spam prevention purposes.)</small>
+    </p>
    </fieldset></form><p>If you cannot do this then you can also e-mail feedback to <a href="mailto:public-html-comments@w3.org">public-html-comments@w3.org</a>
   (<a href="mailto:public-html-comments-request@w3.org?subject=subscribe">subscribe</a>,
   <a href="http://lists.w3.org/Archives/Public/public-html-comments/">archives</a>),
@@ -435,7 +440,7 @@
   Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation
   track.
-  This specification is the 20 October 2010 Editor's Draft.
+  This specification is the 1 November 2010 Editor's Draft.
   </p><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- relationship to other work (required) --><p>Work on this specification is also done at the <a href="http://www.whatwg.org/">WHATWG</a>. The W3C HTML working group
   actively pursues convergence with the WHATWG, as required by the <a href="http://www.w3.org/2007/03/HTML-WG-charter">W3C HTML working
   group charter</a>.</p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- context and rationale (required) --><!-- (this text is from the RDFa+HTML spec --><p>This specification is an extension to the HTML5 language. All
