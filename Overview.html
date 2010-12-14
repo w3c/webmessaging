@@ -1,4 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"><!-- when publishing, change bits marked ZZZ --><html lang="en-US-x-Hixie"><title>HTML5 Web Messaging</title><style type="text/css">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"><!-- when publishing, change bits marked ZZZ
+     ZZZ: Set PUB to 1 for TR/ drafts, 0 for dev drafts; PUB-Y lines are used if it's 1 and PUB-N lines if it's 0.
+     ZZZ: Set YEAR, SHORTDAY (month/day), and LONGDAY accordingly. They are used by the INSERT FOO bits below.
+  --><html lang="en-US-x-Hixie"><title>HTML5 Web Messaging</title><style type="text/css">
    pre { margin-left: 2em; white-space: pre-wrap; }
    h2 { margin: 3em 0 1em 0; }
    h3 { margin: 2.5em 0 1em 0; }
@@ -188,96 +191,7 @@
    fieldset > :last-child { margin-bottom: 0; }
    fieldset p { margin: 0.5em 0; }
 
-  </style><style type="text/css">
-
-   .applies thead th > * { display: block; }
-   .applies thead code { display: block; }
-   .applies tbody th { whitespace: nowrap; }
-   .applies td { text-align: center; }
-   .applies .yes { background: yellow; }
-
-   .matrix, .matrix td { border: hidden; text-align: right; }
-   .matrix { margin-left: 2em; }
-
-   .dice-example { border-collapse: collapse; border-style: hidden solid solid hidden; border-width: thin; margin-left: 3em; }
-   .dice-example caption { width: 30em; font-size: smaller; font-style: italic; padding: 0.75em 0; text-align: left; }
-   .dice-example td, .dice-example th { border: solid thin; width: 1.35em; height: 1.05em; text-align: center; padding: 0; }
-
-   td.eg { border-width: thin; text-align: center; }
-
-   #table-example-1 { border: solid thin; border-collapse: collapse; margin-left: 3em; }
-   #table-example-1 * { font-family: "Essays1743", serif; line-height: 1.01em; }
-   #table-example-1 caption { padding-bottom: 0.5em; }
-   #table-example-1 thead, #table-example-1 tbody { border: none; }
-   #table-example-1 th, #table-example-1 td { border: solid thin; }
-   #table-example-1 th { font-weight: normal; }
-   #table-example-1 td { border-style: none solid; vertical-align: top; }
-   #table-example-1 th { padding: 0.5em; vertical-align: middle; text-align: center; }
-   #table-example-1 tbody tr:first-child td { padding-top: 0.5em; }
-   #table-example-1 tbody tr:last-child td { padding-bottom: 1.5em; }
-   #table-example-1 tbody td:first-child { padding-left: 2.5em; padding-right: 0; width: 9em; }
-   #table-example-1 tbody td:first-child::after { content: leader(". "); }
-   #table-example-1 tbody td { padding-left: 2em; padding-right: 2em; }
-   #table-example-1 tbody td:first-child + td { width: 10em; }
-   #table-example-1 tbody td:first-child + td ~ td { width: 2.5em; }
-   #table-example-1 tbody td:first-child + td + td + td ~ td { width: 1.25em; }
-
-   .apple-table-examples { border: none; border-collapse: separate; border-spacing: 1.5em 0em; width: 40em; margin-left: 3em; }
-   .apple-table-examples * { font-family: "Times", serif; }
-   .apple-table-examples td, .apple-table-examples th { border: none; white-space: nowrap; padding-top: 0; padding-bottom: 0; }
-   .apple-table-examples tbody th:first-child { border-left: none; width: 100%; }
-   .apple-table-examples thead th:first-child ~ th { font-size: smaller; font-weight: bolder; border-bottom: solid 2px; text-align: center; }
-   .apple-table-examples tbody th::after, .apple-table-examples tfoot th::after { content: leader(". ") }
-   .apple-table-examples tbody th, .apple-table-examples tfoot th { font: inherit; text-align: left; }
-   .apple-table-examples td { text-align: right; vertical-align: top; }
-   .apple-table-examples.e1 tbody tr:last-child td { border-bottom: solid 1px; }
-   .apple-table-examples.e1 tbody + tbody tr:last-child td { border-bottom: double 3px; }
-   .apple-table-examples.e2 th[scope=row] { padding-left: 1em; }
-   .apple-table-examples sup { line-height: 0; }
-
-   .details-example img { vertical-align: top; }
-
-   #named-character-references-table {
-     white-space: nowrap;
-     font-size: 0.6em;
-     column-width: 30em;
-     column-gap: 1em;
-     -moz-column-width: 30em;
-     -moz-column-gap: 1em;
-     -webkit-column-width: 30em;
-     -webkit-column-gap: 1em;
-   }
-   #named-character-references-table > table > tbody > tr > td:first-child + td,
-   #named-character-references-table > table > tbody > tr > td:last-child { text-align: center; }
-   #named-character-references-table > table > tbody > tr > td:last-child:hover > span { position: absolute; top: auto; left: auto; margin-left: 0.5em; line-height: 1.2; font-size: 5em; border: outset; padding: 0.25em 0.5em; background: white; width: 1.25em; height: auto; text-align: center; }
-   #named-character-references-table > table > tbody > tr#entity-CounterClockwiseContourIntegral > td:first-child { font-size: 0.5em; }
-
-   .glyph.control { color: red; }
-
-   @font-face {
-     font-family: 'Essays1743';
-     src: url('http://www.whatwg.org/specs/web-apps/current-work/fonts/Essays1743.ttf');
-   }
-   @font-face {
-     font-family: 'Essays1743';
-     font-weight: bold;
-     src: url('http://www.whatwg.org/specs/web-apps/current-work/fonts/Essays1743-Bold.ttf');
-   }
-   @font-face {
-     font-family: 'Essays1743';
-     font-style: italic;
-     src: url('http://www.whatwg.org/specs/web-apps/current-work/fonts/Essays1743-Italic.ttf');
-   }
-   @font-face {
-     font-family: 'Essays1743';
-     font-style: italic;
-     font-weight: bold;
-     src: url('http://www.whatwg.org/specs/web-apps/current-work/fonts/Essays1743-BoldItalic.ttf');
-   }
-
-  </style><style type="text/css">
-   .domintro:before { display: table; margin: -1em -0.5em -0.5em auto; width: auto; content: 'This box is non-normative. Implementation requirements are given below this box.'; color: black; font-style: italic; border: solid 2px; background: white; padding: 0 0.25em; }
-  </style><link href="data:text/css," id="complete" rel="stylesheet" title="Complete specification"><link href="data:text/css,.impl%20{%20display:%20none;%20}%0Ahtml%20{%20border:%20solid%20yellow;%20}%20.domintro:before%20{%20display:%20none;%20}" id="author" rel="alternate stylesheet" title="Author documentation only"><link href="data:text/css,.impl%20{%20background:%20%23FFEEEE;%20}%20.domintro:before%20{%20background:%20%23FFEEEE;%20}" id="highlight" rel="alternate stylesheet" title="Highlight implementation requirements"><script type="text/javascript">
+  </style><link href="http://www.w3.org/StyleSheets/TR/W3C-ED" rel="stylesheet" type="text/css"><script type="text/javascript">
    function getCookie(name) {
      var params = location.search.substr(1).split("&");
      for (var index = 0; index < params.length; index++) {
@@ -306,35 +220,26 @@
      var configUI = document.createElement('div');
      configUI.id = 'configUI';
      document.body.appendChild(configUI);
-     // load('reviewer.js'); // would need cross-site XHR
-     if (document.getElementById('head'))
-       load('toc.js');
-     load('styler.js');
-     // load('updater.js'); // would need cross-site XHR
      load('dfn.js'); // doesn't support split-out specs, but, oh well.
-     // load('status.js'); // would need cross-site XHR
      if (getCookie('profile') == '1')
        document.getElementsByTagName('h2')[0].textContent += '; load: ' + (new Date() - loadTimer) + 'ms';
      fixBrokenLink();
    }
-  </script><link href="http://www.w3.org/StyleSheets/TR/W3C-WD" rel="stylesheet" type="text/css"><body onload="init()"><div class="head" id="head">
+  </script><body onload="init()"><div class="head" id="head">
    <p><a href="http://www.w3.org/"><img alt="W3C" height="48" src="http://www.w3.org/Icons/w3c_home" width="72"></a></p>
 
    <h1>HTML5 Web Messaging</h1>
-   <h2 class="no-num no-toc" id="wd-18-november-2010">W3C Working Draft 18 November 2010</h2>
-   <dl>
-    <dt>This Version:</dt>
-    <dd><a href="http://www.w3.org/TR/2010/WD-webmessaging-20101118/">http://www.w3.org/TR/2010/WD-webmessaging-20101118/</a></dd>
-    <dt>Latest Published Version:</dt>
+   <!--<h2 class="no-num no-toc">(subtitle)</h2>-->
+   <h2 class="no-num no-toc" id="editor-s-draft-14-december-2010">Editor's Draft 14 December 2010</h2>
+   <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
     <dd><a class="latest-link" href="http://dev.w3.org/html5/postmsg/">http://dev.w3.org/html5/postmsg/</a></dd>
 <!-- ZZZ: add the new version after it has shipped -->
-<!--
     <dt>Previous Versions:</dt>
--->
+    <dd><a href="http://www.w3.org/TR/2010/WD-webmessaging-20101118/">http://www.w3.org/TR/2010/WD-webmessaging-20101118/</a></dd>
 <!-- :ZZZ -->
-    <dt>Editors:</dt>
+    <dt>Editor:</dt>
     <dd><a href="mailto:ian@hixie.ch">Ian Hickson</a>, Google, Inc.</dd>
    </dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
    &copy; 2010 <a href="http://www.w3.org/"><abbr title="World Wide
@@ -355,35 +260,17 @@
 
 
   </div><hr class="top"><h2 class="no-num no-toc" id="abstract">Abstract</h2><p>This specification defines two mechanism for communicating
-  between browsing contexts in HTML documents.<h2 class="no-num no-toc" id="status-of-this-document">Status of This document</h2><!-- intro boilerplate (required) -->
-
-<p><em>This section describes the status of this document at the
+  between browsing contexts in HTML documents.<h2 class="no-num no-toc" id="status-of-this-document">Status of This document</h2><!-- intro boilerplate (required) --><p><em>This section describes the status of this document at the
   time of its publication. Other documents may supersede this
   document. A list of current W3C publications and the most recently
   formally published revision of this technical report can be found in
   the <a href="http://www.w3.org/TR/">W3C technical reports index</a>
-  at http://www.w3.org/TR/.</em></p>
-
-<p class="XXX">Implementors should be aware that this specification is not
-  stable. <strong>Implementors who are not taking part in the
-  discussions are likely to find the specification changing out from
-  under them in incompatible ways.</strong> Vendors interested in
-  implementing this specification before it eventually reaches the
-  Candidate Recommendation stage should join the aforementioned
-  mailing lists and take part in the discussions.</p>
-
-<!-- where to send feedback (required) -->
-
-<p>If you wish to make comments regarding this document in a manner
+  at http://www.w3.org/TR/.</em></p><!-- where to send feedback (required) --><p>If you wish to make comments regarding this document in a manner
   that is tracked by the W3C, please submit them via using <a href="http://www.w3.org/Bugs/Public/enter_bug.cgi?product=HTML%20WG">our
-  public bug database</a>. 
-
-<!-- not for W3C publication ...
-
-If you do not have an account then you can
+  public bug database</a>. If you do not have an account then you can
   enter feedback using this form:<form action="http://www.whatwg.org/specs/web-apps/current-work/file-spam.cgi" method="post">
    <fieldset><legend>Feedback Comments</legend>
-    <input name="id" type="hidden" value="top"><input name="component" type="hidden" value="other Hixie drafts (editor: Ian Hickson)"><input name="response" type="hidden" value="html"><p><label for="feedbackBox">Please enter your feedback, carefully
+    <input name="id" type="hidden" value="top"><input name="component" type="hidden" value="Web Messaging (editor: Ian Hickson)"><input name="response" type="hidden" value="html"><p><label for="feedbackBox">Please enter your feedback, carefully
     indicating the title of the section for which you are submitting
     feedback, quoting the text that's wrong today if appropriate. If
     you're suggesting a new feature, it's really important to say
@@ -405,66 +292,38 @@ If you do not have an account then you can
     </script><p>
      <input onclick="return checkFeedbackForm(form)" type="submit" value="Submit feedback"><small>(Note: Your IP address will be publicly recorded for spam prevention purposes.)</small>
     </p>
-   </fieldset></form>
-
--->
-
-<p>If you cannot do this then you can also e-mail feedback to <a href="mailto:public-html-comments@w3.org">public-html-comments@w3.org</a>
-  (<a href="mailto:public-html-comments-request@w3.org?subject=subscribe">subscribe</a>,
-  <a href="http://lists.w3.org/Archives/Public/public-html-comments/">archives</a>),
-  and arrangements will be made to transpose the comments to our
-  public bug database.
-
-  <!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING SENTENCE TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST -->  
-  Alternatively, you can e-mail feedback to <a href="mailto:whatwg@whatwg.org">whatwg@whatwg.org</a> (<a href="http://lists.whatwg.org/listinfo.cgi/whatwg-whatwg.org">subscribe</a>,
+   </fieldset></form><p>You can also e-mail feedback to <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>,
+  <a href="http://lists.w3.org/Archives/Public/public-webapps/">archives</a>),
+  or <a href="mailto:whatwg@whatwg.org">whatwg@whatwg.org</a> (<a href="http://lists.whatwg.org/listinfo.cgi/whatwg-whatwg.org">subscribe</a>,
   <a href="http://lists.whatwg.org/pipermail/whatwg-whatwg.org/">archives</a>).
-  The editor guarantees that all substantive feedback sent to this
-  list will receive a reply. However, such feedback is not considered
-  formal feedback for the W3C process.
-  <!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING SENTENCE TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST -->
-
-  All feedback is welcome.</p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><p>The working groups maintain <a href="http://www.w3.org/Bugs/Public/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=&amp;long_desc_type=allwordssubstr&amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;status_whiteboard_type=allwordssubstr&amp;status_whiteboard=&amp;keywords_type=allwords&amp;keywords=&amp;bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;emailassigned_to1=1&amp;emailtype1=exact&amp;email1=ian%40hixie.ch&amp;emailtype2=substring&amp;email2=&amp;bugidtype=include&amp;bug_id=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;cmdtype=doit&amp;order=Reuse+same+sort+as+last+time&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=">a
-  list of all bug reports that the editor has not yet tried to
-  address</a> and <a href="http://www.w3.org/html/wg/tracker/products/1">a list of issues
-  for which the chairs have not yet declared a decision</a>. The
-  editor also maintains <a href="http://www.whatwg.org/issues/">a list
-  of all e-mails that he has not yet tried to address</a>. These bugs,
-  issues, and e-mails apply to multiple HTML-related specifications,
-  not just this one.</p><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- stability (required) -->
-<!-- not everyone agrees with this (requested before html5 fpwd) --><p>The publication of this document by the W3C as a W3C Working
-  Draft does not imply that all of the participants in the W3C Web Applications
-  working group endorse the contents of the specification. Indeed, for
-  any section of the specification, one can usually find many members
-  of the working group or of the W3C as a whole who object strongly to
-  the current text, the existence of the section at all, or the idea
-  that the working group should even spend time discussing the concept
-  of that section.</p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- version history or list of changes (required) --><p>The latest stable version of the editor's draft of this
-  specification is always available on <a href="http://dev.w3.org/html5/">the W3C CVS server</a> and in the <a href="http://svn.whatwg.org/webapps/">WHATWG Subversion
-  repository</a>. The <a href="http://www.whatwg.org/specs/web-apps/current-work/complete.html">latest
+  All feedback is welcome.</p><!-- stability (required) --><p>Implementors should be aware that this specification is not
+  stable. <strong>Implementors who are not taking part in the
+  discussions are likely to find the specification changing out from
+  under them in incompatible ways.</strong> Vendors interested in
+  implementing this specification before it eventually reaches the
+  Candidate Recommendation stage should join the aforementioned
+  mailing lists and take part in the discussions.<div id="multipage-common">
+  </div><!-- version history or list of changes (required) --><p>The latest
+  stable version of the editor's draft of this specification is always
+  available on <a href="http://dev.w3.org/html5/postmsg/">the W3C CVS server</a>
+  and in the <a href="http://svn.whatwg.org/webapps/">WHATWG
+  Subversion repository</a>. The <a href="http://www.whatwg.org/specs/web-apps/current-work/complete.html">latest
   editor's working copy</a> (which may contain unfinished text in the
   process of being prepared) contains the latest draft text of this
   specification (amongst others). For more details, please see the <a href="http://wiki.whatwg.org/wiki/FAQ#What_are_the_various_versions_of_the_spec.3F">WHATWG
-  FAQ</a>.</p><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING LIST TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><p>There are various ways to follow the change history for the
-  HTML specifications:<dl><dt>E-mail notifications of changes</dt>
-   <dd>HTML-Diffs mailing list (diff-marked HTML versions for each change): <a href="http://lists.w3.org/Archives/Public/public-html-diffs/latest">http://lists.w3.org/Archives/Public/public-html-diffs/latest</a></dd>
+  FAQ</a>.<p>Notifications of changes to this specification are sent along
+  with notifications of changes to related specifications using the
+  following mechanisms:<dl><dt>E-mail notifications of changes</dt>
    <dd>Commit-Watchers mailing list (complete source diffs): <a href="http://lists.whatwg.org/listinfo.cgi/commit-watchers-whatwg.org">http://lists.whatwg.org/listinfo.cgi/commit-watchers-whatwg.org</a></dd>
-   <dt>Real-time notifications of changes:</dt>
-   <dd>Generated diff-marked HTML versions for each change: <a href="http://twitter.com/HTML5">http://twitter.com/HTML5</a></dd>
-   <dd>All (non-editorial) changes to the spec source: <a href="http://twitter.com/WHATWG">http://twitter.com/WHATWG</a></dd>
    <dt>Browsable version-control record of all changes:</dt>
    <dd>CVSWeb interface with side-by-side diffs: <a href="http://dev.w3.org/cvsweb/html5/">http://dev.w3.org/cvsweb/html5/</a></dd>
    <dd>Annotated summary with unified diffs: <a href="http://html5.org/tools/web-apps-tracker">http://html5.org/tools/web-apps-tracker</a></dd>
    <dd>Raw Subversion interface: <code>svn checkout http://svn.whatwg.org/webapps/</code></dd>
-  </dl><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING LIST TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- status of document, group responsible (required) --><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications Working
-  Group</a> is the W3C working group responsible for this
-  specification's progress along the W3C Recommendation
-  track.
-  This specification is the 18 November 2010 First Public Working Draft.
-  </p><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- relationship to other work (required) --><p>Work on this specification is also done at the <a href="http://www.whatwg.org/">WHATWG</a>. 
-</p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- context and rationale (required) --><!-- (this text is from the RDFa+HTML spec --><p>This specification is an extension to the HTML5 language. All
-  normative content in the HTML5 specification, unless specifically
-  overridden by this specification, is intended to be the basis for
-  this specification.</p><!-- UNDER NO CIRCUMSTANCES IS THE FOLLOWING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST --><!-- required patent boilerplate --><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
+  </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
+  Working Group</a> is the W3C working group responsible for this
+  specification's progress along the W3C Recommendation track.
+  This specification is the 14 December 2010 Editor's Draft.
+  </p><!-- required patent boilerplate --><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
   February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of
   any patent disclosures</a> made in connection with the deliverables
   of the group; that page also includes instructions for disclosing a
@@ -474,29 +333,85 @@ If you do not have an account then you can
   6 of the W3C Patent Policy</a>.<h2 class="no-num no-toc" id="contents">Table of Contents</h2>
 <!--begin-toc-->
 <ol class="toc">
- <li><a href="#conformance-requirements"><span class="secno">1 </span>Conformance requirements</a></li>
- <li><a href="#event-definitions"><span class="secno">2 </span>Event definitions</a></li>
- <li><a href="#web-messaging"><span class="secno">3 </span>Cross-document messaging</a>
+ <li><a href="#conformance-requirements"><span class="secno">1 </span>Conformance requirements</a>
   <ol>
-   <li><a href="#introduction"><span class="secno">3.1 </span>Introduction</a></li>
-   <li><a href="#security-postmsg"><span class="secno">3.2 </span>Security</a>
-    <ol>
-     <li><a href="#authors"><span class="secno">3.2.1 </span>Authors</a></li>
-     <li><a href="#user-agents"><span class="secno">3.2.2 </span>User agents</a></ol></li>
-   <li><a href="#posting-messages"><span class="secno">3.3 </span>Posting messages</a></ol></li>
- <li><a href="#channel-messaging"><span class="secno">4 </span>Channel messaging</a>
+   <li><a href="#dependencies"><span class="secno">1.1 </span>Dependencies</a></ol></li>
+ <li><a href="#terminology"><span class="secno">2 </span>Terminology</a></li>
+ <li><a href="#event-definitions"><span class="secno">3 </span>Event definitions</a></li>
+ <li><a href="#web-messaging"><span class="secno">4 </span>Cross-document messaging</a>
   <ol>
-   <li><a href="#introduction-0"><span class="secno">4.1 </span>Introduction</a></li>
-   <li><a href="#message-channels"><span class="secno">4.2 </span>Message channels</a></li>
-   <li><a href="#message-ports"><span class="secno">4.3 </span>Message ports</a>
+   <li><a href="#introduction"><span class="secno">4.1 </span>Introduction</a></li>
+   <li><a href="#security-postmsg"><span class="secno">4.2 </span>Security</a>
     <ol>
-     <li><a href="#ports-and-garbage-collection"><span class="secno">4.3.1 </span>Ports and garbage collection</a></ol></ol></li>
+     <li><a href="#authors"><span class="secno">4.2.1 </span>Authors</a></li>
+     <li><a href="#user-agents"><span class="secno">4.2.2 </span>User agents</a></ol></li>
+   <li><a href="#posting-messages"><span class="secno">4.3 </span>Posting messages</a></ol></li>
+ <li><a href="#channel-messaging"><span class="secno">5 </span>Channel messaging</a>
+  <ol>
+   <li><a href="#introduction-0"><span class="secno">5.1 </span>Introduction</a></li>
+   <li><a href="#message-channels"><span class="secno">5.2 </span>Message channels</a></li>
+   <li><a href="#message-ports"><span class="secno">5.3 </span>Message ports</a>
+    <ol>
+     <li><a href="#ports-and-garbage-collection"><span class="secno">5.3.1 </span>Ports and garbage collection</a></ol></ol></li>
  <li><a class="no-num" href="#references">References</a></li>
  <li><a class="no-num" href="#acknowledgements">Acknowledgements</a></ol>
-<!--end-toc--><hr><h2 id="conformance-requirements"><span class="secno">1 </span>Conformance requirements</h2><p>This specification is an HTML specification. All the conformance
-  requirements, conformance classes, definitions, dependencies,
-  terminology, and typographical conventions described in the core
-  HTML5 specification apply to this specification. <a href="#refsHTML5">[HTML5]</a><p>Interfaces are defined in terms of Web IDL. <a href="#refsWEBIDL">[WEBIDL]</a><h2 id="event-definitions"><span class="secno">2 </span>Event definitions</h2><p>Messages in <span>server-sent events</span>, <span>Web
+<!--end-toc--><hr><h2 id="conformance-requirements"><span class="secno">1 </span>Conformance requirements</h2><p>All diagrams, examples, and notes in this specification are
+  non-normative, as are all sections explicitly marked non-normative.
+  Everything else in this specification is normative.<p>The key words "MUST", "MUST NOT", "REQUIRED", <!--"SHALL", "SHALL
+  NOT",--> "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
+  "OPTIONAL" in the normative parts of this document are to be
+  interpreted as described in RFC2119. For readability, these words do
+  not appear in all uppercase letters in this specification. <a href="#refsRFC2119">[RFC2119]</a><p>Requirements phrased in the imperative as part of algorithms
+  (such as "strip any leading space characters" or "return false and
+  abort these steps") are to be interpreted with the meaning of the
+  key word ("must", "should", "may", etc) used in introducing the
+  algorithm.<p>Some conformance requirements are phrased as requirements on
+  attributes, methods or objects. Such requirements are to be
+  interpreted as requirements on user agents.<p>Conformance requirements phrased as algorithms or specific steps
+  may be implemented in any manner, so long as the end result is
+  equivalent. (In particular, the algorithms defined in this
+  specification are intended to be easy to follow, and not intended to
+  be performant.)<p>The only conformance class defined by this specification is user
+  agents.<p>User agents may impose implementation-specific limits on
+  otherwise unconstrained inputs, e.g. to prevent denial of service
+  attacks, to guard against running out of memory, or to work around
+  platform-specific limitations.<p>When support for a feature is disabled (e.g. as an emergency
+  measure to mitigate a security problem, or to aid in development, or
+  for performance reasons), user agents must act as if they had no
+  support for the feature whatsoever, and as if the feature was not
+  mentioned in this specification. For example, if a particular
+  feature is accessed via an attribute in a Web IDL interface, the
+  attribute itself would be omitted from the objects that implement
+  that interface &mdash; leaving the attribute on the object but
+  making it return null or throw an exception is insufficient.<h3 id="dependencies"><span class="secno">1.1 </span>Dependencies</h3><p>This specification relies on several other underlying
+  specifications.<dl><dt>HTML</dt>
+
+   <dd>
+
+    <p>Many fundamental concepts from HTML are used by this
+    specification. <a href="#refsHTML">[HTML]</a></p>
+
+   </dd>
+
+   <dt>WebIDL</dt>
+
+   <dd>
+
+    <p>The IDL blocks in this specification use the semantics of the
+    WebIDL specification. <a href="#refsWEBIDL">[WEBIDL]</a></p>
+
+   </dd>
+
+  </dl><h2 id="terminology"><span class="secno">2 </span>Terminology</h2><p>The construction "a <code title="">Foo</code> object", where
+  <code title="">Foo</code> is actually an interface, is sometimes
+  used instead of the more accurate "an object implementing the
+  interface <code title="">Foo</code>".<p>The term DOM is used to refer to the API set made available to
+  scripts in Web applications, and does not necessarily imply the
+  existence of an actual <code>Document</code> object or of any other
+  <code>Node</code> objects as defined in the DOM Core
+  specifications. <a href="#refsDOMCORE">[DOMCORE]</a><p>An IDL attribute is said to be <em>getting</em> when its value is
+  being retrieved (e.g. by author script), and is said to be
+  <em>setting</em> when a new value is assigned to it.<h2 id="event-definitions"><span class="secno">3 </span>Event definitions</h2><p>Messages in <span>server-sent events</span>, <span>Web
   sockets</span>, <a href="#web-messaging">cross-document messaging</a>, and
   <a href="#channel-messaging">channel messaging</a> use the <dfn id="event-message" title="event-message"><code>message</code></dfn> event.
   
@@ -593,7 +508,7 @@ If you do not have an account then you can
   null, and the <code title="dom-MessageEvent-ports"><a href="#dom-messageevent-ports">ports</a></code>
   attribute must be null.</p>
 
-  </div><h2 id="web-messaging"><span class="secno">3 </span><dfn id="crossDocumentMessages">Cross-document messaging</dfn></h2><p>Web browsers, for security and privacy reasons, prevent documents
+  </div><h2 id="web-messaging"><span class="secno">4 </span><dfn id="crossDocumentMessages">Cross-document messaging</dfn></h2><p>Web browsers, for security and privacy reasons, prevent documents
   in different domains from affecting each other; that is, cross-site
   scripting is disallowed.<p>While this is an important security feature, it prevents pages
   from different domains from communicating even when those pages are
@@ -605,7 +520,7 @@ If you do not have an account then you can
   <p>The <span>task source</span> for the <span title="concept-task">tasks</span> in <a href="#web-messaging">cross-document
   messaging</a> is the <dfn id="posted-message-task-source">posted message task source</dfn>.</p>
 
-  </div><h3 id="introduction"><span class="secno">3.1 </span>Introduction</h3><p><i>This section is non-normative.</i><div class="example">
+  </div><h3 id="introduction"><span class="secno">4.1 </span>Introduction</h3><p><i>This section is non-normative.</i><div class="example">
 
    <p>For example, if document A contains an <code>iframe</code>
    element that contains document B, and script in document A calls
@@ -639,9 +554,9 @@ function receiver(e) {
    responds to by sending a message back to the document which sent
    the message in the first place.</p>
 
-  </div><h3 id="security-postmsg"><span class="secno">3.2 </span>Security</h3><div class="impl">
+  </div><h3 id="security-postmsg"><span class="secno">4.2 </span>Security</h3><div class="impl">
 
-  <h4 id="authors"><span class="secno">3.2.1 </span>Authors</h4>
+  <h4 id="authors"><span class="secno">4.2.1 </span>Authors</h4>
 
   </div><p class="warning" id="security-4">Use of this API requires extra
   care to protect users from hostile entities abusing a site for their
@@ -658,7 +573,7 @@ function receiver(e) {
   that the message is only delivered to the recipient to which it was
   intended.<div class="impl">
 
-  <h4 id="user-agents"><span class="secno">3.2.2 </span>User agents</h4>
+  <h4 id="user-agents"><span class="secno">4.2.2 </span>User agents</h4>
 
   <p>The integrity of this API is based on the inability for scripts
   of one <span>origin</span> to post arbitrary events (using <code title="">dispatchEvent()</code> or otherwise) to objects in other
@@ -671,7 +586,7 @@ function receiver(e) {
   disallowed for security reasons. It also requires that UAs be
   careful to allow access to certain properties but not others.</p>
 
-  </div><h3 id="posting-messages"><span class="secno">3.3 </span>Posting messages</h3><dl class="domintro"><dt><var title="">window</var> . <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage</a></code>(<var title="">message</var>, <var title="">targetOrigin</var> [, <var title="">ports</var> ])</dt>
+  </div><h3 id="posting-messages"><span class="secno">4.3 </span>Posting messages</h3><dl class="domintro"><dt><var title="">window</var> . <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage</a></code>(<var title="">message</var>, <var title="">targetOrigin</var> [, <var title="">ports</var> ])</dt>
 
    <dd>
 
@@ -683,7 +598,7 @@ function receiver(e) {
     send the message to the target regardless of origin, set the
     target origin to "<code title="">*</code>". To restrict the
     message to same-origin targets only, without needing to explicitly
-    state the origin, pass the <code title="dom-location">window.location</code> object.</p>
+    state the origin, set the target origin to "<code title="">/</code>".</p>
 
     <p>Throws an <code>INVALID_STATE_ERR</code> if the <var title="">ports</var> array is not null and it contains either null
     entries or duplicate ports.</p>
@@ -709,9 +624,10 @@ function receiver(e) {
   <ol><li>
 
     <p>If the value of the <var title="">targetOrigin</var> argument
-    is neither a single U+002A ASTERISK character (*) nor an
-    <span>absolute URL</span>, then throw a <code>SYNTAX_ERR</code>
-    exception and abort the overall set of steps.</p>
+    is neither a single U+002A ASTERISK character (*), a single U+002F
+    SOLIDUS character (/), nor an <span>absolute URL</span>, then
+    throw a <code>SYNTAX_ERR</code> exception and abort the overall
+    set of steps.</p>
 
    </li>
 
@@ -760,6 +676,13 @@ function receiver(e) {
 
    <li>
 
+    <p>If the <var title="">targetOrigin</var> argument is a single
+    literal U+002F SOLIDUS character (/), and the
+    <code>Document</code> of the <code>Window</code> object on which
+    the method was invoked does not have the <span>same origin</span>
+    as the <span>entry script</span>'s <span title="script's
+    document">document</span>, then abort these steps silently.</p>
+
     <p>Otherwise, if the <var title="">targetOrigin</var> argument is
     an <span>absolute URL</span>, and the <code>Document</code> of the
     <code>Window</code> object on which the method was invoked does
@@ -797,7 +720,7 @@ function receiver(e) {
 
    </li>
 
-  </ol></div><h2 id="channel-messaging"><span class="secno">4 </span><dfn>Channel messaging</dfn></h2><h3 id="introduction-0"><span class="secno">4.1 </span>Introduction</h3><p><i>This section is non-normative.</i><p>To enable independent pieces of code (e.g. running in different
+  </ol></div><h2 id="channel-messaging"><span class="secno">5 </span><dfn>Channel messaging</dfn></h2><h3 id="introduction-0"><span class="secno">5.1 </span>Introduction</h3><p><i>This section is non-normative.</i><p>To enable independent pieces of code (e.g. running in different
   <span title="browsing context">browsing contexts</span>) to
   communicate directly, authors can use <a href="#channel-messaging">channel
   messaging</a>.<p>Communication channels in this mechanisms are implemented as
@@ -809,7 +732,7 @@ function receiver(e) {
 function handleMessage(event) {
   // message is in event.data
   // ...
-}</pre><h3 id="message-channels"><span class="secno">4.2 </span>Message channels</h3><pre class="idl">[<a href="#dom-messagechannel" title="dom-MessageChannel">Constructor</a>]
+}</pre><h3 id="message-channels"><span class="secno">5.2 </span>Message channels</h3><pre class="idl">[<a href="#dom-messagechannel" title="dom-MessageChannel">Constructor</a>]
 interface <dfn id="messagechannel">MessageChannel</dfn> {
   readonly attribute <a href="#messageport">MessagePort</a> <a href="#dom-channel-port1" title="dom-channel-port1">port1</a>;
   readonly attribute <a href="#messageport">MessagePort</a> <a href="#dom-channel-port2" title="dom-channel-port2">port2</a>;
@@ -870,7 +793,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   must return the values they were assigned when the
   <code><a href="#messagechannel">MessageChannel</a></code> object was created.</p>
 
-  </div><h3 id="message-ports"><span class="secno">4.3 </span>Message ports</h3><p>Each channel has two message ports. Data sent through one port is
+  </div><h3 id="message-ports"><span class="secno">5.3 </span>Message ports</h3><p>Each channel has two message ports. Data sent through one port is
   received by the other port, and vice versa.<pre class="idl">typedef sequence&lt;MessagePort&gt; <dfn id="messageportarray">MessagePortArray</dfn>;
 
 interface <dfn id="messageport">MessagePort</dfn> {
@@ -1148,7 +1071,7 @@ interface <dfn id="messageport">MessagePort</dfn> {
   as if the <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code> method
   had been called.</p>
 
-  </div><h4 id="ports-and-garbage-collection"><span class="secno">4.3.1 </span>Ports and garbage collection</h4><div class="impl">
+  </div><h4 id="ports-and-garbage-collection"><span class="secno">5.3.1 </span>Ports and garbage collection</h4><div class="impl">
 
   <p>When a <code><a href="#messageport">MessagePort</a></code> object <var title="">o</var> is
   entangled, user agents must either act as if <var title="">o</var>'s
@@ -1186,7 +1109,17 @@ interface <dfn id="messageport">MessagePort</dfn> {
   <code><a href="#messageport">MessagePort</a></code> objects to disentangle them, so that their
   resources can be recollected. Creating many <code><a href="#messageport">MessagePort</a></code>
   objects and discarding them without closing them can lead to high
-  memory usage.<h2 class="no-num" id="references">References</h2><!--REFS--><p>All references are normative unless marked "Non-normative".</p><!-- Dates are only included for standards older than the Web, because the newer ones keep changing. --><dl><dt id="refsDOMEVENTS">[DOMEVENTS]</dt>
+  memory usage.<h2 class="no-num" id="references">References</h2><!--REFS--><p>All references are normative unless marked "Non-normative".</p><!-- Dates are only included for standards older than the Web, because the newer ones keep changing. --><dl><dt id="refsDOMCORE">[DOMCORE]</dt>
+   <dd><cite><a href="http://www.w3.org/TR/DOM-Level-3-Core/">Document
+   Object Model (DOM) Level 3 Core Specification</a></cite>, A. Le
+   Hors, P. Le Hegaret, L. Wood, G. Nicol, J. Robie, M. Champion,
+   S. Byrnes. W3C.</dd>
+   <!--
+   <dd><cite><a href="http://simon.html5.org/specs/web-dom-core">Web
+   DOM Core</a></cite>, S. Pieters. W3C.</dd>
+   -->
+
+   <dt id="refsDOMEVENTS">[DOMEVENTS]</dt>
    <!--
    <dd><cite><a
    href="http://www.w3.org/TR/DOM-Level-3-Events/">Document Object
@@ -1205,10 +1138,13 @@ interface <dfn id="messageport">MessagePort</dfn> {
    <dd><cite><a href="http://dev.w3.org/html5/eventsource/">Server-Sent
    Events</a></cite>, I. Hickson. W3C.</dd>
 
-   <dt id="refsHTML5">[HTML5]</dt>
-   <dd>
-   <cite><a href="http://dev.w3.org/html5/spec/">HTML5</a></cite>,
-   I. Hickson. W3C.</dd>
+   <dt id="refsHTML">[HTML]</dt>
+   <dd><cite><a href="http://www.whatwg.org/specs/web-apps/current-work/">HTML</a></cite>,
+   I. Hickson. WHATWG.</dd>
+
+   <dt id="refsRFC2119">[RFC2119]</dt>
+   <dd><cite><a href="http://tools.ietf.org/html/rfc2119">Key words for use in
+   RFCs to Indicate Requirement Levels</a></cite>, S. Bradner. IETF.</dd>
 
    <dt id="refsWEBIDL">[WEBIDL]</dt>
    <!--
@@ -1226,5 +1162,5 @@ interface <dfn id="messageport">MessagePort</dfn> {
    <dd><cite><a href="http://dev.w3.org/html5/websockets/">The WebSocket
    API</a></cite>, I. Hickson. W3C.</dd>
 
-  </dl><h2 class="no-num" id="acknowledgements">Acknowledgements</h2><p>For a full list of acknowledgements, please see the HTML5
-  specification. <a href="#refsHTML5">[HTML5]</a>
+  </dl><h2 class="no-num" id="acknowledgements">Acknowledgements</h2><p>For a full list of acknowledgements, please see the HTML
+  specification. <a href="#refsHTML">[HTML]</a>
