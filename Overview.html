@@ -211,7 +211,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-12-may-2011">Editor's Draft 12 May 2011</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-27-may-2011">Editor's Draft 27 May 2011</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -310,7 +310,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 12 May 2011 Editor's Draft.
+  This specification is the 27 May 2011 Editor's Draft.
   </p><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
   February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of
   any patent disclosures</a> made in connection with the deliverables
@@ -409,8 +409,8 @@
   readonly attribute DOMString <a href="#dom-messageevent-origin" title="dom-MessageEvent-origin">origin</a>;
   readonly attribute DOMString <a href="#dom-messageevent-lasteventid" title="dom-MessageEvent-lastEventId">lastEventId</a>;
   readonly attribute <span>WindowProxy</span> <a href="#dom-messageevent-source" title="dom-MessageEvent-source">source</a>;
-  readonly attribute <a href="#messageportarray">MessagePortArray</a> <a href="#dom-messageevent-ports" title="dom-MessageEvent-ports">ports</a>;
-  void <a href="#dom-messageevent-initmessageevent" title="dom-MessageEvent-initMessageEvent">initMessageEvent</a>(in DOMString typeArg, in boolean canBubbleArg, in boolean cancelableArg, in any dataArg, in DOMString originArg, in DOMString lastEventIdArg, in <span>WindowProxy</span> sourceArg, in <a href="#messageportarray">MessagePortArray</a> portsArg);
+  readonly attribute <a href="#messageport">MessagePort</a>[] <a href="#dom-messageevent-ports" title="dom-MessageEvent-ports">ports</a>;
+  void <a href="#dom-messageevent-initmessageevent" title="dom-MessageEvent-initMessageEvent">initMessageEvent</a>(in DOMString typeArg, in boolean canBubbleArg, in boolean cancelableArg, in any dataArg, in DOMString originArg, in DOMString lastEventIdArg, in <span>WindowProxy</span> sourceArg, in sequence&lt;<a href="#messageport">MessagePort</a>&gt; portsArg);
 };</pre><dl class="domintro"><dt><var title="">event</var> . <code title="dom-MessageEvent-data"><a href="#dom-messageevent-data">data</a></code></dt>
 
    <dd>
@@ -450,7 +450,7 @@
 
    <dd>
 
-    <p>Returns the <code><a href="#messageportarray">MessagePortArray</a></code> sent with the
+    <p>Returns the <code><a href="#messageport">MessagePort</a></code> array sent with the
     message, for <a href="#web-messaging">cross-document messaging</a> and
     <a href="#channel-messaging">channel messaging</a>.</p>
 
@@ -483,7 +483,7 @@
 
   <p>The <dfn id="dom-messageevent-ports" title="dom-MessageEvent-ports"><code>ports</code></dfn>
   attribute represents, in <a href="#web-messaging">cross-document messaging</a> and
-  <a href="#channel-messaging">channel messaging</a> the <code><a href="#messageportarray">MessagePortArray</a></code>
+  <a href="#channel-messaging">channel messaging</a> the <code><a href="#messageport">MessagePort</a></code> array
   being sent, if any.</p>
 
   <p>Except where otherwise specified, when the user agent creates and
@@ -655,6 +655,12 @@ function receiver(e) {
 
    <li>
 
+    <p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read only</span> array.</p>
+
+   </li>
+
+   <li>
+
     <p>Return from the <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code> method, but
     asynchronously continue running these steps.</p>
 
@@ -777,10 +783,8 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   <code><a href="#messagechannel">MessageChannel</a></code> object was created.</p>
 
   </div><h3 id="message-ports"><span class="secno">5.3 </span>Message ports</h3><p>Each channel has two message ports. Data sent through one port is
-  received by the other port, and vice versa.<pre class="idl">typedef sequence&lt;MessagePort&gt; <dfn id="messageportarray">MessagePortArray</dfn>;
-
-interface <dfn id="messageport">MessagePort</dfn> {
-  void <a href="#dom-messageport-postmessage" title="dom-MessagePort-postMessage">postMessage</a>(in any message, in optional <a href="#messageportarray">MessagePortArray</a> ports);  void <a href="#dom-messageport-start" title="dom-MessagePort-start">start</a>();
+  received by the other port, and vice versa.<pre class="idl">interface <dfn id="messageport">MessagePort</dfn> {
+  void <a href="#dom-messageport-postmessage" title="dom-MessagePort-postMessage">postMessage</a>(in any message, in optional sequence&lt;<a href="#messageport">MessagePort</a>&gt; ports);  void <a href="#dom-messageport-start" title="dom-MessagePort-start">start</a>();
   void <a href="#dom-messageport-close" title="dom-MessagePort-close">close</a>();
 
   // event handlers
@@ -931,6 +935,12 @@ interface <dfn id="messageport">MessagePort</dfn> {
       <p class="note">If the original <var title="">ports</var>
       array was empty, then the <var title="">new ports</var> array will
       also be empty.</p>
+
+     </li>
+
+     <li>
+
+      <p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read only</span> array.</p>
 
      </li>
 
