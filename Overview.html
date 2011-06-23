@@ -211,7 +211,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-13-june-2011">Editor's Draft 13 June 2011</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-23-june-2011">Editor's Draft 23 June 2011</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -311,7 +311,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 13 June 2011 Editor's Draft.
+  This specification is the 23 June 2011 Editor's Draft.
   </p><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
   February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of
   any patent disclosures</a> made in connection with the deliverables
@@ -573,12 +573,12 @@ function receiver(e) {
   disallowed for security reasons. It also requires that UAs be
   careful to allow access to certain properties but not others.</p>
 
-  </div><h3 id="posting-messages"><span class="secno">4.3 </span>Posting messages</h3><dl class="domintro"><dt><var title="">window</var> . <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage</a></code>(<var title="">message</var>, <var title="">targetOrigin</var> [, <var title="">ports</var> ])</dt>
+  </div><h3 id="posting-messages"><span class="secno">4.3 </span>Posting messages</h3><dl class="domintro"><dt><var title="">window</var> . <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage</a></code>(<var title="">message</var>, <var title="">targetOrigin</var> [, <var title="">transfer</var> ])</dt>
 
    <dd>
 
-    <p>Posts a message, optionally with an array of ports, to the
-    given window.</p>
+    <p>Posts a message to the given window. Objects listed in <var title="">transfer</var> are transferred, not just cloned, meaning
+    that they are no longer usable on the sending side.</p>
 
     <p>If the origin of the target window doesn't match the given
     origin, the message is discarded, to avoid information leakage. To
@@ -587,7 +587,8 @@ function receiver(e) {
     message to same-origin targets only, without needing to explicitly
     state the origin, set the target origin to "<code title="">/</code>".</p>
 
-    <p>Throws an <code>INVALID_STATE_ERR</code> if the <var title="">ports</var> array contains duplicate ports.</p>
+    <p>Throws a <code>DATA_CLONE_ERR</code> if <var title="">transfer</var> array contains duplicate objects or if
+    <var title="">message</var> could not be cloned.</p>
 
    </dd>
 
@@ -603,9 +604,9 @@ function receiver(e) {
   their readiness to receive messages, and for the parent to wait for
   this message before beginning posting messages.<div class="impl">
 
-  <p>When a script invokes the <dfn id="dom-window-postmessage" title="dom-window-postMessage"><code>postMessage(<var title="">message</var>, <var title="">targetOrigin</var>, <var title="">ports</var>)</code></dfn> method (with two or three
+  <p>When a script invokes the <dfn id="dom-window-postmessage" title="dom-window-postMessage"><code>postMessage(<var title="">message</var>, <var title="">targetOrigin</var>, <var title="">transfer</var>)</code></dfn> method (with two or three
   arguments) on a <code>Window</code> object, the user agent must
-  follow these steps:
+  follow these steps:</p>
 
   <ol><li>
 
@@ -619,42 +620,60 @@ function receiver(e) {
 
    <li>
 
-    <p>Let <var title="">message clone</var> be the result of
-    obtaining a <span>structured clone</span> of the <var title="">message</var> argument. If this throws an exception, then
-    throw that exception and abort these steps.</p>
-
-   </li>
-
-   <li>
-
-    <p>If the <var title="">ports</var> argument is present but any
-    <code><a href="#messageport">MessagePort</a></code> object is listed in <var title="">ports</var> more than once, or any of the
-    <code><a href="#messageport">MessagePort</a></code> objects listed in <var title="">ports</var> have already been cloned once before, then
-    throw an <code>INVALID_STATE_ERR</code> exception and abort these
-    steps.</p>
-
-   </li>
-
-   <li>
-
     <p>Let <var title="">new ports</var> be an empty array.</p>
 
-    <p>If the <var title="">ports</var> argument is present, then for
-    each port in <var title="">ports</var> in turn, obtain a new port
-    by <a href="#clone-a-port" title="clone a port">cloning</a> the port with the
-    <code>Window</code> object on which the method was invoked as the
-    owner of the clone, and append the clone to the <var title="">new
-    ports</var> array.</p>
+   </li>
 
-    <p class="note">If the original <var title="">ports</var> argument
-    was omitted or empty, then the <var title="">new ports</var> array
-    will be empty.</p>
+   <li>
+
+    <p>Let <var title="">transfer map</var> be an empty association
+    list of pairs of <code>Transferable</code> objects.</p>
 
    </li>
+
+   <li>
+
+    <p>If the method was invoked with a third argument <var title="">transfer</var>, run these substeps:</p>
+
+    <ol><li>
+
+      <p>If any object is listed in <var title="">transfer</var> more
+      than once, or any of the <code>Transferable</code> objects
+      listed in <var title="">transfer</var> have already been <span title="transfer a Transferable object">transfered</span> once
+      before, then throw a <code>DATA_CLONE_ERR</code> exception and
+      abort these steps.</p>
+
+     </li>
+
+     <li>
+
+      <p>If the <var title="">transfer</var> argument is present, then
+      for each object in <var title="">transfer</var> in turn, obtain
+      a new object by <span title="transfer a Transferable
+      object">transferring</span> the object to the
+      <code>Window</code> object on which the method was invoked, and
+      add a mapping from the old object to the new transferred object
+      to <var title="">transfer map</var>. If the objects are
+      <code><a href="#messageport">MessagePort</a></code> objects, also append the new
+      transferred object to the <var title="">new ports</var>
+      array.</p>
+
+     </li>
+
+    </ol></li>
 
    <li>
 
     <p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read only</span> array.</p>
+
+   </li>
+
+   <li>
+
+    <p>Let <var title="">message clone</var> be the result of
+    obtaining a <span>structured clone</span> of the <var title="">message</var> argument, with <var title="">transfer
+    map</var> as the <i>transfer map</i>. If this throws an exception,
+    then throw that exception and abort these steps.</p>
 
    </li>
 
@@ -783,21 +802,23 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
   </div><h3 id="message-ports"><span class="secno">5.3 </span>Message ports</h3><p>Each channel has two message ports. Data sent through one port is
   received by the other port, and vice versa.<pre class="idl">interface <dfn id="messageport">MessagePort</dfn> {
-  void <a href="#dom-messageport-postmessage" title="dom-MessagePort-postMessage">postMessage</a>(in any message, in optional sequence&lt;<a href="#messageport">MessagePort</a>&gt; ports);  void <a href="#dom-messageport-start" title="dom-MessagePort-start">start</a>();
+  void <a href="#dom-messageport-postmessage" title="dom-MessagePort-postMessage">postMessage</a>(in any message, in optional sequence&lt;<span>Transferable</span>&gt; transfer);  void <a href="#dom-messageport-start" title="dom-MessagePort-start">start</a>();
   void <a href="#dom-messageport-close" title="dom-MessagePort-close">close</a>();
 
   // event handlers
            attribute <span>Function</span>? <a href="#handler-messageport-onmessage" title="handler-MessagePort-onmessage">onmessage</a>;
 };
-<a href="#messageport">MessagePort</a> implements <span>EventTarget</span>;</pre><dl class="domintro"><dt><var title="">port</var> . <code title="dom-MessagePort-poseMessage">postMessage</code>(<var title="">message</var> [, <var title="">ports</var>] )</dt>
+<a href="#messageport">MessagePort</a> implements <span>EventTarget</span>;
+<a href="#messageport">MessagePort</a> implements <span>Transferable</span>;</pre><dl class="domintro"><dt><var title="">port</var> . <code title="dom-MessagePort-postMessage"><a href="#dom-messageport-postmessage">postMessage</a></code>(<var title="">message</var> [, <var title="">transfer</var>] )</dt>
 
    <dd>
 
-    <p>Posts a message through the channel, optionally with the given
-    ports.</p>
+    <p>Posts a message through the channel. Objects listed in <var title="">transfer</var> are transferred, not just cloned, meaning
+    that they are no longer usable on the sending side.</p>
 
-    <p>Throws an <code>INVALID_STATE_ERR</code> if the <var title="">ports</var> array contains either duplicate ports, or the
-    source or target port.</p>
+    <p>Throws a <code>DATA_CLONE_ERR</code> if <var title="">transfer</var> array contains duplicate objects or the
+    source or target ports, or if <var title="">message</var> could
+    not be cloned.</p>
 
    </dd>
 
@@ -834,7 +855,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   instantiate a new <code><a href="#messageport">MessagePort</a></code> object, and let its owner
   be <var title="">owner</var>.</p>
 
-  <hr><p>When the user agent is to <dfn id="entangle">entangle</dfn> two
+  <p>When the user agent is to <dfn id="entangle">entangle</dfn> two
   <code><a href="#messageport">MessagePort</a></code> objects, it must run the following
   steps:</p>
 
@@ -855,7 +876,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
    <code><a href="#messagechannel">MessageChannel</a></code> object that represents this
    channel.)</li>
 
-  </ol><hr><p>When the user agent is to <dfn id="clone-a-port">clone a port</dfn> <var title="">original port</var>, with the clone being owned by <var title="">owner</var>, it must run the following steps, which return
+  </ol><p>When the user agent is to <dfn id="clone-a-port">clone a port</dfn> <var title="">original port</var>, with the clone being owned by <var title="">owner</var>, it must run the following steps, which return
   a new <code><a href="#messageport">MessagePort</a></code> object. These steps must be run
   atomically.</p>
 
@@ -886,70 +907,112 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
    <li><p>Return <var title="">new port</var>. It is the
    clone.</li>
 
-  </ol><hr><p>The <dfn id="dom-messageport-postmessage" title="dom-MessagePort-postMessage"><code>postMessage()</code></dfn>
+  </ol><p id="transferMessagePort">To <span title="transfer a Transferable
+  object">transfer</span> a <code><a href="#messageport">MessagePort</a></code> object <var title="">old</var> to a new owner <var title="">owner</var>, a user
+  agent must <a href="#clone-a-port" title="clone a port">clone</a> the <var title="">old</var> object with the cloned being owned by <var title="">owner</var>, and must return the resulting object.</p>
+
+  <hr><p>The <dfn id="dom-messageport-postmessage" title="dom-MessagePort-postMessage"><code>postMessage()</code></dfn>
   method, when called on a port <var title="">source port</var>, must
   cause the user agent to run the following steps:</p>
 
   <ol><li><p>Let <var title="">target port</var> be the port with which
    <var title="">source port</var> is entangled, if any.</li>
 
-   <li><p>If the method was called with a second argument <var title="">ports</var>, then, if any <code><a href="#messageport">MessagePort</a></code> object
-   is listed in <var title="">ports</var> more than once, if any of the
-   <code><a href="#messageport">MessagePort</a></code> objects listed in <var title="">ports</var>
-   have already been cloned once before, or if any of the entries
-   in <var title="">ports</var> are either the <var title="">source
-   port</var> or the <var title="">target port</var> (if any), then
-   throw an <code>INVALID_STATE_ERR</code> exception.</li>
+   <li><p>Let <var title="">new owner</var> be the owner of <var title="">target port</var>, if there is a <var title="">target
+   port</var>, or else some arbitrary owner. (This <var title="">new
+   owner</var> is used when transfering objects below. If there is no
+   <var title="">target port</var>, the <code>Transferable</code>
+   objects given in the second argument, if any, are still <span title="transfer a Transferable object">transfered</span>, but since
+   they are then discarded, it doesn't matter where they are
+   transfered to.)</li>
 
-   <li><p>Create an event that uses the <code><a href="#messageevent">MessageEvent</a></code>
-   interface, with the name <code title="event-message"><a href="#event-message">message</a></code>, which does not bubble, is not
-   cancelable, and has no default action.</li>
+   <li>
 
-   <li><p>Let <var title="">message</var> be the method's first
-   argument.</li>
+    <p>Let <var title="">new ports</var> be an empty array.</p>
 
-   <li><p>Let <var title="">message clone</var> be the result of
-   obtaining a <span>structured clone</span> of <var title="">message</var>. If this throws an exception, then throw
-   that exception and abort these steps.</li>
+   </li>
 
-   <li><p>Let the <code title="dom-MessageEvent-data"><a href="#dom-messageevent-data">data</a></code>
-   attribute of the event have the value of <var title="">message
-   clone</var>.</li>
+   <li>
 
-   <li><p>If the method was called with a second argument <var title="">ports</var>, then run the following substeps:</p>
+    <p>Let <var title="">transfer map</var> be an empty association
+    list of pairs of <code>Transferable</code> objects.</p>
+
+   </li>
+
+   <li>
+
+    <p>If the method was invoked with a second argument <var title="">transfer</var>, run these substeps:</p>
 
     <ol><li>
 
-      <p>Let <var title="">new ports</var> be an empty array.</p>
-
-      <p>For each port in <var title="">ports</var> in turn,
-      obtain a new port by <a href="#clone-a-port" title="clone a port">cloning</a>
-      the port with the owner of the <var title="">target port</var>
-      as the owner of the clone, and append the clone to the <var title="">new ports</var> array.</p>
-
-      <p class="note">If the original <var title="">ports</var>
-      array was empty, then the <var title="">new ports</var> array will
-      also be empty.</p>
+      <p>If any object is listed in <var title="">transfer</var> more
+      than once, or any of the <code>Transferable</code> objects
+      listed in <var title="">transfer</var> have already been <span title="transfer a Transferable object">transfered</span> once
+      before, then throw a <code>DATA_CLONE_ERR</code> exception and
+      abort these steps.</p>
 
      </li>
 
      <li>
 
-      <p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read only</span> array.</p>
+      <p>If any of the objects in <var title="">transfer</var> are
+      either the <var title="">source port</var> or the <var title="">target port</var> (if any), then throw a
+      <code>DATA_CLONE_ERR</code> exception and abort these
+      steps.</li>
+
+     </ol></li>
+
+     <li>
+
+      <p>If the <var title="">transfer</var> argument is present, then
+      for each object in <var title="">transfer</var> in turn, obtain
+      a new object by <span title="transfer a Transferable
+      object">transferring</span> the object to <var title="">new
+      owner</var>, and add a mapping from the old object to the new
+      transferred object to <var title="">transfer map</var>. If the
+      objects are <code><a href="#messageport">MessagePort</a></code> objects, also append the
+      new transferred object to the <var title="">new ports</var>
+      array.</p>
 
      </li>
 
-     <li><p>Let the <code title="dom-MessageEvent-ports"><a href="#dom-messageevent-ports">ports</a></code>
-     attribute of the event be the <var title="">new ports</var>
-     array.</li>
+    </ol><li>
 
-    </ol></li>
+    <p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read only</span> array.</p>
+
+   </li>
+
+   <li><p>Let <var title="">message</var> be the method's first
+   argument.</li>
+
+   <li>
+
+    <p>Let <var title="">message clone</var> be the result of
+    obtaining a <span>structured clone</span> of the <var title="">message</var> argument, with <var title="">transfer
+    map</var> as the <i>transfer map</i>. If this throws an exception,
+    then throw that exception and abort these steps.</p>
+
+   </li>
+
+   <li><p>Create an event that uses the <code><a href="#messageevent">MessageEvent</a></code>
+   interface, with the name <code title="event-message"><a href="#event-message">message</a></code>, which does not bubble, is not
+   cancelable, and has no default action.</li>
+
+   <li><p>Let the <code title="dom-MessageEvent-data"><a href="#dom-messageevent-data">data</a></code>
+   attribute of the event have the value of <var title="">message
+   clone</var>.</li>
+
+   <li><p>Let the <code title="dom-MessageEvent-ports"><a href="#dom-messageevent-ports">ports</a></code>
+   attribute of the event be the <var title="">new ports</var>
+   array.</li>
 
    <li><p>If there is no <var title="">target port</var> (i.e. if <var title="">source port</var> is not entangled), then abort these
    steps.</li> 
    <li><p>Add the event to the <a href="#port-message-queue">port message queue</a> of <var title="">target port</var>.</li>
 
-  </ol><hr><p>The <dfn id="dom-messageport-start" title="dom-MessagePort-start"><code>start()</code></dfn>
+  
+
+  <hr><p>The <dfn id="dom-messageport-start" title="dom-MessagePort-start"><code>start()</code></dfn>
   method must enable its port's <a href="#port-message-queue">port message queue</a>, if it
   is not already enabled.</p>
 
