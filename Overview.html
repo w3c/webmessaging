@@ -211,7 +211,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-23-june-2011">Editor's Draft 23 June 2011</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-30-june-2011">Editor's Draft 30 June 2011</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -311,7 +311,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 23 June 2011 Editor's Draft.
+  This specification is the 30 June 2011 Editor's Draft.
   </p><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
   February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of
   any patent disclosures</a> made in connection with the deliverables
@@ -958,9 +958,9 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
       <p>If any of the objects in <var title="">transfer</var> are
       either the <var title="">source port</var> or the <var title="">target port</var> (if any), then throw a
       <code>DATA_CLONE_ERR</code> exception and abort these
-      steps.</li>
+      steps.</p>
 
-     </ol></li>
+     </li>
 
      <li>
 
@@ -976,7 +976,9 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
      </li>
 
-    </ol><li>
+    </ol></li>
+
+   <li>
 
     <p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read only</span> array.</p>
 
@@ -1010,9 +1012,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
    steps.</li> 
    <li><p>Add the event to the <a href="#port-message-queue">port message queue</a> of <var title="">target port</var>.</li>
 
-  
-
-  <hr><p>The <dfn id="dom-messageport-start" title="dom-MessagePort-start"><code>start()</code></dfn>
+  </ol><hr><p>The <dfn id="dom-messageport-start" title="dom-MessagePort-start"><code>start()</code></dfn>
   method must enable its port's <a href="#port-message-queue">port message queue</a>, if it
   is not already enabled.</p>
 
