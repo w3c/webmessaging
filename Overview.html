@@ -214,7 +214,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-29-september-2011">Editor's Draft 29 September 2011</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-30-september-2011">Editor's Draft 30 September 2011</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -316,7 +316,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 29 September 2011 Editor's Draft.
+  This specification is the 30 September 2011 Editor's Draft.
   </p><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
   February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of
   any patent disclosures</a> made in connection with the deliverables
@@ -598,7 +598,7 @@ function receiver(e) {
     message to same-origin targets only, without needing to explicitly
     state the origin, set the target origin to "<code title="">/</code>".</p>
 
-    <p>Throws a <code>DATA_CLONE_ERR</code> if <var title="">transfer</var> array contains duplicate objects or if
+    <p>Throws a <code>DataCloneError</code> if <var title="">transfer</var> array contains duplicate objects or if
     <var title="">message</var> could not be cloned.</p>
 
    </dd>
@@ -624,7 +624,7 @@ function receiver(e) {
     <p>If the value of the <var title="">targetOrigin</var> argument
     is neither a single U+002A ASTERISK character (*), a single U+002F
     SOLIDUS character (/), nor an <span>absolute URL</span>, then
-    throw a <code>SYNTAX_ERR</code> exception and abort the overall
+    throw a <code>SyntaxError</code> exception and abort the overall
     set of steps.</p>
 
    </li>
@@ -651,7 +651,7 @@ function receiver(e) {
       <p>If any object is listed in <var title="">transfer</var> more
       than once, or any of the <code>Transferable</code> objects
       listed in <var title="">transfer</var> have already been <span title="transfer a Transferable object">transfered</span> once
-      before, then throw a <code>DATA_CLONE_ERR</code> exception and
+      before, then throw a <code>DataCloneError</code> exception and
       abort these steps.</p>
 
      </li>
@@ -827,7 +827,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
     <p>Posts a message through the channel. Objects listed in <var title="">transfer</var> are transferred, not just cloned, meaning
     that they are no longer usable on the sending side.</p>
 
-    <p>Throws a <code>DATA_CLONE_ERR</code> if <var title="">transfer</var> array contains duplicate objects or the
+    <p>Throws a <code>DataCloneError</code> if <var title="">transfer</var> array contains duplicate objects or the
     source or target ports, or if <var title="">message</var> could
     not be cloned.</p>
 
@@ -959,7 +959,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
       <p>If any object is listed in <var title="">transfer</var> more
       than once, or any of the <code>Transferable</code> objects
       listed in <var title="">transfer</var> have already been <span title="transfer a Transferable object">transfered</span> once
-      before, then throw a <code>DATA_CLONE_ERR</code> exception and
+      before, then throw a <code>DataCloneError</code> exception and
       abort these steps.</p>
 
      </li>
@@ -968,7 +968,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
       <p>If any of the objects in <var title="">transfer</var> are
       either the <var title="">source port</var> or the <var title="">target port</var> (if any), then throw a
-      <code>DATA_CLONE_ERR</code> exception and abort these
+      <code>DataCloneError</code> exception and abort these
       steps.</p>
 
      </li>
