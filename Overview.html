@@ -215,7 +215,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-4-october-2011">Editor's Draft 4 October 2011</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-6-october-2011">Editor's Draft 6 October 2011</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -317,7 +317,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 4 October 2011 Editor's Draft.
+  This specification is the 6 October 2011 Editor's Draft.
   </p><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
   February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of
   any patent disclosures</a> made in connection with the deliverables
@@ -342,7 +342,10 @@
    <li><a href="#posting-messages"><span class="secno">4.3 </span>Posting messages</a></ol></li>
  <li><a href="#channel-messaging"><span class="secno">5 </span>Channel messaging</a>
   <ol>
-   <li><a href="#introduction-0"><span class="secno">5.1 </span>Introduction</a></li>
+   <li><a href="#introduction-0"><span class="secno">5.1 </span>Introduction</a>
+    <ol>
+     <li><a href="#ports-as-the-basis-of-an-object-capability-model-on-the-web"><span class="secno">5.1.1 </span>Ports as the basis of an object-capability model on the Web</a></li>
+     <li><a href="#ports-as-the-basis-of-abstracting-out-service-implementations"><span class="secno">5.1.2 </span>Ports as the basis of abstracting out service implementations</a></ol></li>
    <li><a href="#message-channels"><span class="secno">5.2 </span>Message channels</a></li>
    <li><a href="#message-ports"><span class="secno">5.3 </span>Message ports</a>
     <ol>
@@ -752,7 +755,75 @@ function receiver(e) {
 function handleMessage(event) {
   // message is in event.data
   // ...
-}</pre><h3 id="message-channels"><span class="secno">5.2 </span>Message channels</h3><pre class="idl">[<a href="#dom-messagechannel" title="dom-MessageChannel">Constructor</a>]
+}</pre><h4 id="ports-as-the-basis-of-an-object-capability-model-on-the-web"><span class="secno">5.1.1 </span>Ports as the basis of an object-capability model on the Web</h4><p><i>This section is non-normative.</i><p>Ports can be viewed as a way to expose limited capabilities (in
+  the object-capability model sense) to other actors in the system.
+  This can either be a weak capability system, where the ports are
+  merely used as a convenient model within a particular origin, or as
+  a strong capability model, where they are provided by one origin
+  <var title="">provider</var> as the only mechanism by which another
+  origin <var title="">consumer</var> can effect change in or obtain
+  information from <var title="">provider</var>.<p>For example, consider a situation in which a social Web site
+  embeds in one <code>iframe</code> the user's e-mail contacts
+  provider (an address book site, from a second origin), and in a
+  second <code>iframe</code> a game (from a third origin). The outer
+  social site and the game in the second <code>iframe</code> cannot
+  access anything inside the first <code>iframe</code>; together they
+  can only:<ul class="brief"><li><span>Navigate</span> the <code>iframe</code> to a new
+   <span>URL</span>, such as the same <span>URL</span> but with a
+   different fragment identifier, causing the <code>Window</code> in
+   the <code>iframe</code> to receive a <code title="event-hashchange">hashchange</code> event.</li>
+
+   <li>Resize the <code>iframe</code>, causing the <code>Window</code>
+   in the <code>iframe</code> to receive a <code title="event-resize">resize</code> event.</li>
+
+   
+
+   <li>Send a <code title="event-message"><a href="#event-message">message</a></code> event to the
+   the <code>Window</code> in the <code>iframe</code> using the <code title="dom-window-postMessage"><a href="#dom-window-postmessage">window.postMessage()</a></code>
+   API.</li>
+
+  </ul><p>The contacts provider can use these methods, most particularly
+  the third one, to provide an API that can be accessed by other
+  origins to manipulate the user's address book. For example, it could
+  respond to a message "<code title="">add-contact Guillaume Tell
+  &lt;tell@pomme.example.net&gt;</code>" by adding the given person and
+  e-mail address to the user's address book.<p>To avoid any site on the Web being able to manipulate the user's
+  contacts, the contacts provider might only allow certain trusted
+  sites, such as the social site, to do this.<p>Now suppose the game wanted to add a contact to the user's
+  address book, and that the social site was willing to allow it to do
+  so on its behalf, essentially "sharing" the trust that the contacts
+  provider had with the social site. There are several ways it could
+  do this; most simply, it could just proxy messages between the game
+  site and the contacts site. However, this solution has a number of
+  difficulties: it requires the social site to either completely trust
+  the game site not to abuse the privilege, or it requires that the
+  social site verify each request to make sure it's not a request that
+  it doesn't want to allow (such as adding multiple contacts, reading
+  the contacts, or deleting them); it also requires some additional
+  complexity if there's ever the possibility of multiple games
+  simultaneously trying to interact with the contacts provider.<p>Using message channels and <code><a href="#messageport">MessagePort</a></code> objects,
+  however, all of these problems can go away. When the game tells the
+  social site that it wants to add a contact, the social site can ask
+  the contacts provider not for it to add a contact, but for the
+  <em>capability</em> to add a single contact. The contacts provider
+  then creates a pair of <code><a href="#messageport">MessagePort</a></code> objects, and sends
+  one of them back to the social site, who forwards it on to the game.
+  The game and the contacts provider then have a direct connection,
+  and the contacts provider knows to only honor a single "add contact"
+  request, nothing else. In other words, the game has been granted the
+  capability to add a single contact.<h4 id="ports-as-the-basis-of-abstracting-out-service-implementations"><span class="secno">5.1.2 </span>Ports as the basis of abstracting out service implementations</h4><p><i>This section is non-normative.</i><p>Continuing the example from the previous section, consider the
+  contacts provider in particular. While an initial implementation
+  might have simply used <code>XMLHttpRequest</code> objects in the
+  service's <code>iframe</code>, an evolution of the service might
+  instead want to use a <span title="SharedWorker">shared
+  worker</span> with a single <code>WebSocket</code> connection.<p>If the initial design used <code><a href="#messageport">MessagePort</a></code> objects to
+  grant capabilities, or even just to allow multiple simultaneous
+  independent sessions, the service implementation can switch from the
+  <code>XMLHttpRequest</code>s-in-each-<code>iframe</code> model to
+  the shared-<code>WebSocket</code> model without changing the API at
+  all: the ports on the service provider side can all be forwarded to
+  the shared worker without it affecting the users of the API in the
+  slightest.<h3 id="message-channels"><span class="secno">5.2 </span>Message channels</h3><pre class="idl">[<a href="#dom-messagechannel" title="dom-MessageChannel">Constructor</a>]
 interface <dfn id="messagechannel">MessageChannel</dfn> {
   readonly attribute <a href="#messageport">MessagePort</a> <a href="#dom-channel-port1" title="dom-channel-port1">port1</a>;
   readonly attribute <a href="#messageport">MessagePort</a> <a href="#dom-channel-port2" title="dom-channel-port2">port2</a>;
