@@ -589,7 +589,6 @@ function receiver(e) {
   careful to allow access to certain properties but not others.</p>
 
   </div><h3 id="posting-messages"><span class="secno">4.3 </span>Posting messages</h3><dl class="domintro"><dt><var title="">window</var> . <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage</a></code>(<var title="">message</var>, <var title="">targetOrigin</var> [, <var title="">transfer</var> ])</dt>
-   <dt><var title="">window</var> . <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage</a></code>(<var title="">message</var> [, <var title="">transfer</var> ], <var title="">targetOrigin</var>)</dt>
 
    <dd>
 
@@ -606,10 +605,6 @@ function receiver(e) {
     <p>Throws a <code>DataCloneError</code> if <var title="">transfer</var> array contains duplicate objects or if
     <var title="">message</var> could not be cloned.</p>
 
-    <p>The second and third arguments can be given in either order,
-    and the <var title="">transfer</var> array can be omitted
-    entirely.</p>
-
    </dd>
 
   </dl><p class="note">When posting a message to a <code>Window</code> of a
@@ -624,32 +619,11 @@ function receiver(e) {
   their readiness to receive messages, and for the parent to wait for
   this message before beginning posting messages.<div class="impl">
 
-  <p>When a script invokes the <dfn id="dom-window-postmessage" title="dom-window-postMessage"><code>postMessage()</code></dfn>
-  method (with two or three arguments) on a <code>Window</code>
-  object, the user agent must follow these steps:</p>
+  <p>When a script invokes the <dfn id="dom-window-postmessage" title="dom-window-postMessage"><code>postMessage(<var title="">message</var>, <var title="">targetOrigin</var>, <var title="">transfer</var>)</code></dfn> method (with two or three
+  arguments) on a <code>Window</code> object, the user agent must
+  follow these steps:</p>
 
   <ol><li>
-
-    <p>Let <var title="">message</var> be the first argument.</p>
-
-   </li>
-
-   <li>
-
-    <p>Let <var title="">targetOrigin</var> be the second argument if
-    the second argument is a string, or else the third argument.</p>
-
-   </li>
-
-   <li>
-
-    <p>Let <var title="">transfer</var> be the second argument if the
-    second argument is an array of <code>Transferable</code> objects,
-    or else the third argument.</p>
-
-   </li>
-
-   <li>
 
     <p>If the value of the <var title="">targetOrigin</var> argument
     is neither a single U+002A ASTERISK character (*), a single U+002F
@@ -674,8 +648,7 @@ function receiver(e) {
 
    <li>
 
-    <p>If the method was invoked with three arguments, run these
-    substeps:</p>
+    <p>If the method was invoked with a third argument <var title="">transfer</var>, run these substeps:</p>
 
     <ol><li>
 
