@@ -642,7 +642,8 @@ function receiver(e) {
    <li>
 
     <p>Let <var title="">transfer map</var> be an empty association
-    list of pairs of <code>Transferable</code> objects.</p>
+    list of <code>Transferable</code> objects to placeholder
+    objects.</p>
 
    </li>
 
@@ -662,16 +663,11 @@ function receiver(e) {
 
      <li>
 
-      <p>If the <var title="">transfer</var> argument is present, then
-      for each object in <var title="">transfer</var> in turn, obtain
-      a new object by <span title="transfer a Transferable
-      object">transferring</span> the object to the
-      <code>Window</code> object on which the method was invoked, and
-      add a mapping from the old object to the new transferred object
-      to <var title="">transfer map</var>. For each new
-      <code><a href="#messageport">MessagePort</a></code> object obtained in this manner, append
-      the new transferred object to the <var title="">new ports</var>
-      array.</p>
+      <p>For each object <var title="">x</var> in <var title="">transfer</var> in turn, add a mapping from <var title="">x</var> to a new unique placeholder object created for
+      <var title="">x</var> to <var title="">transfer map</var>, and
+      if <var title="">x</var> is a <code><a href="#messageport">MessagePort</a></code> object,
+      also append the placeholder object to the <var title="">new
+      ports</var> array.</p>
 
      </li>
 
@@ -679,16 +675,36 @@ function receiver(e) {
 
    <li>
 
-    <p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read only</span> array.</p>
-
-   </li>
-
-   <li>
-
     <p>Let <var title="">message clone</var> be the result of
     obtaining a <span>structured clone</span> of the <var title="">message</var> argument, with <var title="">transfer
     map</var> as the <i>transfer map</i>. If this throws an exception,
     then throw that exception and abort these steps.</p>
+
+   </li>
+
+    <p>If the method was invoked with a third argument <var title="">transfer</var>, run these substeps:</p>
+
+    <ol><li>
+
+      <p>Let <var title="">new owner</var> be the <code>Window</code>
+      object on which the method was invoked.</p>
+
+     </li>
+
+     <li>
+
+      <p>For each object <var title="">x</var> in <var title="">transfer</var> in turn, obtain a new object <var title="">y</var> by <span title="transfer a Transferable
+      object">transferring</span> the object <var title="">x</var> to
+      <var title="">new owner</var>, and replace the placeholder
+      object that was created for the object <var title="">x</var> by
+      the new object <var title="">y</var> wherever the placeholder
+      exists (i.e. in <var title="">message clone</var> and in <var title="">new ports</var>).</p>
+
+     </li>
+
+    </ol><li>
+
+    <p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read only</span> array.</p>
 
    </li>
 
@@ -1002,14 +1018,6 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   <ol><li><p>Let <var title="">target port</var> be the port with which
    <var title="">source port</var> is entangled, if any.</li>
 
-   <li><p>Let <var title="">new owner</var> be the owner of <var title="">target port</var>, if there is a <var title="">target
-   port</var>, or else some arbitrary owner. (This <var title="">new
-   owner</var> is used when transfering objects below. If there is no
-   <var title="">target port</var>, the <code>Transferable</code>
-   objects given in the second argument, if any, are still <span title="transfer a Transferable object">transfered</span>, but since
-   they are then discarded, it doesn't matter where they are
-   transfered to.)</li>
-
    <li>
 
     <p>Let <var title="">new ports</var> be an empty array.</p>
@@ -1019,7 +1027,8 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
    <li>
 
     <p>Let <var title="">transfer map</var> be an empty association
-    list of pairs of <code>Transferable</code> objects.</p>
+    list of <code>Transferable</code> objects to placeholder
+    objects.</p>
 
    </li>
 
@@ -1048,15 +1057,50 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
      <li>
 
-      <p>If the <var title="">transfer</var> argument is present, then
-      for each object in <var title="">transfer</var> in turn, obtain
-      a new object by <span title="transfer a Transferable
-      object">transferring</span> the object to <var title="">new
-      owner</var>, and add a mapping from the old object to the new
-      transferred object to <var title="">transfer map</var>. If the
-      objects are <code><a href="#messageport">MessagePort</a></code> objects, also append the
-      new transferred object to the <var title="">new ports</var>
-      array.</p>
+      <p>For each object <var title="">x</var> in <var title="">transfer</var> in turn, add a mapping from <var title="">x</var> to a new unique placeholder object created for
+      <var title="">x</var> to <var title="">transfer map</var>, and
+      if <var title="">x</var> is a <code><a href="#messageport">MessagePort</a></code> object,
+      also append the placeholder object to the <var title="">new
+      ports</var> array.</p>
+
+     </li>
+
+    </ol></li>
+
+   <li>
+
+    <p>Let <var title="">message clone</var> be the result of
+    obtaining a <span>structured clone</span> of the <var title="">message</var> argument, with <var title="">transfer
+    map</var> as the <i>transfer map</i>. If this throws an exception,
+    then throw that exception and abort these steps.</p>
+
+   </li>
+
+   <li>
+
+    <p>If the method was invoked with a second argument <var title="">transfer</var>, run these substeps:</p>
+
+    <ol><li>
+
+      <p>Let <var title="">new owner</var> be the owner of <var title="">target port</var>, if there is a <var title="">target
+      port</var>, or else some arbitrary owner. (This <var title="">new owner</var> is used when transfering objects below.
+      If there is no <var title="">target port</var>, the
+      <code>Transferable</code> objects given in the second argument,
+      if any, are still <span title="transfer a Transferable
+      object">transfered</span>, but since they are then discarded, it
+      doesn't matter where they are transfered to.)</p>
+
+     </li>
+
+
+     <li>
+
+      <p>For each object <var title="">x</var> in <var title="">transfer</var> in turn, obtain a new object <var title="">y</var> by <span title="transfer a Transferable
+      object">transferring</span> the object <var title="">x</var> to
+      <var title="">new owner</var>, and replace the placeholder
+      object that was created for the object <var title="">x</var> by
+      the new object <var title="">y</var> wherever the placeholder
+      exists (i.e. in <var title="">message clone</var> and in <var title="">new ports</var>).</p>
 
      </li>
 
@@ -1065,18 +1109,6 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
    <li>
 
     <p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read only</span> array.</p>
-
-   </li>
-
-   <li><p>Let <var title="">message</var> be the method's first
-   argument.</li>
-
-   <li>
-
-    <p>Let <var title="">message clone</var> be the result of
-    obtaining a <span>structured clone</span> of the <var title="">message</var> argument, with <var title="">transfer
-    map</var> as the <i>transfer map</i>. If this throws an exception,
-    then throw that exception and abort these steps.</p>
 
    </li>
 
