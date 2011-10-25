@@ -215,7 +215,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-24-october-2011">Editor's Draft 24 October 2011</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-25-october-2011">Editor's Draft 25 October 2011</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -317,7 +317,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 24 October 2011 Editor's Draft.
+  This specification is the 25 October 2011 Editor's Draft.
   </p><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
   February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of
   any patent disclosures</a> made in connection with the deliverables
@@ -573,7 +573,14 @@ function receiver(e) {
   result in the attack being propagated into the receiver.<p>Authors should not use the wildcard keyword (*) in the <var title="">targetOrigin</var> argument in messages that contain any
   confidential information, as otherwise there is no way to guarantee
   that the message is only delivered to the recipient to which it was
-  intended.<div class="impl">
+  intended.<hr><p>Authors who accept messages from any origin are encouraged to
+  consider the risks of a denial-of-service attack. An attacker could
+  send a high volume of messages; if the receiving page performs
+  expensive computation or causes network traffic to be sent for each
+  such message, the attacker's message could be multplied into a
+  denial-of-service attack. Authors are encouraged to employ rate
+  limiting (only accepting a certain number of messages per minute) to
+  make such attacks impractical.<div class="impl">
 
   <h4 id="user-agents"><span class="secno">4.2.2 </span>User agents</h4>
 
@@ -587,6 +594,10 @@ function receiver(e) {
   information from one domain to another domain, which is normally
   disallowed for security reasons. It also requires that UAs be
   careful to allow access to certain properties but not others.</p>
+
+  <hr><p>User agents are also encouraged to consider rate-limiting message
+  traffic between different <span title="origin">origins</span>, to
+  protect na&iuml;ve sites from denial-of-service attacks.</p>
 
   </div><h3 id="posting-messages"><span class="secno">4.3 </span>Posting messages</h3><dl class="domintro"><dt><var title="">window</var> . <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage</a></code>(<var title="">message</var>, <var title="">targetOrigin</var> [, <var title="">transfer</var> ])</dt>
 
