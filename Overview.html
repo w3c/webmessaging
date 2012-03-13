@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"><html lang="en-US-x-Hixie"><title>HTML5 Web Messaging</title><style type="text/css">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en-US-x-Hixie"><title>HTML5 Web Messaging</title><style type="text/css">
    pre { margin-left: 2em; white-space: pre-wrap; }
    h2 { margin: 3em 0 1em 0; }
    h3 { margin: 2.5em 0 1em 0; }
@@ -210,12 +210,13 @@
      }
      return null;
    }
-  </script><div class="head" id="head">
+  </script><body>
+  <div class="head" id="head">
    <p><a href="http://www.w3.org/"><img alt="W3C" height="48" src="http://www.w3.org/Icons/w3c_home" width="72"></a></p>
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-18-january-2012">Editor's Draft 18 January 2012</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-13-march-2012">Editor's Draft 13 March 2012</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -245,18 +246,36 @@
    <!-- UNDER NO CIRCUMSTANCES IS THE PRECEDING PARAGRAPH TO BE REMOVED OR EDITED WITHOUT TALKING TO IAN FIRST -->
 
 
-  </div><hr class="top"><h2 class="no-num no-toc" id="abstract">Abstract</h2><p>This specification defines two mechanisms for communicating
-  between browsing contexts in HTML documents.<h2 class="no-num no-toc" id="status-of-this-document">Status of This document</h2><p><em>This section describes the status of this document at the
+  </div>
+
+  <hr class="top"><h2 class="no-num no-toc" id="abstract">Abstract</h2>
+
+  <p>This specification defines two mechanisms for communicating
+  between browsing contexts in HTML documents.</p>
+
+  <h2 class="no-num no-toc" id="status-of-this-document">Status of This document</h2>
+
+  
+  
+
+  <p><em>This section describes the status of this document at the
   time of its publication. Other documents may supersede this
   document. A list of current W3C publications and the
 
   most recently formally published <!-- DO NOT CHANGE THIS BACK TO THE STANDARD BOILERPLATE, AS IT IS INACCURATE -->
 
   revision of this technical report can be found in the <a href="http://www.w3.org/TR/">W3C technical reports index</a> at
-  http://www.w3.org/TR/.</em></p><p>If you wish to make comments regarding this document in a manner
+  http://www.w3.org/TR/.</em></p>
+
+
+  
+
+  <p>If you wish to make comments regarding this document in a manner
   that is tracked by the W3C, please submit them via using <a href="http://www.w3.org/Bugs/Public/enter_bug.cgi?product=HTML%20WG">our
   public bug database</a>. If you do not have an account then you can
-  enter feedback using this form:<form action="http://www.whatwg.org/specs/web-apps/current-work/file-spam.cgi" method="post">
+  enter feedback using this form:</p>
+
+  <form action="http://www.whatwg.org/specs/web-apps/current-work/file-spam.cgi" method="post">
    <fieldset><legend>Feedback Comments</legend>
     <input name="id" type="hidden" value="top"><input name="component" type="hidden" value="Web Messaging (editor: Ian Hickson)"><input name="response" type="hidden" value="html"><p><label for="feedbackBox">Please enter your feedback, carefully
     indicating the title of the section for which you are submitting
@@ -288,18 +307,28 @@
     </script><p>
      <input onclick="return checkFeedbackForm(form)" type="submit" value="Submit feedback"><small>(Note: Your IP address and user agent will be publicly recorded for spam prevention purposes.)</small>
     </p>
-   </fieldset></form><p>You can also e-mail feedback to <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>,
+   </fieldset></form>
+
+  
+  <p>You can also e-mail feedback to <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>,
   <a href="http://lists.w3.org/Archives/Public/public-webapps/">archives</a>),
   or <a href="mailto:whatwg@whatwg.org">whatwg@whatwg.org</a> (<a href="http://lists.whatwg.org/listinfo.cgi/whatwg-whatwg.org">subscribe</a>,
   <a href="http://lists.whatwg.org/pipermail/whatwg-whatwg.org/">archives</a>).
-  All feedback is welcome.</p><p>Implementors should be aware that this specification is not
+  All feedback is welcome.</p>
+
+  
+  <p>Implementors should be aware that this specification is not
   stable. <strong>Implementors who are not taking part in the
   discussions are likely to find the specification changing out from
   under them in incompatible ways.</strong> Vendors interested in
   implementing this specification before it eventually reaches the
   Candidate Recommendation stage should join the aforementioned
-  mailing lists and take part in the discussions.<div id="multipage-common">
-  </div><p>The latest
+  mailing lists and take part in the discussions.</p>
+
+  <div id="multipage-common">
+  </div>
+
+   <p>The latest
   stable version of the editor's draft of this specification is always
   available on <a href="http://dev.w3.org/html5/postmsg/">the W3C CVS server</a>
   and in the <a href="http://svn.whatwg.org/webapps/">WHATWG
@@ -307,9 +336,12 @@
   editor's working copy</a> (which may contain unfinished text in the
   process of being prepared) contains the latest draft text of this
   specification (amongst others). For more details, please see the <a href="http://wiki.whatwg.org/wiki/FAQ#What_are_the_various_versions_of_the_spec.3F">WHATWG
-  FAQ</a>.<p>Notifications of changes to this specification are sent along
+  FAQ</a>.</p>
+
+  <p>Notifications of changes to this specification are sent along
   with notifications of changes to related specifications using the
-  following mechanisms:<dl><dt>E-mail notifications of changes</dt>
+  following mechanisms:</p>
+  <dl><dt>E-mail notifications of changes</dt>
    <dd>Commit-Watchers mailing list (complete source diffs): <a href="http://lists.whatwg.org/listinfo.cgi/commit-watchers-whatwg.org">http://lists.whatwg.org/listinfo.cgi/commit-watchers-whatwg.org</a></dd>
    <dt>Browsable version-control record of all changes:</dt>
    <dd>CVSWeb interface with side-by-side diffs: <a href="http://dev.w3.org/cvsweb/html5/">http://dev.w3.org/cvsweb/html5/</a></dd>
@@ -318,15 +350,23 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 18 January 2012 Editor's Draft.
-  </p><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
+  This specification is the 13 March 2012 Editor's Draft.
+  </p>
+
+  
+  
+  <p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
   February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of
   any patent disclosures</a> made in connection with the deliverables
   of the group; that page also includes instructions for disclosing a
   patent. An individual who has actual knowledge of a patent which the
   individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
   Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
-  6 of the W3C Patent Policy</a>.<h2 class="no-num no-toc" id="contents">Table of Contents</h2>
+  6 of the W3C Patent Policy</a>.</p>
+
+
+  <h2 class="no-num no-toc" id="contents">Table of Contents</h2>
+  
 
 <ol class="toc">
  <li><a href="#conformance-requirements"><span class="secno">1 </span>Conformance requirements</a>
@@ -354,26 +394,43 @@
      <li><a href="#ports-and-garbage-collection"><span class="secno">5.3.1 </span>Ports and garbage collection</a></ol></ol></li>
  <li><a class="no-num" href="#references">References</a></li>
  <li><a class="no-num" href="#acknowledgements">Acknowledgements</a></ol>
-<hr><h2 id="conformance-requirements"><span class="secno">1 </span>Conformance requirements</h2><p>All diagrams, examples, and notes in this specification are
+
+  <hr><h2 id="conformance-requirements"><span class="secno">1 </span>Conformance requirements</h2>
+
+  <p>All diagrams, examples, and notes in this specification are
   non-normative, as are all sections explicitly marked non-normative.
-  Everything else in this specification is normative.<p>The key words "MUST", "MUST NOT", "REQUIRED",  "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
+  Everything else in this specification is normative.</p>
+
+  <p>The key words "MUST", "MUST NOT", "REQUIRED",  "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and
   "OPTIONAL" in the normative parts of this document are to be
   interpreted as described in RFC2119. For readability, these words do
-  not appear in all uppercase letters in this specification. <a href="#refsRFC2119">[RFC2119]</a><p>Requirements phrased in the imperative as part of algorithms
+  not appear in all uppercase letters in this specification. <a href="#refsRFC2119">[RFC2119]</a></p>
+
+  <p>Requirements phrased in the imperative as part of algorithms
   (such as "strip any leading space characters" or "return false and
   abort these steps") are to be interpreted with the meaning of the
   key word ("must", "should", "may", etc) used in introducing the
-  algorithm.<p>Some conformance requirements are phrased as requirements on
+  algorithm.</p>
+
+  <p>Some conformance requirements are phrased as requirements on
   attributes, methods or objects. Such requirements are to be
-  interpreted as requirements on user agents.<p>Conformance requirements phrased as algorithms or specific steps
+  interpreted as requirements on user agents.</p>
+
+  <p>Conformance requirements phrased as algorithms or specific steps
   may be implemented in any manner, so long as the end result is
   equivalent. (In particular, the algorithms defined in this
   specification are intended to be easy to follow, and not intended to
-  be performant.)<p>The only conformance class defined by this specification is user
-  agents.<p>User agents may impose implementation-specific limits on
+  be performant.)</p>
+
+  <p>The only conformance class defined by this specification is user
+  agents.</p>
+
+  <p>User agents may impose implementation-specific limits on
   otherwise unconstrained inputs, e.g. to prevent denial of service
   attacks, to guard against running out of memory, or to work around
-  platform-specific limitations.<p>When support for a feature is disabled (e.g. as an emergency
+  platform-specific limitations.</p>
+
+  <p>When support for a feature is disabled (e.g. as an emergency
   measure to mitigate a security problem, or to aid in development, or
   for performance reasons), user agents must act as if they had no
   support for the feature whatsoever, and as if the feature was not
@@ -381,8 +438,15 @@
   feature is accessed via an attribute in a Web IDL interface, the
   attribute itself would be omitted from the objects that implement
   that interface &mdash; leaving the attribute on the object but
-  making it return null or throw an exception is insufficient.<h3 id="dependencies"><span class="secno">1.1 </span>Dependencies</h3><p>This specification relies on several other underlying
-  specifications.<dl><dt>HTML</dt>
+  making it return null or throw an exception is insufficient.</p>
+
+
+  <h3 id="dependencies"><span class="secno">1.1 </span>Dependencies</h3>
+
+  <p>This specification relies on several other underlying
+  specifications.</p>
+
+  <dl><dt>HTML</dt>
 
    <dd>
 
@@ -400,23 +464,39 @@
 
    </dd>
 
-  </dl><h2 id="terminology"><span class="secno">2 </span>Terminology</h2><p>The construction "a <code title="">Foo</code> object", where
+  </dl><h2 id="terminology"><span class="secno">2 </span>Terminology</h2>
+
+  <p>The construction "a <code title="">Foo</code> object", where
   <code title="">Foo</code> is actually an interface, is sometimes
   used instead of the more accurate "an object implementing the
-  interface <code title="">Foo</code>".<p>The term DOM is used to refer to the API set made available to
+  interface <code title="">Foo</code>".</p>
+
+  <p>The term DOM is used to refer to the API set made available to
   scripts in Web applications, and does not necessarily imply the
   existence of an actual <code>Document</code> object or of any other
   <code>Node</code> objects as defined in the DOM Core
-  specifications. <a href="#refsDOMCORE">[DOMCORE]</a><p>An IDL attribute is said to be <em>getting</em> when its value is
+  specifications. <a href="#refsDOMCORE">[DOMCORE]</a></p>
+
+  <p>An IDL attribute is said to be <em>getting</em> when its value is
   being retrieved (e.g. by author script), and is said to be
-  <em>setting</em> when a new value is assigned to it.<h2 id="event-definitions"><span class="secno">3 </span>Event definitions</h2><p>Messages in <span>server-sent events</span>, <span>Web
+  <em>setting</em> when a new value is assigned to it.</p>
+
+
+
+  <h2 id="event-definitions"><span class="secno">3 </span>Event definitions</h2>
+
+  <p>Messages in <span>server-sent events</span>, <span>Web
   sockets</span>, <a href="#web-messaging">cross-document messaging</a>, and
   <a href="#channel-messaging">channel messaging</a> use the <dfn id="event-message" title="event-message"><code>message</code></dfn> event.
   
   <a href="#refsEVENTSOURCE">[EVENTSOURCE]</a>
   <a href="#refsWEBSOCKET">[WEBSOCKET]</a>
   
-  <p>The following interface is defined for this event:<pre class="idl">[Constructor(DOMString type, optional <a href="#messageeventinit">MessageEventInit</a> eventInitDict)]
+  </p>
+
+  <p>The following interface is defined for this event:</p>
+
+  <pre class="idl">[Constructor(DOMString type, optional <a href="#messageeventinit">MessageEventInit</a> eventInitDict)]
 interface <dfn id="messageevent">MessageEvent</dfn> : <span>Event</span> {
   readonly attribute any <a href="#dom-messageevent-data" title="dom-MessageEvent-data">data</a>;
   readonly attribute DOMString <a href="#dom-messageevent-origin" title="dom-MessageEvent-origin">origin</a>;
@@ -431,7 +511,9 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
   DOMString lastEventId;
   <span>WindowProxy</span>? source;
   <a href="#messageport">MessagePort</a>[]? ports;
-};</pre><dl class="domintro"><dt><var title="">event</var> . <code title="dom-MessageEvent-data"><a href="#dom-messageevent-data">data</a></code></dt>
+};</pre>
+
+  <dl class="domintro"><dt><var title="">event</var> . <code title="dom-MessageEvent-data"><a href="#dom-messageevent-data">data</a></code></dt>
 
    <dd>
 
@@ -512,19 +594,35 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
   <a href="#channel-messaging">channel messaging</a> the <code><a href="#messageport">MessagePort</a></code> array
   being sent, if any.</p>
 
-  </div><h2 id="web-messaging"><span class="secno">4 </span><dfn id="crossDocumentMessages">Cross-document messaging</dfn></h2><p>Web browsers, for security and privacy reasons, prevent documents
+  </div>
+
+
+  <h2 id="web-messaging"><span class="secno">4 </span><dfn id="crossDocumentMessages">Cross-document messaging</dfn></h2>
+
+  <p>Web browsers, for security and privacy reasons, prevent documents
   in different domains from affecting each other; that is, cross-site
-  scripting is disallowed.<p>While this is an important security feature, it prevents pages
+  scripting is disallowed.</p>
+
+  <p>While this is an important security feature, it prevents pages
   from different domains from communicating even when those pages are
   not hostile. This section introduces a messaging system that allows
   documents to communicate with each other regardless of their source
   domain, in a way designed to not enable cross-site scripting
-  attacks.<div class="impl">
+  attacks.</p>
+
+  <div class="impl">
 
   <p>The <span>task source</span> for the <span title="concept-task">tasks</span> in <a href="#web-messaging">cross-document
   messaging</a> is the <dfn id="posted-message-task-source">posted message task source</dfn>.</p>
 
-  </div><h3 id="introduction"><span class="secno">4.1 </span>Introduction</h3><p><i>This section is non-normative.</i><div class="example">
+  </div>
+
+
+  <h3 id="introduction"><span class="secno">4.1 </span>Introduction</h3>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <div class="example">
 
    <p>For example, if document A contains an <code>iframe</code>
    element that contains document B, and script in document A calls
@@ -558,31 +656,50 @@ function receiver(e) {
    responds to by sending a message back to the document which sent
    the message in the first place.</p>
 
-  </div><h3 id="security-postmsg"><span class="secno">4.2 </span>Security</h3><div class="impl">
+  </div>
+
+
+
+  <h3 id="security-postmsg"><span class="secno">4.2 </span>Security</h3>
+
+  <div class="impl">
 
   <h4 id="authors"><span class="secno">4.2.1 </span>Authors</h4>
 
-  </div><p class="warning" id="security-4">Use of this API requires extra
+  </div>
+
+  <p class="warning" id="security-4">Use of this API requires extra
   care to protect users from hostile entities abusing a site for their
-  own purposes.<p>Authors should check the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute to ensure
+  own purposes.</p>
+
+  <p>Authors should check the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute to ensure
   that messages are only accepted from domains that they expect to
   receive messages from. Otherwise, bugs in the author's message
-  handling code could be exploited by hostile sites.<p>Furthermore, even after checking the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute, authors
+  handling code could be exploited by hostile sites.</p>
+
+  <p>Furthermore, even after checking the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute, authors
   should also check that the data in question is of the expected
   format. Otherwise, if the source of the event has been attacked
   using a cross-site scripting flaw, further unchecked processing of
   information sent using the <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code> method could
-  result in the attack being propagated into the receiver.<p>Authors should not use the wildcard keyword (*) in the <var title="">targetOrigin</var> argument in messages that contain any
+  result in the attack being propagated into the receiver.</p>
+
+  <p>Authors should not use the wildcard keyword (*) in the <var title="">targetOrigin</var> argument in messages that contain any
   confidential information, as otherwise there is no way to guarantee
   that the message is only delivered to the recipient to which it was
-  intended.<hr><p>Authors who accept messages from any origin are encouraged to
+  intended.</p>
+
+  <hr><p>Authors who accept messages from any origin are encouraged to
   consider the risks of a denial-of-service attack. An attacker could
   send a high volume of messages; if the receiving page performs
   expensive computation or causes network traffic to be sent for each
   such message, the attacker's message could be multplied into a
   denial-of-service attack. Authors are encouraged to employ rate
   limiting (only accepting a certain number of messages per minute) to
-  make such attacks impractical.<div class="impl">
+  make such attacks impractical.</p>
+
+
+  <div class="impl">
 
   <h4 id="user-agents"><span class="secno">4.2.2 </span>User agents</h4>
 
@@ -601,7 +718,13 @@ function receiver(e) {
   traffic between different <span title="origin">origins</span>, to
   protect na&iuml;ve sites from denial-of-service attacks.</p>
 
-  </div><h3 id="posting-messages"><span class="secno">4.3 </span>Posting messages</h3><dl class="domintro"><dt><var title="">window</var> . <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage</a></code>(<var title="">message</var>, <var title="">targetOrigin</var> [, <var title="">transfer</var> ])</dt>
+  </div>
+
+
+
+  <h3 id="posting-messages"><span class="secno">4.3 </span>Posting messages</h3>
+
+  <dl class="domintro"><dt><var title="">window</var> . <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage</a></code>(<var title="">message</var>, <var title="">targetOrigin</var> [, <var title="">transfer</var> ])</dt>
 
    <dd>
 
@@ -638,7 +761,9 @@ function receiver(e) {
   child <code>iframe</code>, authors are advised to have the child
   <code>Document</code> post a message to their parent announcing
   their readiness to receive messages, and for the parent to wait for
-  this message before beginning posting messages.<div class="impl">
+  this message before beginning posting messages.</p>
+
+  <div class="impl">
 
   <p>When a script invokes the <dfn id="dom-window-postmessage" title="dom-window-postMessage"><code>postMessage(<var title="">message</var>, <var title="">targetOrigin</var>, <var title="">transfer</var>)</code></dfn> method (with two or three
   arguments) on a <code>Window</code> object, the user agent must
@@ -789,33 +914,77 @@ function receiver(e) {
 
    </li>
 
-  </ol></div><h2 id="channel-messaging"><span class="secno">5 </span><dfn>Channel messaging</dfn></h2><h3 id="introduction-0"><span class="secno">5.1 </span>Introduction</h3><p><i>This section is non-normative.</i><p>To enable independent pieces of code (e.g. running in different
+  </ol></div>
+
+
+
+
+  <h2 id="channel-messaging"><span class="secno">5 </span><dfn>Channel messaging</dfn></h2>
+
+  <h3 id="introduction-0"><span class="secno">5.1 </span>Introduction</h3>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <p>To enable independent pieces of code (e.g. running in different
   <span title="browsing context">browsing contexts</span>) to
   communicate directly, authors can use <a href="#channel-messaging">channel
-  messaging</a>.<p>Communication channels in this mechanisms are implemented as
+  messaging</a>.</p>
+
+  <p>Communication channels in this mechanisms are implemented as
   two-ways pipes, with a port at each end. Messages sent in one port
   are delivered at the other port, and vice-versa. Messages are
-  asynchronous, and delivered as DOM events.<p>To create a connection (two "entangled" ports), the <code title="">MessageChannel()</code> constructor is called:<pre>var channel = new MessageChannel();</pre><p>One of the ports is kept as the local port, and the other port is
-  sent to the remote code, e.g. using <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code>:<pre>otherWindow.postMessage('hello', 'http://example.com', [channel.port2]);</pre><p>To send messages, the <code title="dom-MessagePort-postMessage"><a href="#dom-messageport-postmessage">postMessage()</a></code> method on
-  the port is used:<pre>channel.port1.postMessage('hello');</pre><p>To receive messages, one listens to <code title="event-message"><a href="#event-message">message</a></code> events:<pre>channel.port1.onmessage = handleMessage;
+  asynchronous, and delivered as DOM events.</p>
+
+  <p>To create a connection (two "entangled" ports), the <code title="">MessageChannel()</code> constructor is called:</p>
+
+  <pre>var channel = new MessageChannel();</pre>
+
+  <p>One of the ports is kept as the local port, and the other port is
+  sent to the remote code, e.g. using <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code>:</p>
+
+  <pre>otherWindow.postMessage('hello', 'http://example.com', [channel.port2]);</pre>
+
+  <p>To send messages, the <code title="dom-MessagePort-postMessage"><a href="#dom-messageport-postmessage">postMessage()</a></code> method on
+  the port is used:</p>
+
+  <pre>channel.port1.postMessage('hello');</pre>
+
+  <p>To receive messages, one listens to <code title="event-message"><a href="#event-message">message</a></code> events:</p>
+
+  <pre>channel.port1.onmessage = handleMessage;
 function handleMessage(event) {
   // message is in event.data
   // ...
-}</pre><p>Data sent on a port can be structured data; for example here an
-  array of strings is passed:<pre>port1.postMessage(['hello', 'world'], 'http://example.com');</pre><h4 id="ports-as-the-basis-of-an-object-capability-model-on-the-web"><span class="secno">5.1.1 </span>Ports as the basis of an object-capability model on the Web</h4><p><i>This section is non-normative.</i><p>Ports can be viewed as a way to expose limited capabilities (in
+}</pre>
+
+  <p>Data sent on a port can be structured data; for example here an
+  array of strings is passed:</p>
+
+  <pre>port1.postMessage(['hello', 'world'], 'http://example.com');</pre>
+
+
+  <h4 id="ports-as-the-basis-of-an-object-capability-model-on-the-web"><span class="secno">5.1.1 </span>Ports as the basis of an object-capability model on the Web</h4>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <p>Ports can be viewed as a way to expose limited capabilities (in
   the object-capability model sense) to other actors in the system.
   This can either be a weak capability system, where the ports are
   merely used as a convenient model within a particular origin, or as
   a strong capability model, where they are provided by one origin
   <var title="">provider</var> as the only mechanism by which another
   origin <var title="">consumer</var> can effect change in or obtain
-  information from <var title="">provider</var>.<p>For example, consider a situation in which a social Web site
+  information from <var title="">provider</var>.</p>
+
+  <p>For example, consider a situation in which a social Web site
   embeds in one <code>iframe</code> the user's e-mail contacts
   provider (an address book site, from a second origin), and in a
   second <code>iframe</code> a game (from a third origin). The outer
   social site and the game in the second <code>iframe</code> cannot
   access anything inside the first <code>iframe</code>; together they
-  can only:<ul class="brief"><li><span>Navigate</span> the <code>iframe</code> to a new
+  can only:</p>
+
+  <ul class="brief"><li><span>Navigate</span> the <code>iframe</code> to a new
    <span>URL</span>, such as the same <span>URL</span> but with a
    different fragment identifier, causing the <code>Window</code> in
    the <code>iframe</code> to receive a <code title="event-hashchange">hashchange</code> event.</li>
@@ -834,9 +1003,13 @@ function handleMessage(event) {
   origins to manipulate the user's address book. For example, it could
   respond to a message "<code title="">add-contact Guillaume Tell
   &lt;tell@pomme.example.net&gt;</code>" by adding the given person and
-  e-mail address to the user's address book.<p>To avoid any site on the Web being able to manipulate the user's
+  e-mail address to the user's address book.</p>
+
+  <p>To avoid any site on the Web being able to manipulate the user's
   contacts, the contacts provider might only allow certain trusted
-  sites, such as the social site, to do this.<p>Now suppose the game wanted to add a contact to the user's
+  sites, such as the social site, to do this.</p>
+
+  <p>Now suppose the game wanted to add a contact to the user's
   address book, and that the social site was willing to allow it to do
   so on its behalf, essentially "sharing" the trust that the contacts
   provider had with the social site. There are several ways it could
@@ -848,7 +1021,9 @@ function handleMessage(event) {
   it doesn't want to allow (such as adding multiple contacts, reading
   the contacts, or deleting them); it also requires some additional
   complexity if there's ever the possibility of multiple games
-  simultaneously trying to interact with the contacts provider.<p>Using message channels and <code><a href="#messageport">MessagePort</a></code> objects,
+  simultaneously trying to interact with the contacts provider.</p>
+
+  <p>Using message channels and <code><a href="#messageport">MessagePort</a></code> objects,
   however, all of these problems can go away. When the game tells the
   social site that it wants to add a contact, the social site can ask
   the contacts provider not for it to add a contact, but for the
@@ -858,23 +1033,40 @@ function handleMessage(event) {
   The game and the contacts provider then have a direct connection,
   and the contacts provider knows to only honor a single "add contact"
   request, nothing else. In other words, the game has been granted the
-  capability to add a single contact.<h4 id="ports-as-the-basis-of-abstracting-out-service-implementations"><span class="secno">5.1.2 </span>Ports as the basis of abstracting out service implementations</h4><p><i>This section is non-normative.</i><p>Continuing the example from the previous section, consider the
+  capability to add a single contact.</p>
+
+
+  <h4 id="ports-as-the-basis-of-abstracting-out-service-implementations"><span class="secno">5.1.2 </span>Ports as the basis of abstracting out service implementations</h4>
+
+  <p><i>This section is non-normative.</i></p>
+
+  <p>Continuing the example from the previous section, consider the
   contacts provider in particular. While an initial implementation
   might have simply used <code>XMLHttpRequest</code> objects in the
   service's <code>iframe</code>, an evolution of the service might
   instead want to use a <span title="SharedWorker">shared
-  worker</span> with a single <code>WebSocket</code> connection.<p>If the initial design used <code><a href="#messageport">MessagePort</a></code> objects to
+  worker</span> with a single <code>WebSocket</code> connection.</p>
+
+  <p>If the initial design used <code><a href="#messageport">MessagePort</a></code> objects to
   grant capabilities, or even just to allow multiple simultaneous
   independent sessions, the service implementation can switch from the
   <code>XMLHttpRequest</code>s-in-each-<code>iframe</code> model to
   the shared-<code>WebSocket</code> model without changing the API at
   all: the ports on the service provider side can all be forwarded to
   the shared worker without it affecting the users of the API in the
-  slightest.<h3 id="message-channels"><span class="secno">5.2 </span>Message channels</h3><pre class="idl">[<a href="#dom-messagechannel" title="dom-MessageChannel">Constructor</a>]
+  slightest.</p>
+
+
+
+  <h3 id="message-channels"><span class="secno">5.2 </span>Message channels</h3>
+
+  <pre class="idl">[<a href="#dom-messagechannel" title="dom-MessageChannel">Constructor</a>]
 interface <dfn id="messagechannel">MessageChannel</dfn> {
   readonly attribute <a href="#messageport">MessagePort</a> <a href="#dom-channel-port1" title="dom-channel-port1">port1</a>;
   readonly attribute <a href="#messageport">MessagePort</a> <a href="#dom-channel-port2" title="dom-channel-port2">port2</a>;
-};</pre><dl class="domintro"><dt><var title="">channel</var> = new <code title="dom-MessageChannel"><a href="#dom-messagechannel">MessageChannel</a></code>()</dt>
+};</pre>
+
+  <dl class="domintro"><dt><var title="">channel</var> = new <code title="dom-MessageChannel"><a href="#dom-messagechannel">MessageChannel</a></code>()</dt>
 
    <dd>
 
@@ -931,8 +1123,16 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   must return the values they were assigned when the
   <code><a href="#messagechannel">MessageChannel</a></code> object was created.</p>
 
-  </div><h3 id="message-ports"><span class="secno">5.3 </span>Message ports</h3><p>Each channel has two message ports. Data sent through one port is
-  received by the other port, and vice versa.<pre class="idl">interface <dfn id="messageport">MessagePort</dfn> : <span>EventTarget</span> {
+  </div>
+
+
+
+  <h3 id="message-ports"><span class="secno">5.3 </span>Message ports</h3>
+
+  <p>Each channel has two message ports. Data sent through one port is
+  received by the other port, and vice versa.</p>
+
+  <pre class="idl">interface <dfn id="messageport">MessagePort</dfn> : <span>EventTarget</span> {
   void <a href="#dom-messageport-postmessage" title="dom-MessagePort-postMessage">postMessage</a>(any message, optional sequence&lt;<span>Transferable</span>&gt; transfer);
   void <a href="#dom-messageport-start" title="dom-MessagePort-start">start</a>();
   void <a href="#dom-messageport-close" title="dom-MessagePort-close">close</a>();
@@ -940,7 +1140,9 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   // event handlers
   [TreatNonCallableAsNull] attribute <span>Function</span>? <a href="#handler-messageport-onmessage" title="handler-MessagePort-onmessage">onmessage</a>;
 };
-<a href="#messageport">MessagePort</a> implements <span>Transferable</span>;</pre><dl class="domintro"><dt><var title="">port</var> . <code title="dom-MessagePort-postMessage"><a href="#dom-messageport-postmessage">postMessage</a></code>(<var title="">message</var> [, <var title="">transfer</var>] )</dt>
+<a href="#messageport">MessagePort</a> implements <span>Transferable</span>;</pre>
+
+  <dl class="domintro"><dt><var title="">port</var> . <code title="dom-MessagePort-postMessage"><a href="#dom-messageport-postmessage">postMessage</a></code>(<var title="">message</var> [, <var title="">transfer</var>] )</dt>
 
    <dd>
 
@@ -1195,7 +1397,12 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   as if the <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code> method
   had been called.</p>
 
-  </div><h4 id="ports-and-garbage-collection"><span class="secno">5.3.1 </span>Ports and garbage collection</h4><div class="impl">
+  </div>
+
+
+  <h4 id="ports-and-garbage-collection"><span class="secno">5.3.1 </span>Ports and garbage collection</h4>
+
+  <div class="impl">
 
   <p>When a <code><a href="#messageport">MessagePort</a></code> object <var title="">o</var> is
   entangled, user agents must either act as if <var title="">o</var>'s
@@ -1227,11 +1434,25 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
   
 
-  </div><p class="note">Authors are strongly encouraged to explicitly close
+  </div>
+
+  <p class="note">Authors are strongly encouraged to explicitly close
   <code><a href="#messageport">MessagePort</a></code> objects to disentangle them, so that their
   resources can be recollected. Creating many <code><a href="#messageport">MessagePort</a></code>
   objects and discarding them without closing them can lead to high
-  memory usage.<h2 class="no-num" id="references">References</h2><p>All references are normative unless marked "Non-normative".</p><dl><dt id="refsDOMCORE">[DOMCORE]</dt>
+  memory usage.</p>
+
+
+
+
+
+  <h2 class="no-num" id="references">References</h2>
+
+  <p>All references are normative unless marked "Non-normative".</p>
+
+  
+
+  <dl><dt id="refsDOMCORE">[DOMCORE]</dt>
    <dd><cite><a href="http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html">Web DOM Core</a></cite>, A. van Kesteren. W3C.</dd>
 
    <dt id="refsEVENTSOURCE">[EVENTSOURCE]</dt>
@@ -1256,5 +1477,9 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
    <dt id="refsWEBSOCKET">[WEBSOCKET]</dt>
    <dd><cite><a href="http://dev.w3.org/html5/websockets/">The WebSocket API</a></cite>, I. Hickson. W3C.</dd>
 
-  </dl><h2 class="no-num" id="acknowledgements">Acknowledgements</h2><p>For a full list of acknowledgements, please see the HTML
-  specification. <a href="#refsHTML">[HTML]</a>
+  </dl><h2 class="no-num" id="acknowledgements">Acknowledgements</h2>
+
+  <p>For a full list of acknowledgements, please see the HTML
+  specification. <a href="#refsHTML">[HTML]</a></p>
+
+ 
