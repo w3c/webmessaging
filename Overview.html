@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-25-october-2012">Editor's Draft 25 October 2012</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-2-november-2012">Editor's Draft 2 November 2012</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 25 October 2012 Editor's Draft.
+  This specification is the 2 November 2012 Editor's Draft.
   </p>
 
   
@@ -388,9 +388,9 @@
      <li><a href="#ports-as-the-basis-of-an-object-capability-model-on-the-web"><span class="secno">5.1.2 </span>Ports as the basis of an object-capability model on the Web</a></li>
      <li><a href="#ports-as-the-basis-of-abstracting-out-service-implementations"><span class="secno">5.1.3 </span>Ports as the basis of abstracting out service implementations</a></ol></li>
    <li><a href="#message-channels"><span class="secno">5.2 </span>Message channels</a></li>
-   <li><a href="#message-ports"><span class="secno">5.3 </span>Message ports</a>
-    <ol>
-     <li><a href="#ports-and-garbage-collection"><span class="secno">5.3.1 </span>Ports and garbage collection</a></ol></ol></li>
+   <li><a href="#message-ports"><span class="secno">5.3 </span>Message ports</a></li>
+   <li><a href="#broadcasting-to-many-ports"><span class="secno">5.4 </span>Broadcasting to many ports</a></li>
+   <li><a href="#ports-and-garbage-collection"><span class="secno">5.5 </span>Ports and garbage collection</a></ol></li>
  <li><a class="no-num" href="#references">References</a></li>
  <li><a class="no-num" href="#acknowledgements">Acknowledgements</a></ol>
 
@@ -1464,7 +1464,106 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   </div>
 
 
-  <h4 id="ports-and-garbage-collection"><span class="secno">5.3.1 </span>Ports and garbage collection</h4>
+  <h3 id="broadcasting-to-many-ports"><span class="secno">5.4 </span>Broadcasting to many ports</h3>
+
+  <p>Broadcasting to many ports is in principle relatively simple: keep an array of
+  <code><a href="#messageport">MessagePort</a></code> objects to send messages to, and iterate through the array to send a
+  message. However, this has one rather unfortuante effect: it prevents the ports from being garbage
+  collected, even if the other side has gone away.</p>
+
+  <p>To avoid this problem, the <code><a href="#portcollection">PortCollection</a></code> object can be used. It acts as an opaque
+  array of <code><a href="#messageport">MessagePort</a></code> objects, thus allowing the objects to be garbage collected when
+  they stop being relevant, while still allowing scripts to iterate over the
+  <code><a href="#messageport">MessagePort</a></code> objects.</p>
+
+  <pre class="idl">[<a href="#dom-portcollection" title="dom-PortCollection">Constructor</a>] interface <dfn id="portcollection">PortCollection</dfn> {
+  void <a href="#dom-portcollection-add" title="dom-PortCollection-add">add</a>(<a href="#messageport">MessagePort</a> port);
+  void <a href="#dom-portcollection-remove" title="dom-PortCollection-remove">remove</a>(<a href="#messageport">MessagePort</a> port);
+  void <a href="#dom-portcollection-clear" title="dom-PortCollection-clear">clear</a>();
+  void <a href="#dom-portcollection-iterate" title="dom-PortCollection-iterate">iterate</a>(<a href="#portcollectioncallback">PortCollectionCallback</a> callback);
+};
+
+callback <dfn id="portcollectioncallback">PortCollectionCallback</dfn> = void (<a href="#messageport">MessagePort</a> port);</pre>
+
+  <dl class="domintro"><dt><var title="">portCollection</var> = new <code title="dom-PortCollection"><a href="#dom-portcollection">PortCollection</a></code>()</dt>
+
+   <dd>
+
+    <p>Returns a new empty <code><a href="#portcollection">PortCollection</a></code> object.</p>
+
+   </dd>
+
+   <dt><var title="">portCollection</var> . <code title="dom-PortCollection-add"><a href="#dom-portcollection-add">add</a></code>(<var title="">port</var>)</dt>
+
+   <dd>
+
+    <p>Adds <var title="">port</var> to the collection, if it isn't already present.</p>
+
+   </dd>
+
+   <dt><var title="">portCollection</var> . <code title="dom-PortCollection-remove"><a href="#dom-portcollection-remove">remove</a></code>(<var title="">port</var>)</dt>
+
+   <dd>
+
+    <p>Removes <var title="">port</var> from the collection, if it is present.</p>
+
+   </dd>
+
+   <dt><var title="">portCollection</var> . <code title="dom-PortCollection-clear"><a href="#dom-portcollection-clear">clear</a></code>()</dt>
+
+   <dd>
+
+    <p>Removes all ports from the collection.</p>
+
+   </dd>
+
+   <dt><var title="">portCollection</var> . <code title="dom-PortCollection-iterate"><a href="#dom-portcollection-iterate">iterate</a></code>(<var title="">callback</var>)</dt>
+
+   <dd>
+
+    <p>Calls <var title="">callback</var> for each port in the collection.</p>
+
+   </dd>
+
+  </dl><div class="impl">
+
+  <p>A <code><a href="#portcollection">PortCollection</a></code> object has an initially empty <dfn id="concept-portcollection-list" title="concept-PortCollection-list">list of ports</dfn>. When a <code><a href="#messageport">MessagePort</a></code> object in
+  a <a href="#concept-portcollection-list" title="concept-PortCollection-list">list of ports</a> is garbage collected, it must be
+  silently removed from that <a href="#concept-portcollection-list" title="concept-PortCollection-list">list of ports</a>. Objects
+  in a <a href="#concept-portcollection-list" title="concept-PortCollection-list">list of ports</a> are ordered chronologically by
+  the time at which they were most recently added; the least-recently added <code><a href="#messageport">MessagePort</a></code>
+  object is the first in the list, and the most-recently added <code><a href="#messageport">MessagePort</a></code> is the last
+  in the list.</p>
+
+  <p>The <dfn id="dom-portcollection" title="dom-PortCollection"><code>PortCollection()</code></dfn> constructor must return
+  a new <code><a href="#portcollection">PortCollection</a></code> object (with an empty <a href="#concept-portcollection-list" title="concept-PortCollection-list">list of ports</a>).</p>
+
+  <p>The <dfn id="dom-portcollection-add" title="dom-PortCollection-add"><code>add()</code></dfn> method must add the
+  <code><a href="#messageport">MessagePort</a></code> given by the argument to the <code><a href="#portcollection">PortCollection</a></code> object's <a href="#concept-portcollection-list" title="concept-PortCollection-list">list of ports</a>, unless the <code><a href="#messageport">MessagePort</a></code> is
+  already in the <a href="#concept-portcollection-list" title="concept-PortCollection-list">list of ports</a>, in which case the
+  method does nothing. (Calling this method with a port already in the list does not move the port
+  to the end of the list.)</p>
+
+  <p>The <dfn id="dom-portcollection-remove" title="dom-PortCollection-remove"><code>remove()</code></dfn> method must remove the
+  <code><a href="#messageport">MessagePort</a></code> given by the argument from the <code><a href="#portcollection">PortCollection</a></code> object's <a href="#concept-portcollection-list" title="concept-PortCollection-list">list of ports</a>, unless the <code><a href="#messageport">MessagePort</a></code> is
+  not in the <a href="#concept-portcollection-list" title="concept-PortCollection-list">list of ports</a>, in which case the
+  method does nothing.</p>
+
+  <p>The <dfn id="dom-portcollection-clear" title="dom-PortCollection-clear"><code>clear()</code></dfn> method must remove all
+  <code><a href="#messageport">MessagePort</a></code> objects from the <code><a href="#portcollection">PortCollection</a></code> object's <a href="#concept-portcollection-list" title="concept-PortCollection-list">list of ports</a>, returning it to the initial empty state.
+  If the <a href="#concept-portcollection-list" title="concept-PortCollection-list">list of ports</a> is already empty, the method
+  does nothing.</p>
+
+  <p>The <dfn id="dom-portcollection-iterate" title="dom-PortCollection-iterate"><code>iterate()</code></dfn> method must invoke its
+  <code><a href="#portcollectioncallback">PortCollectionCallback</a></code> argument once for each <code><a href="#messageport">MessagePort</a></code> object in the
+  object's <a href="#concept-portcollection-list" title="concept-PortCollection-list">list of ports</a>, in the order defined
+  above, with each invocation being passed the corresponding <code><a href="#messageport">MessagePort</a></code> object as the
+  callback's sole argument.</p>
+
+  </div>
+
+
+  <h3 id="ports-and-garbage-collection"><span class="secno">5.5 </span>Ports and garbage collection</h3>
 
   <div class="impl">
 
@@ -1498,13 +1597,17 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
   
 
+  <p>There are no strong references from a <code><a href="#portcollection">PortCollection</a></code> object to its
+  <code><a href="#messageport">MessagePort</a></code> objects. (That is in fact the whole point of <code><a href="#portcollection">PortCollection</a></code>
+  objects: they allow for <code><a href="#messageport">MessagePort</a></code> objects to be referenced without preventing them
+  from being garbage collected.)</p>
+
   </div>
 
-  <p class="note">Authors are strongly encouraged to explicitly close
-  <code><a href="#messageport">MessagePort</a></code> objects to disentangle them, so that their
-  resources can be recollected. Creating many <code><a href="#messageport">MessagePort</a></code>
-  objects and discarding them without closing them can lead to high
-  memory usage.</p>
+  <p class="note">Authors are strongly encouraged to explicitly close <code><a href="#messageport">MessagePort</a></code>
+  objects to disentangle them, so that their resources can be recollected. Creating many
+  <code><a href="#messageport">MessagePort</a></code> objects and discarding them without closing them can lead to high
+  transient memory usage since garbage collection is not necessarily performed promptly.</p>
 
 
 
