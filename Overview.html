@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-24-january-2013">Editor's Draft 24 January 2013</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-29-january-2013">Editor's Draft 29 January 2013</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 24 January 2013 Editor's Draft.
+  This specification is the 29 January 2013 Editor's Draft.
   </p>
 
   
@@ -1237,7 +1237,26 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   queue</a> can be enabled or disabled, and is initially
   disabled. Once enabled, a port can never be disabled again (though
   messages in the queue can get moved to another queue or removed
-  altogether, which has much the same effect).</p>
+  altogether, which has much the same effect).
+  A <code><a href="#messageport">MessagePort</a></code> also has a <dfn id="has-been-shipped">has been shipped</dfn> flag. It must initially be
+  false.</p>
+
+  <p>Each <span>event loop</span> has a <span>task source</span> called the <dfn id="unshipped-port-message-queue">unshipped port
+  message queue</dfn>. This is a virtual <span>task source</span>: it must act as if it contained
+  the <span title="concept-task">tasks</span> of each <a href="#port-message-queue">port message queue</a> of each
+  <code><a href="#messageport">MessagePort</a></code> whose <a href="#has-been-shipped">has been shipped</a> flag is false, in the order in which
+  they were added to their respective <span>task source</span>. When a <span title="concept-task">task</span> would be removed from the <a href="#unshipped-port-message-queue">unshipped port message
+  queue</a>, it must instead be removed from its <a href="#port-message-queue">port message queue</a>.</p>
+
+  <p>When a <code><a href="#messageport">MessagePort</a></code>'s <a href="#has-been-shipped">has been shipped</a> flag is false, its <a href="#port-message-queue">port
+  message queue</a> must be ignored for the purposes of the <span>event loop</span>. (The
+  <a href="#unshipped-port-message-queue">unshipped port message queue</a> is used instead.)</p>
+
+  <p class="note">The <a href="#has-been-shipped">has been shipped</a> flag is set to true when a port, its twin, or
+  the object it was cloned from, is or has been <span title="transfer a transferable
+  object">transferred</span>. When a <code><a href="#messageport">MessagePort</a></code>'s <a href="#has-been-shipped">has been shipped</a> flag
+  is true, its <a href="#port-message-queue">port message queue</a> acts as a first-class <span>task source</span>,
+  unaffected to any <a href="#unshipped-port-message-queue">unshipped port message queue</a>.</p>
 
   <p>When the user agent is to <dfn id="create-a-new-messageport-object">create a new
   <code>MessagePort</code> object</dfn> owned by a <span>script's
@@ -1270,9 +1289,14 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   a new <code><a href="#messageport">MessagePort</a></code> object. These steps must be run
   atomically.</p>
 
-  <ol><li><p><a href="#create-a-new-messageport-object">Create a new <code>MessagePort</code> object</a>
+  <ol><li><p>Set <var title="">original port</var>'s <a href="#has-been-shipped">has been shipped</a> flag to
+   true.</li>
+
+   <li><p><a href="#create-a-new-messageport-object">Create a new <code>MessagePort</code> object</a>
    owned by <var title="">owner</var>, and let <var title="">new
    port</var> be that object.</li>
+
+   <li><p>Set <var title="">new port</var>'s <a href="#has-been-shipped">has been shipped</a> flag to true.</li>
 
    <li><p>Move all the events in the <a href="#port-message-queue">port message queue</a>
    of <var title="">original port</var> to the <a href="#port-message-queue">port message
@@ -1287,6 +1311,9 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
     <ol><li><p>Let the <var title="">remote port</var> be the port with
      which the <var title="">original port</var> is entangled.</li>
+
+     <li><p>Set <var title="">remote port</var>'s <a href="#has-been-shipped">has been shipped</a> flag to
+     true.</li>
 
      <li><p><a href="#entangle">Entangle</a> the <var title="">remote port</var>
      and <var title="">new port</var> objects. The <var title="">original port</var> object will be disentangled by this
