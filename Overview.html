@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-5-february-2013">Editor's Draft 5 February 2013</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-10-april-2013">Editor's Draft 10 April 2013</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 5 February 2013 Editor's Draft.
+  This specification is the 10 April 2013 Editor's Draft.
   </p>
 
   
@@ -740,8 +740,8 @@ function receiver(e) {
     message to same-origin targets only, without needing to explicitly
     state the origin, set the target origin to "<code title="">/</code>".</p>
 
-    <p>Throws a <code>DataCloneError</code> if <var title="">transfer</var> array contains duplicate objects or if
-    <var title="">message</var> could not be cloned.</p>
+    <p>Throws a <code>DataCloneError</code> exception if <var title="">transfer</var> array contains
+    duplicate objects or if <var title="">message</var> could not be cloned.</p>
 
    </dd>
 
@@ -1204,9 +1204,9 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
     <p>Posts a message through the channel. Objects listed in <var title="">transfer</var> are transferred, not just cloned, meaning
     that they are no longer usable on the sending side.</p>
 
-    <p>Throws a <code>DataCloneError</code> if <var title="">transfer</var> array contains duplicate objects or the
-    source or target ports, or if <var title="">message</var> could
-    not be cloned.</p>
+    <p>Throws a <code>DataCloneError</code> exception if <var title="">transfer</var> array contains
+    duplicate objects or the source or target ports, or if <var title="">message</var> could not be
+    cloned.</p>
 
    </dd>
 
