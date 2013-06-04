@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-23-april-2013">Editor's Draft 23 April 2013</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-4-june-2013">Editor's Draft 4 June 2013</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 23 April 2013 Editor's Draft.
+  This specification is the 4 June 2013 Editor's Draft.
   </p>
 
   
@@ -1268,10 +1268,20 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
    </li>
 
-   <li><p>Associate the two ports to be entangled, so that they form
-   the two parts of a new channel. (There is no
-   <code><a href="#messagechannel">MessageChannel</a></code> object that represents this
-   channel.)</li>
+   <li>
+
+    <p>Associate the two ports to be entangled, so that they form the two parts of a new channel.
+    (There is no <code><a href="#messagechannel">MessageChannel</a></code> object that represents this channel.)</p>
+
+    <p>Two ports A and B that have gone through this step are now said to be entangled; one is
+    entangled to the other, and vice versa.</p>
+
+    <p class="note">While this specification describes this process as instantaneous,
+    implementations are more likely to implement it via message passing. As with all algorithms, the
+    key is "merely" that the end result be indistinguishable, in a black-box sense, from the
+    specification.</p>
+
+   </li>
 
   </ol><p>When the user agent is to <dfn id="clone-a-port">clone a port</dfn> <var title="">original port</var>, with the clone being owned by <var title="">owner</var>, it must run the following steps, which return
   a new <code><a href="#messageport">MessagePort</a></code> object. These steps must be run
