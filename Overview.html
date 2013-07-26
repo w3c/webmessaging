@@ -192,7 +192,7 @@
    fieldset > :last-child { margin-bottom: 0; }
    fieldset p { margin: 0.5em 0; }
 
-  </style><link href="http://www.w3.org/StyleSheets/TR/W3C-ED" rel="stylesheet" type="text/css"><meta content="noindex" name="robots"><script type="text/javascript">
+  </style><link rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/W3C-ED" type="text/css"><meta content="noindex" name="robots"><script type="text/javascript">
    function getCookie(name) {
      var params = location.search.substr(1).split("&");
      for (var index = 0; index < params.length; index++) {
@@ -212,15 +212,15 @@
    }
   </script><body>
   <div class="head" id="head">
-   <p><a href="http://www.w3.org/"><img alt="W3C" height="48" src="http://www.w3.org/Icons/w3c_home" width="72"></a></p>
+   <p><a href="http://www.w3.org/"><img width="72" src="http://www.w3.org/Icons/w3c_home" alt="W3C" height="48"></a></p>
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-12-june-2013">Editor's Draft 12 June 2013</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-26-july-2013">Editor's Draft 26 July 2013</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
-    <dd><a class="latest-link" href="http://dev.w3.org/html5/postmsg/">http://dev.w3.org/html5/postmsg/</a></dd>
+    <dd><a href="http://dev.w3.org/html5/postmsg/" class="latest-link">http://dev.w3.org/html5/postmsg/</a></dd>
 
 
     <dt>Previous Versions:</dt>
@@ -275,13 +275,13 @@
 
   <form action="http://www.whatwg.org/specs/web-apps/current-work/file-spam.cgi" method="post">
    <fieldset><legend>Feedback Comments</legend>
-    <input name="id" type="hidden" value="top"><input name="component" type="hidden" value="Web Messaging (editor: Ian Hickson)"><input name="response" type="hidden" value="html"><p><label for="feedbackBox">Please enter your feedback, carefully
+    <input value="top" name="id" type="hidden"><input value="Web Messaging (editor: Ian Hickson)" name="component" type="hidden"><input value="html" name="response" type="hidden"><p><label for="feedbackBox">Please enter your feedback, carefully
     indicating the title of the section for which you are submitting
     feedback, quoting the text that's wrong today if appropriate. If
     you're suggesting a new feature, it's really important to say
     <em>what</em> the problem you're trying to solve is. That's more
     important than the solution, in fact.</label></p>
-    <p><textarea cols="79" id="feedbackBox" name="text" rows="10"></textarea></p>
+    <p><textarea name="text" rows="10" id="feedbackBox" cols="79"></textarea></p>
     <p class="note">Please don't use section numbers as these tend to
     change rapidly and make your feedback harder to understand.</p>
     <script type="text/javascript">
@@ -303,7 +303,7 @@
       }
     }
     </script><p>
-     <input onclick="return checkFeedbackForm(form)" type="submit" value="Submit feedback"><small>(Note: Your IP address and user agent will be publicly recorded for spam prevention purposes.)</small>
+     <input value="Submit feedback" onclick="return checkFeedbackForm(form)" type="submit"><small>(Note: Your IP address and user agent will be publicly recorded for spam prevention purposes.)</small>
     </p>
    </fieldset></form>
 
@@ -348,13 +348,13 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 12 June 2013 Editor's Draft.
+  This specification is the 26 July 2013 Editor's Draft.
   </p>
 
   
   
   <p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
-  February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of
+  February 2004 W3C Patent Policy</a>. W3C maintains a <a rel="disclosure" href="http://www.w3.org/2004/01/pp-impl/42538/status">public list of
   any patent disclosures</a> made in connection with the deliverables
   of the group; that page also includes instructions for disclosing a
   patent. An individual who has actual knowledge of a patent which the
@@ -391,8 +391,8 @@
    <li><a href="#message-ports"><span class="secno">5.3 </span>Message ports</a></li>
    <li><a href="#broadcasting-to-many-ports"><span class="secno">5.4 </span>Broadcasting to many ports</a></li>
    <li><a href="#ports-and-garbage-collection"><span class="secno">5.5 </span>Ports and garbage collection</a></ol></li>
- <li><a class="no-num" href="#references">References</a></li>
- <li><a class="no-num" href="#acknowledgements">Acknowledgements</a></ol>
+ <li><a href="#references" class="no-num">References</a></li>
+ <li><a href="#acknowledgements" class="no-num">Acknowledgements</a></ol>
 
   <hr><h2 id="conformance-requirements"><span class="secno">1 </span>Conformance requirements</h2>
 
@@ -662,7 +662,7 @@ function receiver(e) {
 
   </div>
 
-  <p class="warning" id="security-4">Use of this API requires extra
+  <p id="security-4" class="warning">Use of this API requires extra
   care to protect users from hostile entities abusing a site for their
   own purposes.</p>
 
@@ -1464,7 +1464,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   method must do nothing.</p>
 
   <hr><p>The following are the <span>event handlers</span> (and their corresponding <span title="event
-  handler event type">event handler event types</span>) that must be supported, as IDL attributes,
+  handler event type">event handler event types</span>) that must be supported, as <span>event handler IDL attributes</span>,
   by all objects implementing the <code><a href="#messageport">MessagePort</a></code> interface:</p>
 
   <table><thead><tr><th><span title="event handlers">Event handler</span> <th><span>Event handler event type</span>
