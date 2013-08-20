@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-1-august-2013">Editor's Draft 1 August 2013</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-20-august-2013">Editor's Draft 20 August 2013</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 1 August 2013 Editor's Draft.
+  This specification is the 20 August 2013 Editor's Draft.
   </p>
 
   
@@ -501,7 +501,7 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
   any data;
   DOMString origin;
   DOMString lastEventId;
-  <span>WindowProxy</span>? source;
+  (<span>WindowProxy</span> or <a href="#messageport">MessagePort</a>)? source;
   <a href="#messageport">MessagePort</a>[]? ports;
 };</pre>
 
