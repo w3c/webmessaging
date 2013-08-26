@@ -1233,12 +1233,21 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   same effect). A <code><a href="#messageport">MessagePort</a></code> also has a <dfn id="has-been-shipped">has been shipped</dfn> flag. It must
   initially be false.</p>
 
+  <p>When a port's <a href="#port-message-queue">port message queue</a> is enabled, the <span>event loop</span> must use
+  it as one of its <span title="task source">task sources</span>.</p>
+
+  <p class="note">If the <code>Document</code> of the port's event listeners' <span title="script's
+  global object">global object</span> is not <span>fully active</span>, then the messages are
+  lost.</p> 
+
   <p>Each <span>event loop</span> has a <span>task source</span> called the <dfn id="unshipped-port-message-queue">unshipped port
   message queue</dfn>. This is a virtual <span>task source</span>: it must act as if it contained
   the <span title="concept-task">tasks</span> of each <a href="#port-message-queue">port message queue</a> of each
-  <code><a href="#messageport">MessagePort</a></code> whose <a href="#has-been-shipped">has been shipped</a> flag is false and whose <a href="#port-message-queue">port message queue</a> is enabled, in the order in which
-  they were added to their respective <span>task source</span>. When a <span title="concept-task">task</span> would be removed from the <a href="#unshipped-port-message-queue">unshipped port message
-  queue</a>, it must instead be removed from its <a href="#port-message-queue">port message queue</a>.</p>
+  <code><a href="#messageport">MessagePort</a></code> whose <a href="#has-been-shipped">has been shipped</a> flag is false and whose <a href="#port-message-queue">port
+  message queue</a> is enabled, in the order in which they were added to their respective
+  <span>task source</span>. When a <span title="concept-task">task</span> would be removed from the
+  <a href="#unshipped-port-message-queue">unshipped port message queue</a>, it must instead be removed from its <a href="#port-message-queue">port message
+  queue</a>.</p>
 
   <p>When a <code><a href="#messageport">MessagePort</a></code>'s <a href="#has-been-shipped">has been shipped</a> flag is false, its <a href="#port-message-queue">port
   message queue</a> must be ignored for the purposes of the <span>event loop</span>. (The
@@ -1451,13 +1460,6 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
   </ol><hr><p>The <dfn id="dom-messageport-start" title="dom-MessagePort-start"><code>start()</code></dfn> method must enable its port's
   <a href="#port-message-queue">port message queue</a>, if it is not already enabled.</p>
-
-  <p>When a port's <a href="#port-message-queue">port message queue</a> is enabled, the <span>event loop</span> must use
-  it as one of its <span title="task source">task sources</span>.</p>
-
-  <p class="note">If the <code>Document</code> of the port's event listeners' <span title="script's
-  global object">global object</span> is not <span>fully active</span>, then the messages are
-  lost.</p> 
 
   <hr><p>The <dfn id="dom-messageport-close" title="dom-MessagePort-close"><code>close()</code></dfn> method, when called on a port
   <var title="">local port</var> that is entangled with another port, must cause the user agent to
