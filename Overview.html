@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-26-august-2013">Editor's Draft 26 August 2013</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-9-october-2013">Editor's Draft 9 October 2013</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 26 August 2013 Editor's Draft.
+  This specification is the 9 October 2013 Editor's Draft.
   </p>
 
   
@@ -1481,6 +1481,10 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
 
   <h3 id="broadcasting-to-many-ports"><span class="secno">5.4 </span>Broadcasting to many ports</h3>
+
+  <p class="critical">The API described in this section is controversial, as, in an attempt to solve
+  an architectural memory leak, it instead exposes the details of Garbage Collection. This is a
+  lose-lose scenario. A better solution is really needed here.</p>
 
   <p>Broadcasting to many ports is in principle relatively simple: keep an array of
   <code><a href="#messageport">MessagePort</a></code> objects to send messages to, and iterate through the array to send a
