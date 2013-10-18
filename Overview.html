@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-9-october-2013">Editor's Draft 9 October 2013</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-18-october-2013">Editor's Draft 18 October 2013</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 9 October 2013 Editor's Draft.
+  This specification is the 18 October 2013 Editor's Draft.
   </p>
 
   
@@ -552,62 +552,50 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
 
   </dl><div class="impl">
 
-  <p>The <dfn id="dom-messageevent-data" title="dom-MessageEvent-data"><code>data</code></dfn>
-  attribute must return the value it was initialized to. When the
-  object is created, this attribute must be initialized to null. It
+  <p>The <dfn id="dom-messageevent-data" title="dom-MessageEvent-data"><code>data</code></dfn> attribute must return the value
+  it was initialized to. When the object is created, this attribute must be initialized to null. It
   represents the message being sent.</p>
 
-  <p>The <dfn id="dom-messageevent-origin" title="dom-MessageEvent-origin"><code>origin</code></dfn> attribute
-  must return the value it was initialized to. When the object is
-  created, this attribute must be initialized to the empty string. It
-  represents, in <span>server-sent events</span> and
-  <a href="#web-messaging">cross-document messaging</a>, the <span>origin</span> of
-  the document that sent the message (typically the scheme, hostname,
-  and port of the document, but not its path or fragment
-  identifier).</p>
+  <p>The <dfn id="dom-messageevent-origin" title="dom-MessageEvent-origin"><code>origin</code></dfn> attribute must return the
+  value it was initialized to. When the object is created, this attribute must be initialized to the
+  empty string. It represents, in <span>server-sent events</span> and <a href="#web-messaging">cross-document
+  messaging</a>, the <span>origin</span> of the document that sent the message (typically the
+  scheme, hostname, and port of the document, but not its path or fragment identifier).</p>
 
-  <p>The <dfn id="dom-messageevent-lasteventid" title="dom-MessageEvent-lastEventId"><code>lastEventId</code></dfn>
-  attribute must return the value it was initialized to. When the
-  object is created, this attribute must be initialized to the empty
-  string. It represents, in <span>server-sent events</span>, the <span title="concept-event-stream-last-event-id">last event ID
-  string</span> of the event source.</p>
+  <p>The <dfn id="dom-messageevent-lasteventid" title="dom-MessageEvent-lastEventId"><code>lastEventId</code></dfn> attribute must
+  return the value it was initialized to. When the object is created, this attribute must be
+  initialized to the empty string. It represents, in <span>server-sent events</span>, the <span title="concept-event-stream-last-event-id">last event ID string</span> of the event source.</p>
 
-  <p>The <dfn id="dom-messageevent-source" title="dom-MessageEvent-source"><code>source</code></dfn> attribute
-  must return the value it was initialized to. When the object is
-  created, this attribute must be initialized to null. It represents,
-  in <a href="#web-messaging">cross-document messaging</a>, the
-  <code>WindowProxy</code> of the <span>browsing context</span> of the
-  <code>Window</code> object from which the message came; and in the
-  <code title="event-connect">connect</code> events used by <span title="SharedWorkerGlobalScope">shared workers</span>, the newly
-  connecting <code><a href="#messageport">MessagePort</a></code>.</p>
+  <p>The <dfn id="dom-messageevent-source" title="dom-MessageEvent-source"><code>source</code></dfn> attribute must return the
+  value it was initialized to. When the object is created, this attribute must be initialized to
+  null. It represents, in <a href="#web-messaging">cross-document messaging</a>, the <code>WindowProxy</code> of the
+  <span>browsing context</span> of the <code>Window</code> object from which the message came; and
+  in the <code title="event-connect">connect</code> events used by <span title="SharedWorkerGlobalScope">shared workers</span>, the newly connecting
+  <code><a href="#messageport">MessagePort</a></code>.</p>
 
-  <p>The <dfn id="dom-messageevent-ports" title="dom-MessageEvent-ports"><code>ports</code></dfn>
-  attribute must return the value it was initialized to. When the
-  object is created, this attribute must be initialized to null.
-  It represents, in <a href="#web-messaging">cross-document messaging</a> and
-  <a href="#channel-messaging">channel messaging</a> the <code><a href="#messageport">MessagePort</a></code> array
-  being sent, if any.</p>
+  <p>The <dfn id="dom-messageevent-ports" title="dom-MessageEvent-ports"><code>ports</code></dfn> attribute must return the
+  value it was initialized to. When the object is created, this attribute must be initialized to
+  null. It represents, in
+  <a href="#web-messaging">cross-document messaging</a> and <a href="#channel-messaging">channel messaging</a> the
+  <code><a href="#messageport">MessagePort</a></code> array being sent, if any.</p>
 
   </div>
 
 
   <h2 id="web-messaging"><span class="secno">4 </span><dfn id="crossDocumentMessages">Cross-document messaging</dfn></h2>
 
-  <p>Web browsers, for security and privacy reasons, prevent documents
-  in different domains from affecting each other; that is, cross-site
-  scripting is disallowed.</p>
+  <p>Web browsers, for security and privacy reasons, prevent documents in different domains from
+  affecting each other; that is, cross-site scripting is disallowed.</p>
 
-  <p>While this is an important security feature, it prevents pages
-  from different domains from communicating even when those pages are
-  not hostile. This section introduces a messaging system that allows
-  documents to communicate with each other regardless of their source
-  domain, in a way designed to not enable cross-site scripting
-  attacks.</p>
+  <p>While this is an important security feature, it prevents pages from different domains from
+  communicating even when those pages are not hostile. This section introduces a messaging system
+  that allows documents to communicate with each other regardless of their source domain, in a way
+  designed to not enable cross-site scripting attacks.</p>
 
   <div class="impl">
 
-  <p>The <span>task source</span> for the <span title="concept-task">tasks</span> in <a href="#web-messaging">cross-document
-  messaging</a> is the <dfn id="posted-message-task-source">posted message task source</dfn>.</p>
+  <p>The <span>task source</span> for the <span title="concept-task">tasks</span> in
+  <a href="#web-messaging">cross-document messaging</a> is the <dfn id="posted-message-task-source">posted message task source</dfn>.</p>
 
   </div>
 
@@ -618,21 +606,17 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
 
   <div class="example">
 
-   <p>For example, if document A contains an <code>iframe</code>
-   element that contains document B, and script in document A calls
-   <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code> on the
-   <code>Window</code> object of document B, then a message event will
-   be fired on that object, marked as originating from the
-   <code>Window</code> of document A. The script in document A might
+   <p>For example, if document A contains an <code>iframe</code> element that contains document B,
+   and script in document A calls <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code> on the
+   <code>Window</code> object of document B, then a message event will be fired on that object,
+   marked as originating from the <code>Window</code> of document A. The script in document A might
    look like:</p>
 
    <pre>var o = document.getElementsByTagName('iframe')[0];
 o.contentWindow.postMessage('Hello world', 'http://b.example.org/');</pre>
 
-   <p>To register an event handler for incoming events, the script
-   would use <code title="">addEventListener()</code> (or similar
-   mechanisms). For example, the script in document B might look
-   like:</p>
+   <p>To register an event handler for incoming events, the script would use <code title="">addEventListener()</code> (or similar mechanisms). For example, the script in document B
+   might look like:</p>
 
    <pre>window.addEventListener('message', receiver, false);
 function receiver(e) {
@@ -645,10 +629,9 @@ function receiver(e) {
   }
 }</pre>
 
-   <p>This script first checks the domain is the expected domain, and
-   then looks at the message, which it either displays to the user, or
-   responds to by sending a message back to the document which sent
-   the message in the first place.</p>
+   <p>This script first checks the domain is the expected domain, and then looks at the message,
+   which it either displays to the user, or responds to by sending a message back to the document
+   which sent the message in the first place.</p>
 
   </div>
 
@@ -662,55 +645,47 @@ function receiver(e) {
 
   </div>
 
-  <p id="security-4" class="warning">Use of this API requires extra
-  care to protect users from hostile entities abusing a site for their
-  own purposes.</p>
+  <p id="security-4" class="warning">Use of this API requires extra care to protect users from
+  hostile entities abusing a site for their own purposes.</p>
 
-  <p>Authors should check the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute to ensure
-  that messages are only accepted from domains that they expect to
-  receive messages from. Otherwise, bugs in the author's message
-  handling code could be exploited by hostile sites.</p>
+  <p>Authors should check the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute to
+  ensure that messages are only accepted from domains that they expect to receive messages from.
+  Otherwise, bugs in the author's message handling code could be exploited by hostile sites.</p>
 
-  <p>Furthermore, even after checking the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute, authors
-  should also check that the data in question is of the expected
-  format. Otherwise, if the source of the event has been attacked
-  using a cross-site scripting flaw, further unchecked processing of
-  information sent using the <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code> method could
-  result in the attack being propagated into the receiver.</p>
+  <p>Furthermore, even after checking the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code>
+  attribute, authors should also check that the data in question is of the expected format.
+  Otherwise, if the source of the event has been attacked using a cross-site scripting flaw, further
+  unchecked processing of information sent using the <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code> method could result in the attack being
+  propagated into the receiver.</p>
 
-  <p>Authors should not use the wildcard keyword (*) in the <var title="">targetOrigin</var> argument in messages that contain any
-  confidential information, as otherwise there is no way to guarantee
-  that the message is only delivered to the recipient to which it was
-  intended.</p>
+  <p>Authors should not use the wildcard keyword (*) in the <var title="">targetOrigin</var>
+  argument in messages that contain any confidential information, as otherwise there is no way to
+  guarantee that the message is only delivered to the recipient to which it was intended.</p>
 
-  <hr><p>Authors who accept messages from any origin are encouraged to
-  consider the risks of a denial-of-service attack. An attacker could
-  send a high volume of messages; if the receiving page performs
-  expensive computation or causes network traffic to be sent for each
-  such message, the attacker's message could be multplied into a
-  denial-of-service attack. Authors are encouraged to employ rate
-  limiting (only accepting a certain number of messages per minute) to
-  make such attacks impractical.</p>
+  <hr><p>Authors who accept messages from any origin are encouraged to consider the risks of a
+  denial-of-service attack. An attacker could send a high volume of messages; if the receiving page
+  performs expensive computation or causes network traffic to be sent for each such message, the
+  attacker's message could be multplied into a denial-of-service attack. Authors are encouraged to
+  employ rate limiting (only accepting a certain number of messages per minute) to make such attacks
+  impractical.</p>
 
 
   <div class="impl">
 
   <h4 id="user-agents"><span class="secno">4.2.2 </span>User agents</h4>
 
-  <p>The integrity of this API is based on the inability for scripts
-  of one <span>origin</span> to post arbitrary events (using <code title="">dispatchEvent()</code> or otherwise) to objects in other
-  origins (those that are not the <span title="same
-  origin">same</span>).</p>
+  <p>The integrity of this API is based on the inability for scripts of one <span>origin</span> to
+  post arbitrary events (using <code title="">dispatchEvent()</code> or otherwise) to objects in
+  other origins (those that are not the <span title="same origin">same</span>).</p>
 
-  <p class="note">Implementors are urged to take extra care in the
-  implementation of this feature. It allows authors to transmit
-  information from one domain to another domain, which is normally
-  disallowed for security reasons. It also requires that UAs be
-  careful to allow access to certain properties but not others.</p>
+  <p class="note">Implementors are urged to take extra care in the implementation of this feature.
+  It allows authors to transmit information from one domain to another domain, which is normally
+  disallowed for security reasons. It also requires that UAs be careful to allow access to certain
+  properties but not others.</p>
 
-  <hr><p>User agents are also encouraged to consider rate-limiting message
-  traffic between different <span title="origin">origins</span>, to
-  protect na&iuml;ve sites from denial-of-service attacks.</p>
+  <hr><p>User agents are also encouraged to consider rate-limiting message traffic between different
+  <span title="origin">origins</span>, to protect na&iuml;ve sites from denial-of-service
+  attacks.</p>
 
   </div>
 
@@ -722,54 +697,43 @@ function receiver(e) {
 
    <dd>
 
-    <p>Posts a message to the given window. Messages can be structured
-    objects, e.g. nested objects and arrays, can contain JavaScript
-    values (strings, numbers, <code>Date</code>s, etc), and can
-    contain certain data objects such as <code>File</code>
-    <code>Blob</code>, <code>FileList</code>, and
-    <code>ArrayBuffer</code> objects.</p>
+    <p>Posts a message to the given window. Messages can be structured objects, e.g. nested objects
+    and arrays, can contain JavaScript values (strings, numbers, <code>Date</code>s, etc), and can
+    contain certain data objects such as <code>File</code> <code>Blob</code>, <code>FileList</code>,
+    and <code>ArrayBuffer</code> objects.</p>
 
-    <p>Objects listed in <var title="">transfer</var> are transferred,
-    not just cloned, meaning that they are no longer usable on the
-    sending side.</p>
+    <p>Objects listed in <var title="">transfer</var> are transferred, not just cloned, meaning that
+    they are no longer usable on the sending side.</p>
 
-    <p>If the origin of the target window doesn't match the given
-    origin, the message is discarded, to avoid information leakage. To
-    send the message to the target regardless of origin, set the
-    target origin to "<code title="">*</code>". To restrict the
-    message to same-origin targets only, without needing to explicitly
-    state the origin, set the target origin to "<code title="">/</code>".</p>
+    <p>If the origin of the target window doesn't match the given origin, the message is discarded,
+    to avoid information leakage. To send the message to the target regardless of origin, set the
+    target origin to "<code title="">*</code>". To restrict the message to same-origin targets only,
+    without needing to explicitly state the origin, set the target origin to "<code title="">/</code>".</p>
 
     <p>Throws a <code>DataCloneError</code> exception if <var title="">transfer</var> array contains
     duplicate objects or if <var title="">message</var> could not be cloned.</p>
 
    </dd>
 
-  </dl><p class="note">When posting a message to a <code>Window</code> of a
-  <span>browsing context</span> that has just been navigated to a new
-  <code>Document</code> is likely to result in the message not
-  receiving its intended recipient: the scripts in the target
-  <span>browsing context</span> have to have had time to set up
-  listeners for the messages. Thus, for instance, in situations where
-  a message is to be sent to the <code>Window</code> of newly created
-  child <code>iframe</code>, authors are advised to have the child
-  <code>Document</code> post a message to their parent announcing
-  their readiness to receive messages, and for the parent to wait for
-  this message before beginning posting messages.</p>
+  </dl><p class="note">When posting a message to a <code>Window</code> of a <span>browsing context</span>
+  that has just been navigated to a new <code>Document</code> is likely to result in the message not
+  receiving its intended recipient: the scripts in the target <span>browsing context</span> have to
+  have had time to set up listeners for the messages. Thus, for instance, in situations where a
+  message is to be sent to the <code>Window</code> of newly created child <code>iframe</code>,
+  authors are advised to have the child <code>Document</code> post a message to their parent
+  announcing their readiness to receive messages, and for the parent to wait for this message before
+  beginning posting messages.</p>
 
   <div class="impl">
 
-  <p>When a script invokes the <dfn id="dom-window-postmessage" title="dom-window-postMessage"><code>postMessage(<var title="">message</var>, <var title="">targetOrigin</var>, <var title="">transfer</var>)</code></dfn> method (with two or three
-  arguments) on a <code>Window</code> object, the user agent must
-  follow these steps:</p>
+  <p>When a script invokes the <dfn id="dom-window-postmessage" title="dom-window-postMessage"><code>postMessage(<var title="">message</var>, <var title="">targetOrigin</var>, <var title="">transfer</var>)</code></dfn> method (with two or three arguments) on a
+  <code>Window</code> object, the user agent must follow these steps:</p>
 
   <ol><li>
 
-    <p>If the value of the <var title="">targetOrigin</var> argument
-    is neither a single U+002A ASTERISK character (*), a single U+002F
-    SOLIDUS character (/), nor an <span>absolute URL</span>, then
-    throw a <code>SyntaxError</code> exception and abort the overall
-    set of steps.</p>
+    <p>If the value of the <var title="">targetOrigin</var> argument is neither a single U+002A
+    ASTERISK character (*), a single U+002F SOLIDUS character (/), nor an <span>absolute URL</span>,
+    then throw a <code>SyntaxError</code> exception and abort the overall set of steps.</p>
 
    </li>
 
@@ -781,32 +745,29 @@ function receiver(e) {
 
    <li>
 
-    <p>Let <var title="">transfer map</var> be an empty association
-    list of <code>Transferable</code> objects to placeholder
-    objects.</p>
+    <p>Let <var title="">transfer map</var> be an empty association list of
+    <code>Transferable</code> objects to placeholder objects.</p>
 
    </li>
 
    <li>
 
-    <p>If the method was invoked with a third argument <var title="">transfer</var>, run these substeps:</p>
+    <p>If the method was invoked with a third argument <var title="">transfer</var>, run these
+    substeps:</p>
 
     <ol><li>
 
-      <p>If any object is listed in <var title="">transfer</var> more
-      than once, or any of the <code>Transferable</code> objects
-      listed in <var title="">transfer</var> are marked as <span title="concept-Transferable-neutered">neutered</span>, then
-      throw a <code>DataCloneError</code> exception and abort these
-      steps.</p>
+      <p>If any object is listed in <var title="">transfer</var> more than once, or any of the
+      <code>Transferable</code> objects listed in <var title="">transfer</var> are marked as <span title="concept-Transferable-neutered">neutered</span>, then throw a
+      <code>DataCloneError</code> exception and abort these steps.</p>
 
      </li>
 
      <li>
 
-      <p>For each object <var title="">x</var> in <var title="">transfer</var> in turn, add a mapping from <var title="">x</var> to a new unique placeholder object created for
-      <var title="">x</var> to <var title="">transfer map</var>, and
-      if <var title="">x</var> is a <code><a href="#messageport">MessagePort</a></code> object,
-      also append the placeholder object to the <var title="">new
+      <p>For each object <var title="">x</var> in <var title="">transfer</var> in turn, add a
+      mapping from <var title="">x</var> to a new unique placeholder object created for <var title="">x</var> to <var title="">transfer map</var>, and if <var title="">x</var> is a
+      <code><a href="#messageport">MessagePort</a></code> object, also append the placeholder object to the <var title="">new
       ports</var> array.</p>
 
      </li>
@@ -815,32 +776,32 @@ function receiver(e) {
 
    <li>
 
-    <p>Let <var title="">message clone</var> be the result of
-    obtaining a <span>structured clone</span> of the <var title="">message</var> argument, with <var title="">transfer
-    map</var> as the <i>transfer map</i>. If this throws an exception,
-    then throw that exception and abort these steps.</p>
+    <p>Let <var title="">message clone</var> be the result of obtaining a <span>structured
+    clone</span> of the <var title="">message</var> argument, with <var title="">transfer map</var>
+    as the <i>transfer map</i>. If this throws an exception, then throw that exception and abort
+    these steps.</p>
 
    </li>
 
    <li>
 
-    <p>If the method was invoked with a third argument <var title="">transfer</var>, run these substeps:</p>
+    <p>If the method was invoked with a third argument <var title="">transfer</var>, run these
+    substeps:</p>
 
     <ol><li>
 
-      <p>Let <var title="">new owner</var> be the <code>Window</code>
-      object on which the method was invoked.</p>
+      <p>Let <var title="">new owner</var> be the <code>Window</code> object on which the method was
+      invoked.</p>
 
      </li>
 
      <li>
 
-      <p>For each object <var title="">x</var> in <var title="">transfer</var> in turn, obtain a new object <var title="">y</var> by <span title="transfer a Transferable
-      object">transferring</span> the object <var title="">x</var> to
-      <var title="">new owner</var>, and replace the placeholder
-      object that was created for the object <var title="">x</var> by
-      the new object <var title="">y</var> wherever the placeholder
-      exists (i.e. in <var title="">message clone</var> and in <var title="">new ports</var>).</p>
+      <p>For each object <var title="">x</var> in <var title="">transfer</var> in turn, obtain a new
+      object <var title="">y</var> by <span title="transfer a Transferable
+      object">transferring</span> the object <var title="">x</var> to <var title="">new owner</var>,
+      and replace the placeholder object that was created for the object <var title="">x</var> by
+      the new object <var title="">y</var> wherever the placeholder exists (i.e. in <var title="">message clone</var> and in <var title="">new ports</var>).</p>
 
      </li>
 
@@ -848,7 +809,8 @@ function receiver(e) {
 
    <li>
 
-    <p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read only</span> array.</p>
+    <p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read only</span>
+    array.</p>
 
    </li>
 
@@ -861,21 +823,17 @@ function receiver(e) {
 
    <li>
 
-    <p>If the <var title="">targetOrigin</var> argument is a single
-    literal U+002F SOLIDUS character (/), and the
-    <code>Document</code> of the <code>Window</code> object on which
-    the method was invoked does not have the <span>same origin</span>
-    as the <span>entry script</span>'s <span title="script's
-    document">document</span>, then abort these steps silently.</p>
+    <p>If the <var title="">targetOrigin</var> argument is a single literal U+002F SOLIDUS character
+    (/), and the <code>Document</code> of the <code>Window</code> object on which the method was
+    invoked does not have the <span>same origin</span> as the <span>entry script</span>'s <span title="script's document">document</span>, then abort these steps silently.</p>
 
-    <p>Otherwise, if the <var title="">targetOrigin</var> argument is
-    an <span>absolute URL</span>, and the <code>Document</code> of the
-    <code>Window</code> object on which the method was invoked does
-    not have the <span>same origin</span> as <var title="">targetOrigin</var>, then abort these steps silently.</p>
+    <p>Otherwise, if the <var title="">targetOrigin</var> argument is an <span>absolute URL</span>,
+    and the <code>Document</code> of the <code>Window</code> object on which the method was invoked
+    does not have the <span>same origin</span> as <var title="">targetOrigin</var>, then abort these
+    steps silently.</p>
 
-    <p>Otherwise, the <var title="">targetOrigin</var> argument is a
-    single literal U+002A ASTERISK character (*), and no origin check
-    is made.</p>
+    <p>Otherwise, the <var title="">targetOrigin</var> argument is a single literal U+002A ASTERISK
+    character (*), and no origin check is made.</p>
 
    </li>
 
@@ -915,22 +873,21 @@ function receiver(e) {
 
   <p><i>This section is non-normative.</i></p>
 
-  <p>To enable independent pieces of code (e.g. running in different
-  <span title="browsing context">browsing contexts</span>) to
-  communicate directly, authors can use <a href="#channel-messaging">channel
+  <p>To enable independent pieces of code (e.g. running in different <span title="browsing
+  context">browsing contexts</span>) to communicate directly, authors can use <a href="#channel-messaging">channel
   messaging</a>.</p>
 
-  <p>Communication channels in this mechanism are implemented as
-  two-ways pipes, with a port at each end. Messages sent in one port
-  are delivered at the other port, and vice-versa. Messages are
+  <p>Communication channels in this mechanism are implemented as two-ways pipes, with a port at each
+  end. Messages sent in one port are delivered at the other port, and vice-versa. Messages are
   asynchronous, and delivered as DOM events.</p>
 
-  <p>To create a connection (two "entangled" ports), the <code title="">MessageChannel()</code> constructor is called:</p>
+  <p>To create a connection (two "entangled" ports), the <code title="">MessageChannel()</code>
+  constructor is called:</p>
 
   <pre>var channel = new MessageChannel();</pre>
 
-  <p>One of the ports is kept as the local port, and the other port is
-  sent to the remote code, e.g. using <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code>:</p>
+  <p>One of the ports is kept as the local port, and the other port is sent to the remote code, e.g.
+  using <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code>:</p>
 
   <pre>otherWindow.postMessage('hello', 'http://example.com', [channel.port2]);</pre>
 
@@ -947,8 +904,8 @@ function handleMessage(event) {
   // ...
 }</pre>
 
-  <p>Data sent on a port can be structured data; for example here an
-  array of strings is passed on a <code><a href="#messageport">MessagePort</a></code>:</p>
+  <p>Data sent on a port can be structured data; for example here an array of strings is passed on a
+  <code><a href="#messageport">MessagePort</a></code>:</p>
 
   <pre>port1.postMessage(['hello', 'world']);</pre>
 
@@ -959,10 +916,9 @@ function handleMessage(event) {
 
   <div class="example">
 
-   <p>In this example, two JavaScript libraries are connected to each
-   other using <code><a href="#messageport">MessagePort</a></code>s. This allows the libraries to
-   later be hosted in different frames, or in <code>Worker</code>
-   objects, without any change to the APIs.</p>
+   <p>In this example, two JavaScript libraries are connected to each other using
+   <code><a href="#messageport">MessagePort</a></code>s. This allows the libraries to later be hosted in different frames, or
+   in <code>Worker</code> objects, without any change to the APIs.</p>
 
    <pre>&lt;script src="contacts.js"&gt;&lt;/script&gt; &lt;!-- exposes a contacts object --&gt;
 &lt;script src="compose-mail.js"&gt;&lt;/script&gt; &lt;!-- exposes a composer object --&gt;
@@ -972,8 +928,7 @@ function handleMessage(event) {
  contacts.registerConsumer(channel.port2);
 &lt;/script&gt;</pre>
 
-   <p>Here's what the "addContactsProvider()" function's
-   implementation could look like:</p>
+   <p>Here's what the "addContactsProvider()" function's implementation could look like:</p>
 
    <pre>function addContactsProvider(port) {
   port.onmessage = function (event) {
@@ -1005,16 +960,12 @@ function handleMessage(event) {
   port.start();
 };</pre>
 
-   <p>The key difference is that when using <code title="dom-EventTarget-addEventListener">addEventListener()</code>,
-   the <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code> method must
-   also be invoked. When using <code title="handler-MessagePort-onmessage"><a href="#handler-messageport-onmessage">onmessage</a></code>, the call to
-   <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code> is implied.</p>
+   <p>The key difference is that when using <code title="dom-EventTarget-addEventListener">addEventListener()</code>, the <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code> method must also be invoked. When using <code title="handler-MessagePort-onmessage"><a href="#handler-messageport-onmessage">onmessage</a></code>, the call to <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code> is implied.</p>
 
-   <p>The <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code> method,
-   whether called explicitly or implicitly (by setting <code title="handler-MessagePort-onmessage"><a href="#handler-messageport-onmessage">onmessage</a></code>), starts the
-   flow of messages: messages posted on message ports are initially
-   paused, so that they don't get dropped on the floor before the
-   script has had a chance to set up its handlers.</p>
+   <p>The <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code> method, whether called explicitly or
+   implicitly (by setting <code title="handler-MessagePort-onmessage"><a href="#handler-messageport-onmessage">onmessage</a></code>), starts the
+   flow of messages: messages posted on message ports are initially paused, so that they don't get
+   dropped on the floor before the script has had a chance to set up its handlers.</p>
 
   </div>
 
@@ -1023,72 +974,57 @@ function handleMessage(event) {
 
   <p><i>This section is non-normative.</i></p>
 
-  <p>Ports can be viewed as a way to expose limited capabilities (in
-  the object-capability model sense) to other actors in the system.
-  This can either be a weak capability system, where the ports are
-  merely used as a convenient model within a particular origin, or as
-  a strong capability model, where they are provided by one origin
-  <var title="">provider</var> as the only mechanism by which another
-  origin <var title="">consumer</var> can effect change in or obtain
-  information from <var title="">provider</var>.</p>
+  <p>Ports can be viewed as a way to expose limited capabilities (in the object-capability model
+  sense) to other actors in the system. This can either be a weak capability system, where the ports
+  are merely used as a convenient model within a particular origin, or as a strong capability model,
+  where they are provided by one origin <var title="">provider</var> as the only mechanism by which
+  another origin <var title="">consumer</var> can effect change in or obtain information from <var title="">provider</var>.</p>
 
-  <p>For example, consider a situation in which a social Web site
-  embeds in one <code>iframe</code> the user's e-mail contacts
-  provider (an address book site, from a second origin), and in a
-  second <code>iframe</code> a game (from a third origin). The outer
-  social site and the game in the second <code>iframe</code> cannot
-  access anything inside the first <code>iframe</code>; together they
-  can only:</p>
+  <p>For example, consider a situation in which a social Web site embeds in one <code>iframe</code>
+  the user's e-mail contacts provider (an address book site, from a second origin), and in a second
+  <code>iframe</code> a game (from a third origin). The outer social site and the game in the second
+  <code>iframe</code> cannot access anything inside the first <code>iframe</code>; together they can
+  only:</p>
 
-  <ul class="brief"><li><span>Navigate</span> the <code>iframe</code> to a new
-   <span>URL</span>, such as the same <span>URL</span> but with a
-   different fragment identifier, causing the <code>Window</code> in
-   the <code>iframe</code> to receive a <code title="event-hashchange">hashchange</code> event.</li>
+  <ul class="brief"><li><span>Navigate</span> the <code>iframe</code> to a new <span>URL</span>, such as the same
+   <span>URL</span> but with a different fragment identifier, causing the <code>Window</code> in the
+   <code>iframe</code> to receive a <code title="event-hashchange">hashchange</code> event.</li>
 
-   <li>Resize the <code>iframe</code>, causing the <code>Window</code>
-   in the <code>iframe</code> to receive a <code title="event-resize">resize</code> event.</li>
+   <li>Resize the <code>iframe</code>, causing the <code>Window</code> in the <code>iframe</code> to
+   receive a <code title="event-resize">resize</code> event.</li>
 
    
 
-   <li>Send a <code title="event-message"><a href="#event-message">message</a></code> event to 
-   the <code>Window</code> in the <code>iframe</code> using the <code title="dom-window-postMessage"><a href="#dom-window-postmessage">window.postMessage()</a></code>
+   <li>Send a <code title="event-message"><a href="#event-message">message</a></code> event to the <code>Window</code> in the
+   <code>iframe</code> using the <code title="dom-window-postMessage"><a href="#dom-window-postmessage">window.postMessage()</a></code>
    API.</li>
 
-  </ul><p>The contacts provider can use these methods, most particularly
-  the third one, to provide an API that can be accessed by other
-  origins to manipulate the user's address book. For example, it could
+  </ul><p>The contacts provider can use these methods, most particularly the third one, to provide an API
+  that can be accessed by other origins to manipulate the user's address book. For example, it could
   respond to a message "<code title="">add-contact Guillaume Tell
-  &lt;tell@pomme.example.net&gt;</code>" by adding the given person and
-  e-mail address to the user's address book.</p>
+  &lt;tell@pomme.example.net&gt;</code>" by adding the given person and e-mail address to the user's
+  address book.</p>
 
-  <p>To avoid any site on the Web being able to manipulate the user's
-  contacts, the contacts provider might only allow certain trusted
-  sites, such as the social site, to do this.</p>
+  <p>To avoid any site on the Web being able to manipulate the user's contacts, the contacts
+  provider might only allow certain trusted sites, such as the social site, to do this.</p>
 
-  <p>Now suppose the game wanted to add a contact to the user's
-  address book, and that the social site was willing to allow it to do
-  so on its behalf, essentially "sharing" the trust that the contacts
-  provider had with the social site. There are several ways it could
-  do this; most simply, it could just proxy messages between the game
-  site and the contacts site. However, this solution has a number of
-  difficulties: it requires the social site to either completely trust
-  the game site not to abuse the privilege, or it requires that the
-  social site verify each request to make sure it's not a request that
-  it doesn't want to allow (such as adding multiple contacts, reading
-  the contacts, or deleting them); it also requires some additional
-  complexity if there's ever the possibility of multiple games
-  simultaneously trying to interact with the contacts provider.</p>
+  <p>Now suppose the game wanted to add a contact to the user's address book, and that the social
+  site was willing to allow it to do so on its behalf, essentially "sharing" the trust that the
+  contacts provider had with the social site. There are several ways it could do this; most simply,
+  it could just proxy messages between the game site and the contacts site. However, this solution
+  has a number of difficulties: it requires the social site to either completely trust the game site
+  not to abuse the privilege, or it requires that the social site verify each request to make sure
+  it's not a request that it doesn't want to allow (such as adding multiple contacts, reading the
+  contacts, or deleting them); it also requires some additional complexity if there's ever the
+  possibility of multiple games simultaneously trying to interact with the contacts provider.</p>
 
-  <p>Using message channels and <code><a href="#messageport">MessagePort</a></code> objects,
-  however, all of these problems can go away. When the game tells the
-  social site that it wants to add a contact, the social site can ask
-  the contacts provider not for it to add a contact, but for the
-  <em>capability</em> to add a single contact. The contacts provider
-  then creates a pair of <code><a href="#messageport">MessagePort</a></code> objects, and sends
-  one of them back to the social site, who forwards it on to the game.
-  The game and the contacts provider then have a direct connection,
-  and the contacts provider knows to only honor a single "add contact"
-  request, nothing else. In other words, the game has been granted the
+  <p>Using message channels and <code><a href="#messageport">MessagePort</a></code> objects, however, all of these problems can
+  go away. When the game tells the social site that it wants to add a contact, the social site can
+  ask the contacts provider not for it to add a contact, but for the <em>capability</em> to add a
+  single contact. The contacts provider then creates a pair of <code><a href="#messageport">MessagePort</a></code> objects, and
+  sends one of them back to the social site, who forwards it on to the game. The game and the
+  contacts provider then have a direct connection, and the contacts provider knows to only honor a
+  single "add contact" request, nothing else. In other words, the game has been granted the
   capability to add a single contact.</p>
 
 
@@ -1096,21 +1032,16 @@ function handleMessage(event) {
 
   <p><i>This section is non-normative.</i></p>
 
-  <p>Continuing the example from the previous section, consider the
-  contacts provider in particular. While an initial implementation
-  might have simply used <code>XMLHttpRequest</code> objects in the
-  service's <code>iframe</code>, an evolution of the service might
-  instead want to use a <span title="SharedWorker">shared
-  worker</span> with a single <code>WebSocket</code> connection.</p>
+  <p>Continuing the example from the previous section, consider the contacts provider in particular.
+  While an initial implementation might have simply used <code>XMLHttpRequest</code> objects in the
+  service's <code>iframe</code>, an evolution of the service might instead want to use a <span title="SharedWorker">shared worker</span> with a single <code>WebSocket</code> connection.</p>
 
-  <p>If the initial design used <code><a href="#messageport">MessagePort</a></code> objects to
-  grant capabilities, or even just to allow multiple simultaneous
-  independent sessions, the service implementation can switch from the
-  <code>XMLHttpRequest</code>s-in-each-<code>iframe</code> model to
-  the shared-<code>WebSocket</code> model without changing the API at
-  all: the ports on the service provider side can all be forwarded to
-  the shared worker without it affecting the users of the API in the
-  slightest.</p>
+  <p>If the initial design used <code><a href="#messageport">MessagePort</a></code> objects to grant capabilities, or even just
+  to allow multiple simultaneous independent sessions, the service implementation can switch from
+  the <code>XMLHttpRequest</code>s-in-each-<code>iframe</code> model to the
+  shared-<code>WebSocket</code> model without changing the API at all: the ports on the service
+  provider side can all be forwarded to the shared worker without it affecting the users of the API
+  in the slightest.</p>
 
 
 
@@ -1148,32 +1079,29 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
   </dl><div class="impl">
 
-  <p>When the <dfn id="dom-messagechannel" title="dom-MessageChannel"><code>MessageChannel()</code></dfn>
-  constructor is called, it must run the following algorithm:</p>
+  <p>When the <dfn id="dom-messagechannel" title="dom-MessageChannel"><code>MessageChannel()</code></dfn> constructor is
+  called, it must run the following algorithm:</p>
 
-  <ol><li><p><a href="#create-a-new-messageport-object">Create a new <code>MessagePort</code> object</a>
-   owned by the <span>script's global object</span>, and let <var title="">port1</var> be that object.</li>
+  <ol><li><p><a href="#create-a-new-messageport-object">Create a new <code>MessagePort</code> object</a> owned by the <span>script's
+   global object</span>, and let <var title="">port1</var> be that object.</li>
 
-   <li><p><a href="#create-a-new-messageport-object">Create a new <code>MessagePort</code> object</a>
-   owned by the <span>script's global object</span>, and let <var title="">port2</var> be that object.</li>
+   <li><p><a href="#create-a-new-messageport-object">Create a new <code>MessagePort</code> object</a> owned by the <span>script's
+   global object</span>, and let <var title="">port2</var> be that object.</li>
 
-   <li><p><a href="#entangle">Entangle</a> the <var title="">port1</var> and <var title="">port2</var> objects.</li>
+   <li><p><a href="#entangle">Entangle</a> the <var title="">port1</var> and <var title="">port2</var>
+   objects.</li>
 
-   <li><p>Instantiate a new <code><a href="#messagechannel">MessageChannel</a></code> object, and
-   let <var title="">channel</var> be that object.</li>
+   <li><p>Instantiate a new <code><a href="#messagechannel">MessageChannel</a></code> object, and let <var title="">channel</var>
+   be that object.</li>
 
-   <li><p>Let the <code title="dom-channel-port1"><a href="#dom-channel-port1">port1</a></code>
-   attribute of the <var title="">channel</var> object be <var title="">port1</var>.</p>
+   <li><p>Let the <code title="dom-channel-port1"><a href="#dom-channel-port1">port1</a></code> attribute of the <var title="">channel</var> object be <var title="">port1</var>.</p>
 
-   <li><p>Let the <code title="dom-channel-port2"><a href="#dom-channel-port2">port2</a></code>
-   attribute of the <var title="">channel</var> object be <var title="">port2</var>.</p>
+   <li><p>Let the <code title="dom-channel-port2"><a href="#dom-channel-port2">port2</a></code> attribute of the <var title="">channel</var> object be <var title="">port2</var>.</p>
 
    <li><p>Return <var title="">channel</var>.</li>
 
-  </ol><p>The <dfn id="dom-channel-port1" title="dom-channel-port1"><code>port1</code></dfn> and
-  <dfn id="dom-channel-port2" title="dom-channel-port2"><code>port2</code></dfn> attributes
-  must return the values they were assigned when the
-  <code><a href="#messagechannel">MessageChannel</a></code> object was created.</p>
+  </ol><p>The <dfn id="dom-channel-port1" title="dom-channel-port1"><code>port1</code></dfn> and <dfn id="dom-channel-port2" title="dom-channel-port2"><code>port2</code></dfn> attributes must return the values they were
+  assigned when the <code><a href="#messagechannel">MessageChannel</a></code> object was created.</p>
 
   </div>
 
@@ -1181,8 +1109,8 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
   <h3 id="message-ports"><span class="secno">5.3 </span>Message ports</h3>
 
-  <p>Each channel has two message ports. Data sent through one port is
-  received by the other port, and vice versa.</p>
+  <p>Each channel has two message ports. Data sent through one port is received by the other port,
+  and vice versa.</p>
 
   <pre class="idl">interface <dfn id="messageport">MessagePort</dfn> : <span>EventTarget</span> {
   void <a href="#dom-messageport-postmessage" title="dom-MessagePort-postMessage">postMessage</a>(any message, optional sequence&lt;<span>Transferable</span>&gt; transfer);
@@ -1198,8 +1126,8 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
    <dd>
 
-    <p>Posts a message through the channel. Objects listed in <var title="">transfer</var> are transferred, not just cloned, meaning
-    that they are no longer usable on the sending side.</p>
+    <p>Posts a message through the channel. Objects listed in <var title="">transfer</var> are
+    transferred, not just cloned, meaning that they are no longer usable on the sending side.</p>
 
     <p>Throws a <code>DataCloneError</code> exception if <var title="">transfer</var> array contains
     duplicate objects or the source or target ports, or if <var title="">message</var> could not be
@@ -1268,13 +1196,12 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
   <ol><li>
 
-    <p>If one of the ports is already entangled, then disentangle it
-    and the port that it was entangled with.</p>
+    <p>If one of the ports is already entangled, then disentangle it and the port that it was
+    entangled with.</p>
 
-    <p class="note">If those two previously entangled ports were the
-    two ports of a <code><a href="#messagechannel">MessageChannel</a></code> object, then that
-    <code><a href="#messagechannel">MessageChannel</a></code> object no longer represents an actual
-    channel: the two ports in that object are no longer entangled.</p>
+    <p class="note">If those two previously entangled ports were the two ports of a
+    <code><a href="#messagechannel">MessageChannel</a></code> object, then that <code><a href="#messagechannel">MessageChannel</a></code> object no longer
+    represents an actual channel: the two ports in that object are no longer entangled.</p>
 
    </li>
 
@@ -1293,56 +1220,53 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
    </li>
 
-  </ol><p>When the user agent is to <dfn id="clone-a-port">clone a port</dfn> <var title="">original port</var>, with the clone being owned by <var title="">owner</var>, it must run the following steps, which return
-  a new <code><a href="#messageport">MessagePort</a></code> object. These steps must be run
-  atomically.</p>
+  </ol><p>When the user agent is to <dfn id="clone-a-port">clone a port</dfn> <var title="">original port</var>, with the
+  clone being owned by <var title="">owner</var>, it must run the following steps, which return a
+  new <code><a href="#messageport">MessagePort</a></code> object. These steps must be run atomically.</p>
 
   <ol><li><p>Set <var title="">original port</var>'s <a href="#has-been-shipped">has been shipped</a> flag to
    true.</li>
 
-   <li><p><a href="#create-a-new-messageport-object">Create a new <code>MessagePort</code> object</a>
-   owned by <var title="">owner</var>, and let <var title="">new
-   port</var> be that object.</li>
+   <li><p><a href="#create-a-new-messageport-object">Create a new <code>MessagePort</code> object</a> owned by <var title="">owner</var>, and let <var title="">new port</var> be that object.</li>
 
    <li><p>Set <var title="">new port</var>'s <a href="#has-been-shipped">has been shipped</a> flag to true.</li>
 
-   <li><p>Move all the events in the <a href="#port-message-queue">port message queue</a>
-   of <var title="">original port</var> to the <a href="#port-message-queue">port message
-   queue</a> of <var title="">new port</var>, if any, leaving the
-   <var title="">new port</var>'s <a href="#port-message-queue">port message queue</a> in
-   its initial disabled state.</li>
+   <li><p>Move all the events in the <a href="#port-message-queue">port message queue</a> of <var title="">original
+   port</var> to the <a href="#port-message-queue">port message queue</a> of <var title="">new port</var>, if any,
+   leaving the <var title="">new port</var>'s <a href="#port-message-queue">port message queue</a> in its initial
+   disabled state.</li>
 
    <li>
 
-    <p>If the <var title="">original port</var> is entangled with
-    another port, then run these substeps:</p>
+    <p>If the <var title="">original port</var> is entangled with another port, then run these
+    substeps:</p>
 
-    <ol><li><p>Let the <var title="">remote port</var> be the port with
-     which the <var title="">original port</var> is entangled.</li>
+    <ol><li><p>Let the <var title="">remote port</var> be the port with which the <var title="">original port</var> is entangled.</li>
 
      <li><p>Set <var title="">remote port</var>'s <a href="#has-been-shipped">has been shipped</a> flag to
      true.</li>
 
-     <li><p><a href="#entangle">Entangle</a> the <var title="">remote port</var>
-     and <var title="">new port</var> objects. The <var title="">original port</var> object will be disentangled by this
+     <li><p><a href="#entangle">Entangle</a> the <var title="">remote port</var> and <var title="">new
+     port</var> objects. The <var title="">original port</var> object will be disentangled by this
      process.</li>
 
     </ol></li>
 
-   <li><p>Return <var title="">new port</var>. It is the
-   clone.</li>
+   <li><p>Return <var title="">new port</var>. It is the clone.</li>
 
-  </ol><p id="transferMessagePort">To <span title="transfer a Transferable
-  object">transfer</span> a <code><a href="#messageport">MessagePort</a></code> object <var title="">old</var> to a new owner <var title="">owner</var>, a user
-  agent must <a href="#clone-a-port" title="clone a port">clone</a> the <var title="">old</var> object with the clone being owned by <var title="">owner</var>, thus obtaining <var title="">new</var>, must
-  <span title="concept-Transferable-neutered">neuter</span> the <var title="">old</var> port, and must finally return <var title="">new</var>.</p>
+  </ol><p id="transferMessagePort">To <span title="transfer a Transferable object">transfer</span> a
+  <code><a href="#messageport">MessagePort</a></code> object <var title="">old</var> to a new owner <var title="">owner</var>,
+  a user agent must <a href="#clone-a-port" title="clone a port">clone</a> the <var title="">old</var> object with
+  the clone being owned by <var title="">owner</var>, thus obtaining <var title="">new</var>, must
+  <span title="concept-Transferable-neutered">neuter</span> the <var title="">old</var> port, and
+  must finally return <var title="">new</var>.</p>
 
-  <hr><p>The <dfn id="dom-messageport-postmessage" title="dom-MessagePort-postMessage"><code>postMessage()</code></dfn>
-  method, when called on a port <var title="">source port</var>, must
-  cause the user agent to run the following steps:</p>
+  <hr><p>The <dfn id="dom-messageport-postmessage" title="dom-MessagePort-postMessage"><code>postMessage()</code></dfn> method, when
+  called on a port <var title="">source port</var>, must cause the user agent to run the following
+  steps:</p>
 
-  <ol><li><p>Let <var title="">target port</var> be the port with which
-   <var title="">source port</var> is entangled, if any.</li>
+  <ol><li><p>Let <var title="">target port</var> be the port with which <var title="">source port</var>
+   is entangled, if any.</li>
 
    <li>
 
@@ -1352,41 +1276,37 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
    <li>
 
-    <p>Let <var title="">transfer map</var> be an empty association
-    list of <code>Transferable</code> objects to placeholder
-    objects.</p>
+    <p>Let <var title="">transfer map</var> be an empty association list of
+    <code>Transferable</code> objects to placeholder objects.</p>
 
    </li>
 
    <li>
 
-    <p>If the method was invoked with a second argument <var title="">transfer</var>, run these substeps:</p>
+    <p>If the method was invoked with a second argument <var title="">transfer</var>, run these
+    substeps:</p>
 
     <ol><li>
 
-      <p>If any object is listed in <var title="">transfer</var> more
-      than once, or any of the <code>Transferable</code> objects
-      listed in <var title="">transfer</var> are marked as <span title="concept-Transferable-neutered">neutered</span>, then
-      throw a <code>DataCloneError</code> exception and abort these
-      steps.</p>
+      <p>If any object is listed in <var title="">transfer</var> more than once, or any of the
+      <code>Transferable</code> objects listed in <var title="">transfer</var> are marked as <span title="concept-Transferable-neutered">neutered</span>, then throw a
+      <code>DataCloneError</code> exception and abort these steps.</p>
 
      </li>
 
      <li>
 
-      <p>If any of the objects in <var title="">transfer</var> are
-      either the <var title="">source port</var> or the <var title="">target port</var> (if any), then throw a
-      <code>DataCloneError</code> exception and abort these
-      steps.</p>
+      <p>If any of the objects in <var title="">transfer</var> are either the <var title="">source
+      port</var> or the <var title="">target port</var> (if any), then throw a
+      <code>DataCloneError</code> exception and abort these steps.</p>
 
      </li>
 
      <li>
 
-      <p>For each object <var title="">x</var> in <var title="">transfer</var> in turn, add a mapping from <var title="">x</var> to a new unique placeholder object created for
-      <var title="">x</var> to <var title="">transfer map</var>, and
-      if <var title="">x</var> is a <code><a href="#messageport">MessagePort</a></code> object,
-      also append the placeholder object to the <var title="">new
+      <p>For each object <var title="">x</var> in <var title="">transfer</var> in turn, add a
+      mapping from <var title="">x</var> to a new unique placeholder object created for <var title="">x</var> to <var title="">transfer map</var>, and if <var title="">x</var> is a
+      <code><a href="#messageport">MessagePort</a></code> object, also append the placeholder object to the <var title="">new
       ports</var> array.</p>
 
      </li>
@@ -1395,38 +1315,37 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
    <li>
 
-    <p>Let <var title="">message clone</var> be the result of
-    obtaining a <span>structured clone</span> of the <var title="">message</var> argument, with <var title="">transfer
-    map</var> as the <i>transfer map</i>. If this throws an exception,
-    then throw that exception and abort these steps.</p>
+    <p>Let <var title="">message clone</var> be the result of obtaining a <span>structured
+    clone</span> of the <var title="">message</var> argument, with <var title="">transfer map</var>
+    as the <i>transfer map</i>. If this throws an exception, then throw that exception and abort
+    these steps.</p>
 
    </li>
 
    <li>
 
-    <p>If the method was invoked with a second argument <var title="">transfer</var>, run these substeps:</p>
+    <p>If the method was invoked with a second argument <var title="">transfer</var>, run these
+    substeps:</p>
 
     <ol><li>
 
-      <p>Let <var title="">new owner</var> be the owner of <var title="">target port</var>, if there is a <var title="">target
-      port</var>, or else some arbitrary owner. (This <var title="">new owner</var> is used when transferring objects below.
-      If there is no <var title="">target port</var>, the
-      <code>Transferable</code> objects given in the second argument,
-      if any, are still <span title="transfer a Transferable
-      object">transferred</span>, but since they are then discarded, it
-      doesn't matter where they are transferred to.)</p>
+      <p>Let <var title="">new owner</var> be the owner of <var title="">target port</var>, if there
+      is a <var title="">target port</var>, or else some arbitrary owner. (This <var title="">new
+      owner</var> is used when transferring objects below. If there is no <var title="">target
+      port</var>, the <code>Transferable</code> objects given in the second argument, if any, are
+      still <span title="transfer a Transferable object">transferred</span>, but since they are then
+      discarded, it doesn't matter where they are transferred to.)</p>
 
      </li>
 
 
      <li>
 
-      <p>For each object <var title="">x</var> in <var title="">transfer</var> in turn, obtain a new object <var title="">y</var> by <span title="transfer a Transferable
-      object">transferring</span> the object <var title="">x</var> to
-      <var title="">new owner</var>, and replace the placeholder
-      object that was created for the object <var title="">x</var> by
-      the new object <var title="">y</var> wherever the placeholder
-      exists (i.e. in <var title="">message clone</var> and in <var title="">new ports</var>).</p>
+      <p>For each object <var title="">x</var> in <var title="">transfer</var> in turn, obtain a new
+      object <var title="">y</var> by <span title="transfer a Transferable
+      object">transferring</span> the object <var title="">x</var> to <var title="">new owner</var>,
+      and replace the placeholder object that was created for the object <var title="">x</var> by
+      the new object <var title="">y</var> wherever the placeholder exists (i.e. in <var title="">message clone</var> and in <var title="">new ports</var>).</p>
 
      </li>
 
@@ -1434,29 +1353,29 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
    <li>
 
-    <p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read only</span> array.</p>
+    <p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read only</span>
+    array.</p>
 
    </li>
 
-   <li><p>If there is no <var title="">target port</var> (i.e. if <var title="">source port</var> is not entangled), then abort these
-   steps.</li> 
+   <li><p>If there is no <var title="">target port</var> (i.e. if <var title="">source port</var> is
+   not entangled), then abort these steps.</li> 
 
-   <li><p>Create an event that uses the <code><a href="#messageevent">MessageEvent</a></code>
-   interface, with the name <code title="event-message"><a href="#event-message">message</a></code>, which does not bubble, is not
-   cancelable, and has no default action.
+   <li><p>Create an event that uses the <code><a href="#messageevent">MessageEvent</a></code> interface, with the name <code title="event-message"><a href="#event-message">message</a></code>, which does not bubble, is not cancelable, and has no
+   default action.
    
    <a href="#refsHTML">[HTML]</a>
    
    </li>
 
-   <li><p>Let the <code title="dom-MessageEvent-data"><a href="#dom-messageevent-data">data</a></code>
-   attribute of the event be initialized to the value of <var title="">message clone</var>.</li>
+   <li><p>Let the <code title="dom-MessageEvent-data"><a href="#dom-messageevent-data">data</a></code> attribute of the event be
+   initialized to the value of <var title="">message clone</var>.</li>
 
-   <li><p>Let the <code title="dom-MessageEvent-ports"><a href="#dom-messageevent-ports">ports</a></code>
-   attribute of the event be initialized to the <var title="">new
-   ports</var> array.</li>
+   <li><p>Let the <code title="dom-MessageEvent-ports"><a href="#dom-messageevent-ports">ports</a></code> attribute of the event be
+   initialized to the <var title="">new ports</var> array.</li>
 
-   <li><p>Add the event to the <a href="#port-message-queue">port message queue</a> of <var title="">target port</var>.</li>
+   <li><p>Add the event to the <a href="#port-message-queue">port message queue</a> of <var title="">target
+   port</var>.</li>
 
   </ol><hr><p>The <dfn id="dom-messageport-start" title="dom-MessagePort-start"><code>start()</code></dfn> method must enable its port's
   <a href="#port-message-queue">port message queue</a>, if it is not already enabled.</p>
@@ -1467,15 +1386,15 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   method must do nothing.</p>
 
   <hr><p>The following are the <span>event handlers</span> (and their corresponding <span title="event
-  handler event type">event handler event types</span>) that must be supported, as <span>event handler IDL attributes</span>,
-  by all objects implementing the <code><a href="#messageport">MessagePort</a></code> interface:</p>
+  handler event type">event handler event types</span>) that must be supported, as <span>event
+  handler IDL attributes</span>, by all objects implementing the <code><a href="#messageport">MessagePort</a></code>
+  interface:</p>
 
   <table><thead><tr><th><span title="event handlers">Event handler</span> <th><span>Event handler event type</span>
    <tbody><tr><td><dfn id="handler-messageport-onmessage" title="handler-MessagePort-onmessage"><code>onmessage</code></dfn> <td> <code title="event-message"><a href="#event-message">message</a></code>
-  </table><p>The first time a <code><a href="#messageport">MessagePort</a></code> object's <code title="handler-MessagePort-onmessage"><a href="#handler-messageport-onmessage">onmessage</a></code> IDL attribute
-  is set, the port's <a href="#port-message-queue">port message queue</a> must be enabled,
-  as if the <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code> method
-  had been called.</p>
+  </table><p>The first time a <code><a href="#messageport">MessagePort</a></code> object's <code title="handler-MessagePort-onmessage"><a href="#handler-messageport-onmessage">onmessage</a></code> IDL attribute is set, the port's <a href="#port-message-queue">port
+  message queue</a> must be enabled, as if the <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code>
+  method had been called.</p>
 
   </div>
 
@@ -1587,33 +1506,26 @@ callback <dfn id="portcollectioncallback">PortCollectionCallback</dfn> = void (<
 
   <div class="impl">
 
-  <p>When a <code><a href="#messageport">MessagePort</a></code> object <var title="">o</var> is
-  entangled, user agents must either act as if <var title="">o</var>'s
-  entangled <code><a href="#messageport">MessagePort</a></code> object has a strong reference to
-  <var title="">o</var>, or as if <var title="">o</var>'s owner has a
-  strong reference to <var title="">o</var>.</p>
+  <p>When a <code><a href="#messageport">MessagePort</a></code> object <var title="">o</var> is entangled, user agents must
+  either act as if <var title="">o</var>'s entangled <code><a href="#messageport">MessagePort</a></code> object has a strong
+  reference to <var title="">o</var>, or as if <var title="">o</var>'s owner has a strong reference
+  to <var title="">o</var>.</p>
 
   <div class="note">
 
-   <p>Thus, a message port can be received, given an event listener,
-   and then forgotten, and so long as that event listener could
-   receive a message, the channel will be maintained.</p>
+   <p>Thus, a message port can be received, given an event listener, and then forgotten, and so long
+   as that event listener could receive a message, the channel will be maintained.</p>
 
-   <p>Of course, if this was to occur on both sides of the channel,
-   then both ports could be garbage collected, since they would not be
-   reachable from live code, despite having a strong reference to each
-   other.</p>
+   <p>Of course, if this was to occur on both sides of the channel, then both ports could be garbage
+   collected, since they would not be reachable from live code, despite having a strong reference to
+   each other.</p>
 
   </div>
 
-  <p>Furthermore, a <code><a href="#messageport">MessagePort</a></code> object must not be
-  garbage collected while there exists a message in a <span>task
-  queue</span> that is to be dispatched on that
-  <code><a href="#messageport">MessagePort</a></code> object, or while the
-  <code><a href="#messageport">MessagePort</a></code> object's <a href="#port-message-queue">port message queue</a> is
-  open and there exists a <code title="event-message"><a href="#event-message">message</a></code>
-  event in that queue.</p>
-  
+  <p>Furthermore, a <code><a href="#messageport">MessagePort</a></code> object must not be garbage collected while there exists
+  a message in a <span>task queue</span> that is to be dispatched on that <code><a href="#messageport">MessagePort</a></code>
+  object, or while the <code><a href="#messageport">MessagePort</a></code> object's <a href="#port-message-queue">port message queue</a> is open and
+  there exists a <code title="event-message"><a href="#event-message">message</a></code> event in that queue.</p> 
 
   
 
