@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-30-october-2013">Editor's Draft 30 October 2013</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-6-november-2013">Editor's Draft 6 November 2013</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 30 October 2013 Editor's Draft.
+  This specification is the 6 November 2013 Editor's Draft.
   </p>
 
   
@@ -502,7 +502,7 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
   DOMString origin;
   DOMString lastEventId;
   (<span>WindowProxy</span> or <a href="#messageport">MessagePort</a>)? source;
-  <a href="#messageport">MessagePort</a>[]? ports;
+  sequence&lt;<a href="#messageport">MessagePort</a>&gt; ports;
 };</pre>
 
   <dl class="domintro"><dt><var title="">event</var> . <code title="dom-MessageEvent-data"><a href="#dom-messageevent-data">data</a></code></dt>
@@ -576,7 +576,7 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
   <p>The <dfn id="dom-messageevent-ports" title="dom-MessageEvent-ports"><code>ports</code></dfn> attribute must return the
   value it was initialized to. When the object is created, this attribute must be initialized to
   null. It represents, in
-  <a href="#web-messaging">cross-document messaging</a> and <a href="#channel-messaging">channel messaging</a> the
+  <a href="#web-messaging">cross-document messaging</a> and <a href="#channel-messaging">channel messaging</a>, the
   <code><a href="#messageport">MessagePort</a></code> array being sent, if any.</p>
 
   </div>
