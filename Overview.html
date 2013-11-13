@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-8-november-2013">Editor's Draft 8 November 2013</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-13-november-2013">Editor's Draft 13 November 2013</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 8 November 2013 Editor's Draft.
+  This specification is the 13 November 2013 Editor's Draft.
   </p>
 
   
@@ -484,7 +484,7 @@
   <h2 id="event-definitions"><span class="secno">3 </span>Event definitions</h2>
 
   <p>Messages in <span>server-sent events</span>, <span>Web sockets</span>, <a href="#web-messaging">cross-document
-  messaging</a>, and <a href="#channel-messaging">channel messaging</a> use the <dfn id="event-message" title="event-message"><code>message</code></dfn> event. </p>
+  messaging</a>, <a href="#channel-messaging">channel messaging</a>, and <span>broadcast channels</span> use the <dfn id="event-message" title="event-message"><code>message</code></dfn> event. </p>
 
   <p>The following interface is defined for this event:</p>
 
@@ -493,6 +493,7 @@ interface <dfn id="messageevent">MessageEvent</dfn> : <span>Event</span> {
   readonly attribute any <a href="#dom-messageevent-data" title="dom-MessageEvent-data">data</a>;
   readonly attribute DOMString <a href="#dom-messageevent-origin" title="dom-MessageEvent-origin">origin</a>;
   readonly attribute DOMString <a href="#dom-messageevent-lasteventid" title="dom-MessageEvent-lastEventId">lastEventId</a>;
+  readonly attribute DOMString <a href="#dom-messageevent-channel" title="dom-MessageEvent-channel">channel</a>;
   readonly attribute (<span>WindowProxy</span> or <a href="#messageport">MessagePort</a>)? <a href="#dom-messageevent-source" title="dom-MessageEvent-source">source</a>;
   readonly attribute <a href="#messageport">MessagePort</a>[]? <a href="#dom-messageevent-ports" title="dom-MessageEvent-ports">ports</a>;
 };
@@ -501,6 +502,7 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
   any data;
   DOMString origin;
   DOMString lastEventId;
+  DOMString channel;
   (<span>WindowProxy</span> or <a href="#messageport">MessagePort</a>)? source;
   sequence&lt;<a href="#messageport">MessagePort</a>&gt; ports;
 };</pre>
@@ -528,6 +530,14 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
 
     <p>Returns the <span title="concept-event-stream-last-event-id">last event ID string</span>, for
     <span>server-sent events</span>.</p>
+
+   </dd>
+
+   <dt><var title="">event</var> . <code title="dom-MessageEvent-channel"><a href="#dom-messageevent-channel">channel</a></code></dt>
+
+   <dd>
+
+    <p>Returns the channel ID, for <span>broadcast channels</span>.</p>
 
    </dd>
 
@@ -565,6 +575,10 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
   <p>The <dfn id="dom-messageevent-lasteventid" title="dom-MessageEvent-lastEventId"><code>lastEventId</code></dfn> attribute must
   return the value it was initialized to. When the object is created, this attribute must be
   initialized to the empty string. It represents, in <span>server-sent events</span>, the <span title="concept-event-stream-last-event-id">last event ID string</span> of the event source.</p>
+
+  <p>The <dfn id="dom-messageevent-channel" title="dom-MessageEvent-channel"><code>channel</code></dfn> attribute must return the
+  value it was initialized to. When the object is created, this attribute must be initialized to the
+  empty string. It represents, in <span>broadcast channels</span>, the channel of the message.</p>
 
   <p>The <dfn id="dom-messageevent-source" title="dom-MessageEvent-source"><code>source</code></dfn> attribute must return the
   value it was initialized to. When the object is created, this attribute must be initialized to
