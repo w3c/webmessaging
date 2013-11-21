@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-13-november-2013">Editor's Draft 13 November 2013</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-21-november-2013">Editor's Draft 21 November 2013</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 13 November 2013 Editor's Draft.
+  This specification is the 21 November 2013 Editor's Draft.
   </p>
 
   
@@ -1301,6 +1301,14 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
    <li>
 
+    <p>Let <var title="">doomed</var> be false. It is set to true if a condition is detected that
+    will make this message cause the port to be unusable; specifically, if the message contains <var title="">target port</var> as one of the objects being <span title="transfer a Transferable
+    object">transferred</span>. (This condition cannot necessarily be detected synchronously.)</p>
+
+   </li>
+
+   <li>
+
     <p>Let <var title="">new ports</var> be an empty array.</p>
 
    </li>
@@ -1327,9 +1335,19 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
      <li>
 
-      <p>If any of the objects in <var title="">transfer</var> are either the <var title="">source
-      port</var> or the <var title="">target port</var> (if any), then throw a
+
+      <p>If any of the objects in <var title="">transfer</var> are the <var title="">source
+      port</var>, then throw a
       <code>DataCloneError</code> exception and abort these steps.</p>
+
+     </li>
+
+     <li>
+
+      <p>If any of the objects in <var title="">transfer</var> are the <var title="">target
+      port</var>, if any, then let <var title="">doomed</var> be true, and optionally report to a
+      developer console that the target port was posted to itself, causing the communication channel
+      to be lost.</p>
 
      </li>
 
@@ -1362,9 +1380,10 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
 
       <p>Let <var title="">new owner</var> be the <a href="#concept-port-owner" title="concept-port-owner">owner</a> of <var title="">target port</var>, if there
-      is a <var title="">target port</var>, or else some arbitrary owner. (This <var title="">new
+      is a <var title="">target port</var> and <var title="">doomed</var> is false, or else some arbitrary owner. (This <var title="">new
       owner</var> is used when transferring objects below. If there is no <var title="">target
-      port</var>, the <code>Transferable</code> objects given in the second argument, if any, are
+      port</var>, or if the <var title="">target port</var> is one of the objects being <span title="transfer a Transferable
+      object">transferred</span>, the <code>Transferable</code> objects given in the second argument, if any, are
       still <span title="transfer a Transferable object">transferred</span>, but since they are then
       discarded, it doesn't matter where they are transferred to.)</p>
 
@@ -1390,8 +1409,9 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
    </li>
 
+
    <li><p>If there is no <var title="">target port</var> (i.e. if <var title="">source port</var> is
-   not entangled), then abort these steps.</li> 
+   not entangled), or if <var title="">doomed</var> is true, then abort these steps.</li> 
 
    <li><p>Create an event that uses the <code><a href="#messageevent">MessageEvent</a></code> interface, with the name <code title="event-message"><a href="#event-message">message</a></code>, which does not bubble, is not cancelable, and has no
    default action.
