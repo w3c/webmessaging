@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-21-november-2013">Editor's Draft 21 November 2013</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-7-december-2013">Editor's Draft 7 December 2013</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 21 November 2013 Editor's Draft.
+  This specification is the 7 December 2013 Editor's Draft.
   </p>
 
   
@@ -1140,6 +1140,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
   // event handlers
            attribute <span>EventHandler</span> <a href="#handler-messageport-onmessage" title="handler-MessagePort-onmessage">onmessage</a>;
+           attribute <span>EventHandler</span> <a href="#handler-messageport-onerror" title="handler-MessagePort-onerror">onerror</a>;
 };
 // <a href="#messageport">MessagePort</a> implements <span>Transferable</span>;</pre>
 
@@ -1437,6 +1438,33 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   disentangle the two ports. If the method is called on a port that is not entangled, then the
   method must do nothing.</p>
 
+  <hr><p>In some circumstances, an entangled <code><a href="#messageport">MessagePort</a></code> <var title="">source port</var>
+  that is not <a href="#ports-and-garbage-collection">eligible for garbage collection</a> will
+  nonetheless find itself prematurely destroyed, for example if the user manually terminates the
+  user agent's host process. Under such circumstances, user agents should attempt to following these
+  steps:</p>
+
+  
+  
+  
+
+  <ol><li><p>Let <var title="">target port</var> be the port with which the ill-fated <var title="">source port</var> is entangled.</li>
+
+   <li><p>If there is no <var title="">target port</var> (i.e. if <var title="">source port</var>
+   is not entangled), or if <var title="">target port</var> is suffering the same fate as <var title="">source port</var> (e.g. if both ports are in the same host process), then abort these
+   steps.</li>
+
+   <li><p><span>Queue a task</span> to <span>fire a simple event</span> named <code title="event-error">error</code> at <var title="">target port</var>. The <span title="concept-task">task</span> must be associated with the <span>responsible document</span>
+   specified by <var title="">source port</var>'s <a href="#concept-port-owner" title="concept-port-owner">owner</a>,
+   and must use the <span>DOM manipulation task source</span>.</li>
+
+   <li><p>Disentangle the two ports.</li>
+
+  </ol><p class="note">This does not happen if the port is garbage collected or closed using the <code title="dom-messageport-close"><a href="#dom-messageport-close">close()</a></code> method. It is intended only as a way for Web
+  applications that operate across multiple browser processes (e.g. using workers or communicating
+  across multiple tabs) to gracefully handle a catastrophic failure in one process. A strictly
+  conforming user agent would never fail unexpectedly, and thus would never send this event!</p>
+
   <hr><p>The following are the <span>event handlers</span> (and their corresponding <span title="event
   handler event type">event handler event types</span>) that must be supported, as <span>event
   handler IDL attributes</span>, by all objects implementing the <code><a href="#messageport">MessagePort</a></code>
@@ -1444,6 +1472,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
   <table><thead><tr><th><span title="event handlers">Event handler</span> <th><span>Event handler event type</span>
    <tbody><tr><td><dfn id="handler-messageport-onmessage" title="handler-MessagePort-onmessage"><code>onmessage</code></dfn> <td> <code title="event-message"><a href="#event-message">message</a></code>
+    <tr><td><dfn id="handler-messageport-onerror" title="handler-MessagePort-onerror"><code>onerror</code></dfn> <td> <code title="event-error">error</code>
   </table><p>The first time a <code><a href="#messageport">MessagePort</a></code> object's <code title="handler-MessagePort-onmessage"><a href="#handler-messageport-onmessage">onmessage</a></code> IDL attribute is set, the port's <a href="#port-message-queue">port
   message queue</a> must be enabled, as if the <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code>
   method had been called.</p>
@@ -1575,9 +1604,10 @@ callback <dfn id="portcollectioncallback">PortCollectionCallback</dfn> = void (<
 
   </div>
 
+
   <p>Furthermore, a <code><a href="#messageport">MessagePort</a></code> object must not be garbage collected while there exists
-  a message in a <span>task queue</span> that is to be dispatched on that <code><a href="#messageport">MessagePort</a></code>
-  object, or while the <code><a href="#messageport">MessagePort</a></code> object's <a href="#port-message-queue">port message queue</a> is open and
+  an event in a <span>task queue</span> that is to be dispatched on that <code><a href="#messageport">MessagePort</a></code>
+  object, or while the <code><a href="#messageport">MessagePort</a></code> object's <a href="#port-message-queue">port message queue</a> is enabled and
   there exists a <code title="event-message"><a href="#event-message">message</a></code> event in that queue.</p> 
 
   
@@ -1592,7 +1622,8 @@ callback <dfn id="portcollectioncallback">PortCollectionCallback</dfn> = void (<
   <p class="note">Authors are strongly encouraged to explicitly close <code><a href="#messageport">MessagePort</a></code>
   objects to disentangle them, so that their resources can be recollected. Creating many
   <code><a href="#messageport">MessagePort</a></code> objects and discarding them without closing them can lead to high
-  transient memory usage since garbage collection is not necessarily performed promptly.</p>
+  transient memory usage since garbage collection is not necessarily performed promptly, especially
+  for <code><a href="#messageport">MessagePort</a></code>s where garbage collection can involve cross-process coordination.</p>
 
 
   <h2 class="no-num" id="references">References</h2>
