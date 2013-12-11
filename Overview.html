@@ -1263,10 +1263,20 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
 
    <li><p>Set <var title="">new port</var>'s <a href="#has-been-shipped">has been shipped</a> flag to true.</li>
 
-   <li><p>Move all the events in the <a href="#port-message-queue">port message queue</a> of <var title="">original
+
+   <li><p>Move all the <span title="concept-task">tasks</span> that are to fire <code title="event-message"><a href="#event-message">message</a></code> events in the <a href="#port-message-queue">port message queue</a> of <var title="">original
    port</var> to the <a href="#port-message-queue">port message queue</a> of <var title="">new port</var>, if any,
    leaving the <var title="">new port</var>'s <a href="#port-message-queue">port message queue</a> in its initial
-   disabled state.</li>
+   disabled state, and reassociating the moved <span title="concept-task">tasks</span> with the <span>responsible document</span> specified by <var title="">new
+   port</var>'s <a href="#concept-port-owner" title="concept-port-owner">owner</a>.</li>
+
+   <li><p>If <var title="">original port</var> is <a href="#related-to-an-ill-fated-port">related to an ill-fated port</a>, then
+   create a <span title="concept-task">task</span> that <span title="fire a simple event">fires a
+   simple event</span> named <code title="event-error">error</code> at the <var title="">new
+   port</var>, and add the <span title="concept-task">task</span> to the <a href="#port-message-queue">port message
+   queue</a> of <var title="">new port</var>. The <span title="concept-task">task</span> must
+   be associated with the <span>responsible document</span> specified by <var title="">new
+   port</var>'s <a href="#concept-port-owner" title="concept-port-owner">owner</a>.</li>
 
    <li>
 
@@ -1454,8 +1464,11 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
    is not entangled), or if <var title="">target port</var> is suffering the same fate as <var title="">source port</var> (e.g. if both ports are in the same host process), then abort these
    steps.</li>
 
+   <li><p>Mark <var title="">target port</var> as being a <dfn id="related-to-an-ill-fated-port">related to an ill-fated
+   port</dfn>.</li>
 
-   <li><p>Create a <span title="concept-task">task</span> that <span title="fire a simple event">fires a simple event</span> named <code title="event-error">error</code> at <var title="">target port</var>, and add it to the <a href="#port-message-queue">port message queue</a> of <var title="">target port</var>. The <span title="concept-task">task</span> must be associated with the <span>responsible document</span>
+
+   <li><p>Create a <span title="concept-task">task</span> that <span title="fire a simple event">fires a simple event</span> named <code title="event-error">error</code> at <var title="">target port</var>, and add the <span title="concept-task">task</span> to the <a href="#port-message-queue">port message queue</a> of <var title="">target port</var>. The <span title="concept-task">task</span> must be associated with the <span>responsible document</span>
    specified by <var title="">source port</var>'s <a href="#concept-port-owner" title="concept-port-owner">owner</a>.</li>
 
    <li><p>Disentangle the two ports.</li>
