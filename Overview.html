@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-11-december-2013">Editor's Draft 11 December 2013</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-8-january-2014">Editor's Draft 8 January 2014</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 11 December 2013 Editor's Draft.
+  This specification is the 8 January 2014 Editor's Draft.
   </p>
 
   
@@ -371,7 +371,7 @@
   <ol>
    <li><a href="#dependencies"><span class="secno">1.1 </span>Dependencies</a></ol></li>
  <li><a href="#terminology"><span class="secno">2 </span>Terminology</a></li>
- <li><a href="#event-definitions"><span class="secno">3 </span>Event definitions</a></li>
+ <li><a href="#the-messageevent-interfaces"><span class="secno">3 </span>The <code>MessageEvent</code> interfaces</a></li>
  <li><a href="#web-messaging"><span class="secno">4 </span>Cross-document messaging</a>
   <ol>
    <li><a href="#introduction"><span class="secno">4.1 </span>Introduction</a></li>
@@ -481,12 +481,12 @@
 
 
 
-  <h2 id="event-definitions"><span class="secno">3 </span>Event definitions</h2>
+  <h2 id="the-messageevent-interfaces"><span class="secno">3 </span>The <code><a href="#messageevent">MessageEvent</a></code> interfaces</h2>
 
   <p>Messages in <span>server-sent events</span>, <span>Web sockets</span>, <a href="#web-messaging">cross-document
-  messaging</a>, <a href="#channel-messaging">channel messaging</a>, and <span>broadcast channels</span> use the <dfn id="event-message" title="event-message"><code>message</code></dfn> event. </p>
-
-  <p>The following interface is defined for this event:</p>
+  messaging</a>, <a href="#channel-messaging">channel messaging</a>, and <span>broadcast channels</span> use the
+  <code><a href="#messageevent">MessageEvent</a></code> interface for their <code title="event-message">message</code>
+  events:</p>
 
   <pre class="idl">[Constructor(DOMString type, optional <a href="#messageeventinit">MessageEventInit</a> eventInitDict)]
 interface <dfn id="messageevent">MessageEvent</dfn> : <span>Event</span> {
@@ -545,8 +545,9 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
 
    <dd>
 
+
     <p>Returns the <code>WindowProxy</code> of the source window, for <a href="#web-messaging">cross-document
-    messaging</a>, and the <code><a href="#messageport">MessagePort</a></code> being attached, in the <code title="event-connect">connect</code> event fired at <code>SharedWorkerGlobalScope</code>
+    messaging</a>, and the <code><a href="#messageport">MessagePort</a></code> being attached, in the <code title="event-WorkerGlobalScope-connect">connect</code> event fired at <code>SharedWorkerGlobalScope</code>
     objects.</p>
 
    </dd>
@@ -584,7 +585,7 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
   value it was initialized to. When the object is created, this attribute must be initialized to
   null. It represents, in <a href="#web-messaging">cross-document messaging</a>, the <code>WindowProxy</code> of the
   <span>browsing context</span> of the <code>Window</code> object from which the message came; and
-  in the <code title="event-connect">connect</code> events used by <span title="SharedWorkerGlobalScope">shared workers</span>, the newly connecting
+  in the <code title="event-WorkerGlobalScope-connect">connect</code> events used by <span title="SharedWorkerGlobalScope">shared workers</span>, the newly connecting
   <code><a href="#messageport">MessagePort</a></code>.</p>
 
   <p>The <dfn id="dom-messageevent-ports" title="dom-MessageEvent-ports"><code>ports</code></dfn> attribute must return the
@@ -857,7 +858,7 @@ function receiver(e) {
 
 
     <p>Create a <span title="concept-events-trusted">trusted</span> event that uses the
-    <code><a href="#messageevent">MessageEvent</a></code> interface, with the event type <code title="event-message"><a href="#event-message">message</a></code>, which does not bubble, is not cancelable, and has no
+    <code><a href="#messageevent">MessageEvent</a></code> interface, with the event type <code title="event-message">message</code>, which does not bubble, is not cancelable, and has no
     default action. The <code title="dom-MessageEvent-data"><a href="#dom-messageevent-data">data</a></code> attribute must be
     initialized to the value of <var title="">message clone</var>, the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute must be initialized to the <span title="Unicode serialization of an origin">Unicode serialization</span> of the
     <span>origin</span> specified by the <span>incumbent settings object</span>, the <code title="dom-MessageEvent-source"><a href="#dom-messageevent-source">source</a></code> attribute must be initialized to the
@@ -916,7 +917,7 @@ function receiver(e) {
 
   <pre>channel.port1.postMessage('hello');</pre>
 
-  <p>To receive messages, one listens to <code title="event-message"><a href="#event-message">message</a></code> events:</p>
+  <p>To receive messages, one listens to <code title="event-message">message</code> events:</p>
 
   <pre>channel.port1.onmessage = handleMessage;
 function handleMessage(event) {
@@ -1015,7 +1016,7 @@ function handleMessage(event) {
 
    
 
-   <li>Send a <code title="event-message"><a href="#event-message">message</a></code> event to the <code>Window</code> in the
+   <li>Send a <code title="event-message">message</code> event to the <code>Window</code> in the
    <code>iframe</code> using the <code title="dom-window-postMessage"><a href="#dom-window-postmessage">window.postMessage()</a></code>
    API.</li>
 
@@ -1264,7 +1265,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
    <li><p>Set <var title="">new port</var>'s <a href="#has-been-shipped">has been shipped</a> flag to true.</li>
 
 
-   <li><p>Move all the <span title="concept-task">tasks</span> that are to fire <code title="event-message"><a href="#event-message">message</a></code> events in the <a href="#port-message-queue">port message queue</a> of <var title="">original
+   <li><p>Move all the <span title="concept-task">tasks</span> that are to fire <code title="event-message">message</code> events in the <a href="#port-message-queue">port message queue</a> of <var title="">original
    port</var> to the <a href="#port-message-queue">port message queue</a> of <var title="">new port</var>, if any,
    leaving the <var title="">new port</var>'s <a href="#port-message-queue">port message queue</a> in its initial
    disabled state, and reassociating the moved <span title="concept-task">tasks</span> with the <span>responsible document</span> specified by <var title="">new
@@ -1424,7 +1425,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
    <li><p>If there is no <var title="">target port</var> (i.e. if <var title="">source port</var> is
    not entangled), or if <var title="">doomed</var> is true, then abort these steps.</li> 
 
-   <li><p>Create an event that uses the <code><a href="#messageevent">MessageEvent</a></code> interface, with the name <code title="event-message"><a href="#event-message">message</a></code>, which does not bubble, is not cancelable, and has no
+   <li><p>Create an event that uses the <code><a href="#messageevent">MessageEvent</a></code> interface, with the name <code title="event-message">message</code>, which does not bubble, is not cancelable, and has no
    default action.
    
    <a href="#refsHTML">[HTML]</a>
@@ -1484,7 +1485,7 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   interface:</p>
 
   <table><thead><tr><th><span title="event handlers">Event handler</span> <th><span>Event handler event type</span>
-   <tbody><tr><td><dfn id="handler-messageport-onmessage" title="handler-MessagePort-onmessage"><code>onmessage</code></dfn> <td> <code title="event-message"><a href="#event-message">message</a></code>
+   <tbody><tr><td><dfn id="handler-messageport-onmessage" title="handler-MessagePort-onmessage"><code>onmessage</code></dfn> <td> <code title="event-message">message</code>
     <tr><td><dfn id="handler-messageport-onerror" title="handler-MessagePort-onerror"><code>onerror</code></dfn> <td> <code title="event-error">error</code>
   </table><p>The first time a <code><a href="#messageport">MessagePort</a></code> object's <code title="handler-MessagePort-onmessage"><a href="#handler-messageport-onmessage">onmessage</a></code> IDL attribute is set, the port's <a href="#port-message-queue">port
   message queue</a> must be enabled, as if the <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code>
@@ -1621,7 +1622,7 @@ callback <dfn id="portcollectioncallback">PortCollectionCallback</dfn> = void (<
   <p>Furthermore, a <code><a href="#messageport">MessagePort</a></code> object must not be garbage collected while there exists
   an event in a <span>task queue</span> that is to be dispatched on that <code><a href="#messageport">MessagePort</a></code>
   object, or while the <code><a href="#messageport">MessagePort</a></code> object's <a href="#port-message-queue">port message queue</a> is enabled and
-  there exists a <code title="event-message"><a href="#event-message">message</a></code> event in that queue.</p> 
+  there exists a <code title="event-message">message</code> event in that queue.</p> 
 
   
 
