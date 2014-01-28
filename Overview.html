@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-27-january-2014">Editor's Draft 27 January 2014</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-28-january-2014">Editor's Draft 28 January 2014</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 27 January 2014 Editor's Draft.
+  This specification is the 28 January 2014 Editor's Draft.
   </p>
 
   
@@ -494,10 +494,18 @@ interface <dfn id="messageevent">MessageEvent</dfn> : <span>Event</span> {
   readonly attribute DOMString <a href="#dom-messageevent-origin" title="dom-MessageEvent-origin">origin</a>;
   readonly attribute DOMString <a href="#dom-messageevent-lasteventid" title="dom-MessageEvent-lastEventId">lastEventId</a>;
   readonly attribute DOMString <a href="#dom-messageevent-channel" title="dom-MessageEvent-channel">channel</a>;
-  [Exposed=Window] readonly attribute (<span>WindowProxy</span> or <a href="#messageport">MessagePort</a>)? <a href="#dom-messageevent-source" title="dom-MessageEvent-source">source</a>;
-  [Exposed=Worker] readonly attribute <a href="#messageport">MessagePort</a>? <a href="#dom-messageevent-source" title="dom-MessageEvent-source">source</a>;
   readonly attribute <a href="#messageport">MessagePort</a>[]? <a href="#dom-messageevent-ports" title="dom-MessageEvent-ports">ports</a>;
 };
+
+[Exposed=Window]
+partial interface <a href="#messageevent">MessageEvent</a> {
+  readonly attribute (<span>WindowProxy</span> or <a href="#messageport">MessagePort</a>)? <a href="#dom-messageevent-source" title="dom-MessageEvent-source">source</a>;
+}
+
+[Exposed=Worker]
+partial interface <a href="#messageevent">MessageEvent</a> {
+  readonly attribute <a href="#messageport">MessagePort</a>? <a href="#dom-messageevent-source" title="dom-MessageEvent-source">source</a>;
+}
 
 dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</span> {
   any data;
