@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-30-january-2014">Editor's Draft 30 January 2014</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-3-february-2014">Editor's Draft 3 February 2014</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 30 January 2014 Editor's Draft.
+  This specification is the 3 February 2014 Editor's Draft.
   </p>
 
   
@@ -1086,7 +1086,6 @@ interface <dfn id="messageport">MessagePort</dfn> : <span>EventTarget</span> {
 
   // event handlers
            attribute <span>EventHandler</span> <a href="#handler-messageport-onmessage" title="handler-MessagePort-onmessage">onmessage</a>;
-           attribute <span>EventHandler</span> <a href="#handler-messageport-onerror" title="handler-MessagePort-onerror">onerror</a>;
 };
 // <a href="#messageport">MessagePort</a> implements <span>Transferable</span>;</pre>
 
@@ -1212,14 +1211,7 @@ interface <dfn id="messageport">MessagePort</dfn> : <span>EventTarget</span> {
    specifies a <span>responsible event loop</span> that is a <span>browsing context</span> <span>event loop</span>, associating the moved <span title="concept-task">tasks</span> with the <span>responsible document</span> specified by <var title="">new port</var>'s <a href="#concept-port-owner" title="concept-port-owner">owner</a>.</li>
 
 
-   <li><p>If <var title="">original port</var> is <a href="#related-to-an-ill-fated-port">related to an ill-fated port</a>, then
-   create a <span title="concept-task">task</span> that <span title="fire a simple event">fires a
-   simple event</span> named <code title="event-error">error</code> at the <var title="">new
-   port</var>, and add the <span title="concept-task">task</span> to the <a href="#port-message-queue">port message
-   queue</a> of <var title="">new port</var>. If the <var title="">new port</var>'s <a href="#concept-port-owner" title="concept-port-owner">owner</a>
-   specifies a <span>responsible event loop</span> that is a <span>browsing context</span> <span>event loop</span>, the <span title="concept-task">task</span> must
-   be associated with the <span>responsible document</span> specified by <var title="">new
-   port</var>'s <a href="#concept-port-owner" title="concept-port-owner">owner</a>.</li>
+
 
    <li>
 
@@ -1384,38 +1376,7 @@ interface <dfn id="messageport">MessagePort</dfn> : <span>EventTarget</span> {
   disentangle the two ports. If the method is called on a port that is not entangled, then the
   method must do nothing.</p>
 
-  <hr><p>In some circumstances, an entangled <code><a href="#messageport">MessagePort</a></code> <var title="">source port</var>
-  that is not <a href="#ports-and-garbage-collection">eligible for garbage collection</a> will
-  nonetheless find itself prematurely destroyed, for example if the user manually terminates the
-  user agent's host process. Under such circumstances, user agents should attempt to following these
-  steps:</p>
 
-  
-  
-  
-
-  <ol><li><p>Let <var title="">target port</var> be the port with which the ill-fated <var title="">source port</var> is entangled.</li>
-
-   <li><p>If there is no <var title="">target port</var> (i.e. if <var title="">source port</var>
-   is not entangled), or if <var title="">target port</var> is suffering the same fate as <var title="">source port</var> (e.g. if both ports are in the same host process), then abort these
-   steps.</li>
-
-   <li><p>Mark <var title="">target port</var> as being a <dfn id="related-to-an-ill-fated-port">related to an ill-fated
-   port</dfn>.</li>
-
-
-   <li><p>Create a <span title="concept-task">task</span> that <span title="fire a simple
-   event">fires a simple event</span> named <code title="event-error">error</code> at <var title="">target port</var>, and add the <span title="concept-task">task</span> to the
-   <a href="#port-message-queue">port message queue</a> of <var title="">target port</var>. If the <var title="">new port</var>'s <a href="#concept-port-owner" title="concept-port-owner">owner</a>
-   specifies a <span>responsible event loop</span> that is a <span>browsing context</span> <span>event loop</span>, the <span title="concept-task">task</span> must be associated with the <span>responsible document</span>
-   specified by <var title="">source port</var>'s <a href="#concept-port-owner" title="concept-port-owner">owner</a>.</li>
-
-   <li><p>Disentangle the two ports.</li>
-
-  </ol><p class="note">This does not happen if the port is garbage collected or closed using the <code title="dom-messageport-close"><a href="#dom-messageport-close">close()</a></code> method. It is intended only as a way for Web
-  applications that operate across multiple browser processes (e.g. using workers or communicating
-  across multiple tabs) to gracefully handle a catastrophic failure in one process. A strictly
-  conforming user agent would never fail unexpectedly, and thus would never send this event!</p>
 
   <hr><p>The following are the <span>event handlers</span> (and their corresponding <span title="event
   handler event type">event handler event types</span>) that must be supported, as <span>event
@@ -1424,7 +1385,6 @@ interface <dfn id="messageport">MessagePort</dfn> : <span>EventTarget</span> {
 
   <table><thead><tr><th><span title="event handlers">Event handler</span> <th><span>Event handler event type</span>
    <tbody><tr><td><dfn id="handler-messageport-onmessage" title="handler-MessagePort-onmessage"><code>onmessage</code></dfn> <td> <code title="event-message">message</code>
-    <tr><td><dfn id="handler-messageport-onerror" title="handler-MessagePort-onerror"><code>onerror</code></dfn> <td> <code title="event-error">error</code>
   </table><p>The first time a <code><a href="#messageport">MessagePort</a></code> object's <code title="handler-MessagePort-onmessage"><a href="#handler-messageport-onmessage">onmessage</a></code> IDL attribute is set, the port's <a href="#port-message-queue">port
   message queue</a> must be enabled, as if the <code title="dom-MessagePort-start"><a href="#dom-messageport-start">start()</a></code>
   method had been called.</p>
