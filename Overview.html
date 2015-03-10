@@ -216,7 +216,7 @@
 
    <h1>HTML5 Web Messaging</h1>
    
-   <h2 class="no-num no-toc" id="editor-s-draft-14-may-2014">Editor's Draft 14 May 2014</h2>
+   <h2 class="no-num no-toc" id="editor-s-draft-10-mar-2015">Editor's Draft 10 March 2015</h2>
    <dl><dt>Latest Published Version:</dt>
     <dd><a href="http://www.w3.org/TR/webmessaging/">http://www.w3.org/TR/webmessaging/</a></dd>
     <dt>Latest Editor's Draft:</dt>
@@ -229,10 +229,10 @@
     <dt>Editor:</dt>
     <dd><a href="mailto:ian@hixie.ch">Ian Hickson</a>, Google, Inc.</dd>
    </dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
-   &copy; 2012 <a href="http://www.w3.org/"><abbr title="World Wide
+   &copy; 2015 <a href="http://www.w3.org/"><abbr title="World Wide
    Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts
    Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research
-   Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C
+   Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>), All Rights Reserved. W3C
    <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
    <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>
    and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document
@@ -348,7 +348,7 @@
   </dl><p>The W3C <a href="http://www.w3.org/2008/webapps/">Web Applications
   Working Group</a> is the W3C working group responsible for this
   specification's progress along the W3C Recommendation track.
-  This specification is the 14 May 2014 Editor's Draft.
+  This specification is the 10 March 2015 Editor's Draft.
   </p>
 
   
@@ -488,20 +488,21 @@
   <code><a href="#messageevent">MessageEvent</a></code> interface for their <code title="event-message">message</code>
   events:</p>
 
-  <pre class="idl">[Constructor(DOMString type, optional <a href="#messageeventinit">MessageEventInit</a> eventInitDict), Exposed=Window,Worker]
+  <pre class="idl">[Constructor(DOMString type, optional <a href="#messageeventinit">MessageEventInit</a> eventInitDict), Exposed=(Window,Worker)]
 interface <dfn id="messageevent">MessageEvent</dfn> : <span>Event</span> {
   readonly attribute any <a href="#dom-messageevent-data" title="dom-MessageEvent-data">data</a>;
   readonly attribute DOMString <a href="#dom-messageevent-origin" title="dom-MessageEvent-origin">origin</a>;
   readonly attribute DOMString <a href="#dom-messageevent-lasteventid" title="dom-MessageEvent-lastEventId">lastEventId</a>;
   readonly attribute (<span>WindowProxy</span> or <a href="#messageport">MessagePort</a>)? <a href="#dom-messageevent-source" title="dom-MessageEvent-source">source</a>;
   readonly attribute <a href="#messageport">MessagePort</a>[]? <a href="#dom-messageevent-ports" title="dom-MessageEvent-ports">ports</a>;
+
+  void <a href="#dom-messageevent-initmessageevent" id="the-messageevent-interfaces:dom-messageevent-initmessageevent">initMessageEvent</a>(DOMString typeArg, boolean canBubbleArg, boolean cancelableArg, any dataArg, DOMString originArg, DOMString lastEventIdArg, (<a id="the-messageevent-interfaces:windowproxy-2" href="http://www.w3.org/TR/html5/browsers.html#windowproxy">WindowProxy</a> or <a href="#messageport" id="the-messageevent-interfaces:messageport-3">MessagePort</a>) sourceArg, sequence&lt;<a href="#messageport" id="the-messageevent-interfaces:messageport-4">MessagePort</a>>? portsArg);
 };
 
 dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</span> {
   any data;
   DOMString origin;
   DOMString lastEventId;
-  DOMString channel;
   (<span>WindowProxy</span> or <a href="#messageport">MessagePort</a>)? source;
   sequence&lt;<a href="#messageport">MessagePort</a>&gt; ports;
 };</pre>
@@ -551,6 +552,8 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
 
    </dd>
 
+  <p class="note">Open Bugs <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=27128">27128</a></p>
+
   </dl><div class="impl">
 
   <p>The <dfn id="dom-messageevent-data" title="dom-MessageEvent-data"><code>data</code></dfn> attribute must return the value
@@ -580,6 +583,7 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
   <a href="#web-messaging">cross-document messaging</a> and <a href="#channel-messaging">channel messaging</a>, the
   <code><a href="#messageport">MessagePort</a></code> array being sent, if any.</p>
 
+  <p>The <dfn id="dom-messageevent-initmessageevent"><code>initMessageEvent()</code></dfn> method must initialise the event in a manner analogous to the similarly-named <code id="the-messageevent-interfaces:dom-event-initevent"><a href="infrastructure.html#dom-event-initevent">initEvent()</a></code> method. <a href="references.html#refsDOM">[DOM]</a></p>
   </div>
 
 
@@ -699,7 +703,7 @@ function receiver(e) {
    <dd>
 
     <p>Posts a message to the given window. Messages can be structured objects, e.g. nested objects
-    and arrays, can contain JavaScript values (strings, numbers, <code>Date</code>s, etc), and can
+    and arrays, can contain JavaScript values (strings, numbers, <code>Date</code> objects, etc), and can
     contain certain data objects such as <code>File</code> <code>Blob</code>, <code>FileList</code>,
     and <code>ArrayBuffer</code> objects.</p>
 
@@ -724,6 +728,8 @@ function receiver(e) {
   authors are advised to have the child <code>Document</code> post a message to their parent
   announcing their readiness to receive messages, and for the parent to wait for this message before
   beginning posting messages.</p>
+
+  <p class="note">Open Bugs <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=18242">18242</a></p>
 
   <div class="impl">
 
@@ -765,7 +771,7 @@ function receiver(e) {
     <p>If the method was invoked with a third argument <var title="">transfer</var>, run these
     substeps:</p>
 
-    <ol><li><p>Let <var title="">new owner</var> be the <span>script settings object</span> of the
+    <ol><li><p>Let <var title="">new owner</var> be the <span>environment settings object</span> of the
      <code>Window</code> object on which the method was invoked.</li>
 
      <li><p>For each object <var title="">x</var> in <var title="">transfer</var> in turn, obtain
@@ -779,8 +785,7 @@ function receiver(e) {
    <li><p>Make <var title="">new ports</var> into a <span title="dfn-read-only-array">read
    only</span> array.</li>
 
-   <li><p>Return from the <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code> method, but
-   asynchronously continue running these steps.</li>
+   <li><p>Return from the <code title="dom-window-postMessage"><a href="#dom-window-postmessage">postMessage()</a></code> method, but in parallel continue running these steps.</li>
 
    <li>
 
@@ -803,7 +808,7 @@ function receiver(e) {
    <li><p>Create a <span title="concept-events-trusted">trusted</span> event that uses the
    <code><a href="#messageevent">MessageEvent</a></code> interface, with the event type <code title="event-message">message</code>, which does not bubble, is not cancelable, and has no
    default action. The <code title="dom-MessageEvent-data"><a href="#dom-messageevent-data">data</a></code> attribute must be
-   initialised to the value of <var title="">message clone</var>, the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute must be initialised to the <span title="Unicode serialization of an origin">Unicode serialization</span> of the
+   initialised to the value of <var title="">message clone</var>, the <code title="dom-MessageEvent-origin"><a href="#dom-messageevent-origin">origin</a></code> attribute must be initialised to the <span title="Unicode serialization of an origin">Unicode serialisation</span> of the
    <span>origin</span> specified by the <span>incumbent settings object</span>, the <code title="dom-MessageEvent-source"><a href="#dom-messageevent-source">source</a></code> attribute must be initialised to the
    <code>WindowProxy</code> object corresponding to the <span>global object</span> (a
    <code>Window</code> object) specified by the <span>incumbent settings object</span>, and the
@@ -831,8 +836,7 @@ function receiver(e) {
   messaging</a>.</p>
 
   <p>Communication channels in this mechanism are implemented as two-ways pipes, with a port at each
-  end. Messages sent in one port are delivered at the other port, and vice-versa. Messages are
-  asynchronous, and delivered as DOM events.</p>
+  end. Messages sent in one port are delivered at the other port, and vice-versa. Messages are delivered as DOM events, without interrupting or blocking running tasks.</p>
 
   <p>To create a connection (two "entangled" ports), the <code title="">MessageChannel()</code>
   constructor is called:</p>
@@ -1000,7 +1004,7 @@ function handleMessage(event) {
 
   <h3 id="message-channels"><span class="secno">5.2 </span>Message channels</h3>
 
-  <pre class="idl">[<a href="#dom-messagechannel" title="dom-MessageChannel">Constructor</a>, Exposed=Window,Worker]
+  <pre class="idl">[<a href="#dom-messagechannel" title="dom-MessageChannel">Constructor</a>, Exposed=(Window,Worker)]
 interface <dfn id="messagechannel">MessageChannel</dfn> {
   readonly attribute <a href="#messageport">MessagePort</a> <a href="#dom-channel-port1" title="dom-channel-port1">port1</a>;
   readonly attribute <a href="#messageport">MessagePort</a> <a href="#dom-channel-port2" title="dom-channel-port2">port2</a>;
@@ -1065,14 +1069,14 @@ interface <dfn id="messagechannel">MessageChannel</dfn> {
   <p>Each channel has two message ports. Data sent through one port is received by the other port,
   and vice versa.</p>
 
-  <pre class="idl">[Exposed=Window,Worker]
+  <pre class="idl">[Exposed=(Window,Worker)]
 interface <dfn id="messageport">MessagePort</dfn> : <span>EventTarget</span> {
   void <a href="#dom-messageport-postmessage" title="dom-MessagePort-postMessage">postMessage</a>(any message, optional sequence&lt;<span>Transferable</span>&gt; transfer);
   void <a href="#dom-messageport-start" title="dom-MessagePort-start">start</a>();
   void <a href="#dom-messageport-close" title="dom-MessagePort-close">close</a>();
 
   // event handlers
-           attribute <span>EventHandler</span> <a href="#handler-messageport-onmessage" title="handler-MessagePort-onmessage">onmessage</a>;
+  attribute <span>EventHandler</span> <a href="#handler-messageport-onmessage" title="handler-MessagePort-onmessage">onmessage</a>;
 };
 // <a href="#messageport">MessagePort</a> implements <span>Transferable</span>;</pre>
 
@@ -1234,7 +1238,7 @@ interface <dfn id="messageport">MessagePort</dfn> : <span>EventTarget</span> {
 
     <p>Let <var title="">doomed</var> be false. It is set to true if a condition is detected that
     will make this message cause the port to be unusable; specifically, if the message contains <var title="">target port</var> as one of the objects being <span title="transfer a Transferable
-    object">transferred</span>. (This condition cannot necessarily be detected synchronously.)</p>
+    object">transferred</span>. (This condition cannot necessarily be detected when the method is called.)</p>
 
    </li>
 
@@ -1341,19 +1345,23 @@ interface <dfn id="messageport">MessagePort</dfn> : <span>EventTarget</span> {
    is not entangled), or if <var title="">doomed</var> is true, then abort these steps.</li>
    
 
-   <li><p>Create an event that uses the <code><a href="#messageevent">MessageEvent</a></code> interface, with the name <code title="event-message">message</code>, which does not bubble, is not cancelable, and has no
+   <li><p>Create an event e that uses the <code><a href="#messageevent">MessageEvent</a></code> interface, with the name <code title="event-message">message</code>, which does not bubble, is not cancelable, and has no
    default action.</li>
 
-   <li><p>Let the <code title="dom-MessageEvent-data"><a href="#dom-messageevent-data">data</a></code> attribute of the event be
+   <li><p>Let the <code title="dom-MessageEvent-data"><a href="#dom-messageevent-data">data</a></code> attribute of e be
    initialised to the value of <var title="">message clone</var>.</li>
 
-   <li><p>Let the <code title="dom-MessageEvent-ports"><a href="#dom-messageevent-ports">ports</a></code> attribute of the event be
+   <li><p>Let the <code title="dom-MessageEvent-ports"><a href="#dom-messageevent-ports">ports</a></code> attribute of e be
    initialised to the <var title="">new ports</var> array.</li>
 
-   <li><p>Add the event to the <a href="#port-message-queue">port message queue</a> of <var title="">target
-   port</var>.</li>
+   <li><p>Add a <a href="webappapis.html#concept-task" id="message-ports:concept-task-6">task</a> that runs the following steps to the <a href="#port-message-queue" id="message-ports:port-message-queue-12">port
+    message queue</a> of <var>target port</var>:</p>
 
-  </ol><hr><p>The <dfn id="dom-messageport-start" title="dom-MessagePort-start"><code>start()</code></dfn> method must enable its port's
+    <ol><li><p>Let <var>target</var> be the <code id="message-ports:messageport-13"><a href="#messageport">MessagePort</a></code> in whose <a href="#port-message-queue" id="message-ports:port-message-queue-13">port message
+     queue</a> the event <var>e</var> now finds itself.<li><p><a href="infrastructure.html#concept-event-dispatch" id="message-ports:concept-event-dispatch">Dispatch</a> <var>e</var> at
+     <var>target</var>.</ol>
+
+   </ol><hr><p>The <dfn id="dom-messageport-start" title="dom-MessagePort-start"><code>start()</code></dfn> method must enable its port's
   <a href="#port-message-queue">port message queue</a>, if it is not already enabled.</p>
 
   <hr><p>The <dfn id="dom-messageport-close" title="dom-MessagePort-close"><code>close()</code></dfn> method, when called on a port
@@ -1393,7 +1401,7 @@ interface <dfn id="messageport">MessagePort</dfn> : <span>EventTarget</span> {
   they stop being relevant, while still allowing scripts to iterate over the
   <code><a href="#messageport">MessagePort</a></code> objects.</p>
 
-  <pre class="idl">[<a href="#dom-portcollection" title="dom-PortCollection">Constructor</a>, Exposed=Window,Worker]
+  <pre class="idl">[<a href="#dom-portcollection" title="dom-PortCollection">Constructor</a>, Exposed=(Window,Worker)]
 interface <dfn id="portcollection">PortCollection</dfn> {
   void <a href="#dom-portcollection-add" title="dom-PortCollection-add">add</a>(<a href="#messageport">MessagePort</a> port);
   void <a href="#dom-portcollection-remove" title="dom-PortCollection-remove">remove</a>(<a href="#messageport">MessagePort</a> port);
@@ -1501,9 +1509,9 @@ callback <dfn id="portcollectioncallback">PortCollectionCallback</dfn> = void (<
   </div>
 
   <p>Furthermore, a <code><a href="#messageport">MessagePort</a></code> object must not be garbage collected while there exists
-  an event in a <span>task queue</span> that is to be dispatched on that <code><a href="#messageport">MessagePort</a></code>
+  an event referenced by a <span>task in a task queue</span> that is to be dispatched on that <code><a href="#messageport">MessagePort</a></code>
   object, or while the <code><a href="#messageport">MessagePort</a></code> object's <a href="#port-message-queue">port message queue</a> is enabled
-  and there exists a <code title="event-message">message</code> event in that queue.</p> 
+  and not empty.</p> 
 
   
 
