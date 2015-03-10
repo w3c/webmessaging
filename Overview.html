@@ -552,9 +552,11 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
 
    </dd>
 
+  </dl>
+
   <p class="note">Open Bugs <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=27128">27128</a></p>
 
-  </dl><div class="impl">
+  <div class="impl">
 
   <p>The <dfn id="dom-messageevent-data" title="dom-MessageEvent-data"><code>data</code></dfn> attribute must return the value
   it was initialised to. When the object is created, this attribute must be initialised to null. It
@@ -583,7 +585,7 @@ dictionary <dfn id="messageeventinit">MessageEventInit</dfn> : <span>EventInit</
   <a href="#web-messaging">cross-document messaging</a> and <a href="#channel-messaging">channel messaging</a>, the
   <code><a href="#messageport">MessagePort</a></code> array being sent, if any.</p>
 
-  <p>The <dfn id="dom-messageevent-initmessageevent"><code>initMessageEvent()</code></dfn> method must initialise the event in a manner analogous to the similarly-named <code id="the-messageevent-interfaces:dom-event-initevent"><a href="infrastructure.html#dom-event-initevent">initEvent()</a></code> method. <a href="references.html#refsDOM">[DOM]</a></p>
+  <p>The <dfn id="dom-messageevent-initmessageevent"><code>initMessageEvent()</code></dfn> method must initialise the event in a manner analogous to the similarly-named <code id="the-messageevent-interfaces:dom-event-initevent"><a href="http://www.w3.org/TR/html5/infrastructure.html#dom-event-initevent">initEvent()</a></code> method. <a href="#refsDOM">[DOM]</a></p>
   </div>
 
 
@@ -1354,11 +1356,11 @@ interface <dfn id="messageport">MessagePort</dfn> : <span>EventTarget</span> {
    <li><p>Let the <code title="dom-MessageEvent-ports"><a href="#dom-messageevent-ports">ports</a></code> attribute of e be
    initialised to the <var title="">new ports</var> array.</li>
 
-   <li><p>Add a <a href="webappapis.html#concept-task" id="message-ports:concept-task-6">task</a> that runs the following steps to the <a href="#port-message-queue" id="message-ports:port-message-queue-12">port
+   <li><p>Add a <a href="http://www.w3.org/TR/html5/webappapis.html#concept-task" id="message-ports:concept-task-6">task</a> that runs the following steps to the <a href="#port-message-queue" id="message-ports:port-message-queue-12">port
     message queue</a> of <var>target port</var>:</p>
 
     <ol><li><p>Let <var>target</var> be the <code id="message-ports:messageport-13"><a href="#messageport">MessagePort</a></code> in whose <a href="#port-message-queue" id="message-ports:port-message-queue-13">port message
-     queue</a> the event <var>e</var> now finds itself.<li><p><a href="infrastructure.html#concept-event-dispatch" id="message-ports:concept-event-dispatch">Dispatch</a> <var>e</var> at
+     queue</a> the event <var>e</var> now finds itself.<li><p><a href="http://www.w3.org/TR/html5/infrastructure.html#concept-event-dispatch" id="message-ports:concept-event-dispatch">Dispatch</a> <var>e</var> at
      <var>target</var>.</ol>
 
    </ol><hr><p>The <dfn id="dom-messageport-start" title="dom-MessagePort-start"><code>start()</code></dfn> method must enable its port's
